@@ -25,6 +25,7 @@ Their central claim: attention applied to LSTM output can be made faithful/plaus
 # Expansion ideas
 
 #### FILLING IN BLANKS IN THE PAPER?
+
 * Minimal Rational evaluation: add Ortho LSTM?
 * Where is attention applied in the model, can this be designed in a smarter way?
 * Zero vs. Xavier initialization of the cell state/output at t=0
