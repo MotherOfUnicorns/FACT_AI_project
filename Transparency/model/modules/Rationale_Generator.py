@@ -39,7 +39,7 @@ class RGenerator(nn.Module) :
         embedding = self.embedding(seq) #(B, L, E)
         mask = data.masks.unsqueeze(-1).float() #(B, L, 1)
 
-        packseq = nn.utils.rnn.pack_padded_sequence(embedding, lengths, batch_first=True, enforce_sorted=False)
+        packseq = nn.utils.rnn.pack_padded_sequence(embedding, lengths.cpu(), batch_first=True, enforce_sorted=False)
         output, (h, c) = self.rnn(packseq)
         output, lengths = nn.utils.rnn.pad_packed_sequence(output, batch_first=True, padding_value=0)
 
@@ -80,7 +80,7 @@ class RGenerator_QA(nn.Module) :
         embedding = self.embedding(seq) #(B, L, E)
         mask = Qdata.masks.unsqueeze(-1).float() #(B, L, 1)
 
-        packseq = nn.utils.rnn.pack_padded_sequence(embedding, lengths, batch_first=True, enforce_sorted=False)
+        packseq = nn.utils.rnn.pack_padded_sequence(embedding, lengths.cpu(), batch_first=True, enforce_sorted=False)
         output, (h_n, c_n) = self.rnn_q(packseq)
 
         ########  Passage Encoder   ###############
@@ -90,7 +90,7 @@ class RGenerator_QA(nn.Module) :
         embedding = self.embedding(seq) #(B, L, E)
         mask = Pdata.masks.unsqueeze(-1).float() #(B, L, 1)
 
-        packseq = nn.utils.rnn.pack_padded_sequence(embedding, lengths, batch_first=True, enforce_sorted=False)
+        packseq = nn.utils.rnn.pack_padded_sequence(embedding, lengths.cpu(), batch_first=True, enforce_sorted=False)
         output, (h, c) = self.rnn(packseq,(h_n,c_n))
         output, lengths = nn.utils.rnn.pad_packed_sequence(output, batch_first=True, padding_value=0)
 
