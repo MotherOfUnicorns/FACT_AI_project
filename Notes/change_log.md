@@ -6,3 +6,5 @@ Yun:
     * Anemia and Diabetes are not in the Transpanrency/preprocess folder
     * Tweets requires contacting the authors of the 'attention is not explanation' paper
     * CNN data is missing: the owner of the data moved
+    
+- changed arguments of torch functions (pack-padded_sequence) to fix deprecated issues in higher versions of torch (1.1.0 vs 1.7.0). Now compatible to Frank env (torch=1.7.0).
