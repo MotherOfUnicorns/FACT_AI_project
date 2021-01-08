@@ -1,2 +1,4 @@
-vec_sst.p
-.ipynb_checkpoints
+.gitignore
+vec*.p
+*.csv
+*.zip
