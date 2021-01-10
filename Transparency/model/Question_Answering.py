@@ -186,8 +186,8 @@ class Model() :
                 self.optim.step()
 
             loss_total += float(loss.data.cpu().item())
-            if idx%100 == 0:
-                print ("Epoch: {} Step: {} Total Loss: {}, CE loss: {}, Diversity Loss: {} (Diversity_weight = {})".format(epoch,idx,loss,ce_loss.cpu().data, diverity_loss, self.diversity_weight))
+            # if idx%100 == 0:
+            #     print ("Epoch: {} Step: {} Total Loss: {}, CE loss: {}, Diversity Loss: {} (Diversity_weight = {})".format(epoch,idx,loss,ce_loss.cpu().data, diverity_loss, self.diversity_weight))
         
         outputs = [x for y in outputs for x in y]
         loss_total = loss_total*bsize/N
