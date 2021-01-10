@@ -26,19 +26,37 @@ class Attention(nn.Module, Registrable) :
 
 @Attention.register('tanh')
 class TanhAttention(Attention) :
-    def __init__(self, hidden_size) :
+    def __init__(self, hidden_size,type='first_only') :
         super().__init__()
+        self.type=type
+
+        self.hidden_size = hidden_size
         self.attn1 = nn.Linear(hidden_size, hidden_size // 2)
         self.attn2 = nn.Linear(hidden_size // 2, 1, bias=False)
-        self.hidden_size = hidden_size
+        
+        if type in ['equal','first_only','last_only']:
+            self.attn1.requires_grad_=False
+            self.attn2.requires_grad_=False
         
     def forward(self, data) :
         #input_seq = (B, L), hidden : (B, L, H), masks : (B, L)
         input_seq, hidden, masks = data.seq, data.hidden, data.masks
         lengths = data.lengths
 
-        attn1 = nn.Tanh()(self.attn1(hidden))
-        attn2 = self.attn2(attn1).squeeze(-1)
+        if self.type == 'default':
+            attn1 = nn.Tanh()(self.attn1(hidden))
+            attn2 = self.attn2(attn1).squeeze(-1)
+        elif self.type == 'equal':
+            # Use equal (constant) attention to all output vectors at each timestep
+            attn2=torch.ones(data.B,data.maxlen).to(device)
+        elif self.type == 'last_only':
+            attn2=torch.zeros(data.B,data.maxlen).to(device)
+            idx=lengths.unsqueeze(1)-2
+            attn2=torch.scatter(attn2,1,idx,1e6)
+        elif self.type == 'first_only':
+            attn2=torch.zeros(data.B,data.maxlen).to(device)
+            attn2[:,1]=1e6
+        
         data.attn_logit = attn2
         attn = masked_softmax(attn2, masks)
         

@@ -20,8 +20,8 @@ def train_dataset(dataset, config='lstm') :
 def train_dataset_on_encoders(dataset, encoders) :
     for e in encoders :
         train_dataset(dataset, e)
-        run_experiments_on_latest_model(dataset, e)
-        run_rationale_on_latest_model(dataset, e)
+        #run_experiments_on_latest_model(dataset, e)
+        #run_rationale_on_latest_model(dataset, e)
         
 def generate_graphs_on_encoders(dataset, encoders) :
     for e in encoders :
