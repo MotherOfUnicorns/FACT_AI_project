@@ -150,8 +150,8 @@ class Model() :
                 self.encoder_optim.step()
                 self.decoder_optim.step()
                 self.attn_optim.step()
-                #print ("Epoch: {} Step: {} Total Loss: {:.3f}, BCE loss: {:.3f}, Diversity Loss: {:.3f} \
-                #    (Diversity_weight = {})".format(epoch, idx, loss, bce_loss.cpu().data, diverity_loss, self.diversity_weight))
+                print ("Epoch: {} Step: {} Total Loss: {:.3f}, BCE loss: {:.3f}, Diversity Loss: {:.3f} \
+                    (Diversity_weight = {})".format(epoch, idx, loss, bce_loss.cpu().data, diverity_loss, self.diversity_weight))
 
                 n_iters = total_iter*epoch + idx
                 sys.stdout.flush()

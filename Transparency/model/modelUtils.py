@@ -32,14 +32,12 @@ class BatchHolder() :
         lengths = []
         expanded = []
         masks = []
-        masks_bool = []
 
         for _, d in enumerate(data) :
             rem = maxlen - len(d)
             expanded.append(d + [0] * rem)
             lengths.append(len(d))
             masks.append([1] + [0] * (len(d) - 2) + [1] * (rem + 1))
-            masks_bool.append([True]+[False]*(len(d)-2) + [True]*(rem+1))
 
         self.lengths = torch.LongTensor(np.array(lengths)).to(device)
 
@@ -49,8 +47,7 @@ class BatchHolder() :
         else:
             self.seq = torch.LongTensor(np.array(expanded, dtype='float64')).to(device)
 
-        #self.masks = torch.ByteTensor(np.array(masks)).to(device)
-        self.masks = torch.BoolTensor(np.array(masks_bool)).to(device)
+        self.masks = torch.ByteTensor(np.array(masks)).to(device)
 
         self.hidden = None
         self.predict = None
