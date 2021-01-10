@@ -37,75 +37,16 @@ python -m spacy download en
 cd $HOME/project/Transparency
 output_dir=$HOME/test_seeds
 
- 
-python train_and_run_experiments_bc.py --dataset sst --encoder vanilla_lstm --data_dir . --output_dir $output_dir --seed 0
+for seed in 0 1 2
+do
+	for dataset in sst imdb yelp amazon 20News_sports snli qqp babi_1 babi_2 babi_3 # tweet
+	do
 
-python train_and_run_experiments_bc.py --dataset imdb --encoder vanilla_lstm --data_dir . --output_dir $output_dir --seed 0
+		python train_and_run_experiments_bc.py --dataset $dataset --encoder vanilla_lstm --data_dir . --output_dir $output_dir --seed $seed
+		
+		python train_and_run_experiments_bc.py --dataset $dataset --encoder ortho_lstm --data_dir . --output_dir $output_dir --seed $seed
+		
+		python train_and_run_experiments_bc.py --dataset $dataset --encoder diversity_lstm --data_dir . --output_dir $output_dir --seed $seed --diversity 0.5
 
-python train_and_run_experiments_bc.py --dataset yelp --encoder vanilla_lstm --data_dir . --output_dir $output_dir --seed 0
-
-python train_and_run_experiments_bc.py --dataset amazon --encoder vanilla_lstm --data_dir . --output_dir $output_dir --seed 0
-
-python train_and_run_experiments_bc.py --dataset 20News_sports --encoder vanilla_lstm --data_dir . --output_dir $output_dir --seed 0
-
-python train_and_run_experiments_bc.py --dataset tweet --encoder vanilla_lstm --data_dir . --output_dir $output_dir --seed 0
-
-python train_and_run_experiments_qa.py --dataset snli --encoder vanilla_lstm --data_dir . --output_dir $output_dir --seed 0
-
-python train_and_run_experiments_qa.py --dataset qqp --encoder vanilla_lstm --data_dir . --output_dir $output_dir --seed 0
-
-python train_and_run_experiments_qa.py --dataset babi_1 --encoder vanilla_lstm --data_dir . --output_dir $output_dir --seed 0
-
-python train_and_run_experiments_qa.py --dataset babi_2 --encoder vanilla_lstm --data_dir . --output_dir $output_dir --seed 0
-
-python train_and_run_experiments_qa.py --dataset babi_3 --encoder vanilla_lstm --data_dir . --output_dir $output_dir --seed 0
-
-
-
- 
-python train_and_run_experiments_bc.py --dataset sst --encoder ortho_lstm --data_dir . --output_dir $output_dir --seed 0
-
-python train_and_run_experiments_bc.py --dataset imdb --encoder ortho_lstm --data_dir . --output_dir $output_dir --seed 0
-
-python train_and_run_experiments_bc.py --dataset yelp --encoder ortho_lstm --data_dir . --output_dir $output_dir --seed 0
-
-python train_and_run_experiments_bc.py --dataset amazon --encoder ortho_lstm --data_dir . --output_dir $output_dir --seed 0
-
-python train_and_run_experiments_bc.py --dataset 20News_sports --encoder ortho_lstm --data_dir . --output_dir $output_dir --seed 0
-
-python train_and_run_experiments_bc.py --dataset tweet --encoder ortho_lstm --data_dir . --output_dir $output_dir --seed 0
-
-python train_and_run_experiments_qa.py --dataset snli --encoder ortho_lstm --data_dir . --output_dir $output_dir --seed 0
-
-python train_and_run_experiments_qa.py --dataset qqp --encoder ortho_lstm --data_dir . --output_dir $output_dir --seed 0
-
-python train_and_run_experiments_qa.py --dataset babi_1 --encoder ortho_lstm --data_dir . --output_dir $output_dir --seed 0
-
-python train_and_run_experiments_qa.py --dataset babi_2 --encoder ortho_lstm --data_dir . --output_dir $output_dir --seed 0
-
-python train_and_run_experiments_qa.py --dataset babi_3 --encoder ortho_lstm --data_dir . --output_dir $output_dir --seed 0
-
-
-
- 
-python train_and_run_experiments_bc.py --dataset sst --encoder diversity_lstm --data_dir . --output_dir $output_dir --seed 0 --diversity 0.5
-
-python train_and_run_experiments_bc.py --dataset imdb --encoder diversity_lstm --data_dir . --output_dir $output_dir --seed 0 --diversity 0.5
-
-python train_and_run_experiments_bc.py --dataset yelp --encoder diversity_lstm --data_dir . --output_dir $output_dir --seed 0 --diversity 0.5
-
-python train_and_run_experiments_bc.py --dataset amazon --encoder diversity_lstm --data_dir . --output_dir $output_dir --seed 0 --diversity 0.5
-
-python train_and_run_experiments_bc.py --dataset 20News_sports --encoder diversity_lstm --data_dir . --output_dir $output_dir --seed 0 --diversity 0.5
-
-python train_and_run_experiments_bc.py --dataset tweet --encoder diversity_lstm --data_dir . --output_dir $output_dir --seed 0 --diversity 0.5
-
-python train_and_run_experiments_qa.py --dataset snli --encoder diversity_lstm --data_dir . --output_dir $output_dir --seed 0 --diversity 0.1
-
-python train_and_run_experiments_qa.py --dataset qqp --encoder diversity_lstm --data_dir . --output_dir $output_dir --seed 0 --diversity 0.5
-
-python train_and_run_experiments_qa.py --dataset babi_1 --encoder diversity_lstm --data_dir . --output_dir $output_dir --seed 0 --diversity 0.5
-
-python train_and_run_experiments_qa.py --dataset babi_2 --encoder diversity_lstm --data_dir . --output_dir $output_dir --seed 0 --diversity 0.5
-
-python train_and_run_experiments_qa.py --dataset babi_3 --encoder diversity_lstm --data_dir . --output_dir $output_dir --seed 0 --diversity 0.5
+	done
+done
