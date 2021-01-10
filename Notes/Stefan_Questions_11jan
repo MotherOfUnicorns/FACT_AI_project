@@ -1,10 +1,12 @@
-Q1:
-Yelp, LSTM vanilla as example:
-what is exactly depicted in the Attn_.... figures (colors) and how does this relate to table 4.
-How do we determine whether they are the same as in the paper?
+Main Q1: how to check whether results match or do not match
 
-Q2:
-wth are the quant figures?
+  Q1:
+  Yelp, LSTM vanilla as example:
+  what is exactly depicted in the Attn_.... figures (colors) and how does this relate to table 4.
+  How do we determine whether they are the same as in the paper?
 
-Q3:
-maybe not for Stefan: which conicity value to pick to compare to paper?
+  Q2:
+  wth are the quant figures?
+
+  Q3:
+  maybe not for Stefan: which conicity value to pick to compare to paper?
