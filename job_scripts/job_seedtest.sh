@@ -39,7 +39,7 @@ output_dir=$HOME/test_seeds
 
 for seed in 0 1 2
 do
-	for dataset in sst imdb yelp amazon 20News_sports snli qqp babi_1 babi_2 babi_3 # tweet
+	for dataset in sst imdb yelp amazon 20News_sports # tweet
 	do
 
 		python train_and_run_experiments_bc.py --dataset $dataset --encoder vanilla_lstm --data_dir . --output_dir $output_dir --seed $seed
@@ -49,4 +49,15 @@ do
 		python train_and_run_experiments_bc.py --dataset $dataset --encoder diversity_lstm --data_dir . --output_dir $output_dir --seed $seed --diversity 0.5
 
 	done
+	
+	for dataset in snli qqp babi_1 babi_2 babi_3
+	do
+		python train_and_run_experiments_qa.py --dataset $dataset --encoder vanilla_lstm --data_dir . --output_dir $output_dir --seed $seed
+		
+		python train_and_run_experiments_qa.py --dataset $dataset --encoder ortho_lstm --data_dir . --output_dir $output_dir --seed $seed
+		
+		python train_and_run_experiments_qa.py --dataset $dataset --encoder diversity_lstm --data_dir . --output_dir $output_dir --seed $seed --diversity 0.5
+	done
+
+
 done
