@@ -47,8 +47,6 @@ metrics_type = {
 class Model() :
     def __init__(self, configuration, pre_embed=None) :
 
-        torch.manual_seed(0)
-
         configuration = deepcopy(configuration)
         self.configuration = deepcopy(configuration)
 
