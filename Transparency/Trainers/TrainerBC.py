@@ -140,7 +140,7 @@ class Evaluator() :
         self.dataset = dataset
 
     def evaluate(self, test_data, save_results=False) :
-        predictions, attentions, conicity_values = self.model.evaluate(test_data.X)
+        predictions, attentions, conicity_values,_ = self.model.evaluate(test_data.X)
         predictions = np.array(predictions)
 
         test_metrics = self.metrics(test_data.y, predictions)
