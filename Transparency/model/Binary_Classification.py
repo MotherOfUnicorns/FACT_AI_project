@@ -47,8 +47,6 @@ metrics_type = {
 class Model() :
     def __init__(self, configuration, pre_embed=None) :
 
-        torch.manual_seed(0)
-
         configuration = deepcopy(configuration)
         self.configuration = deepcopy(configuration)
 
@@ -150,8 +148,8 @@ class Model() :
                 self.encoder_optim.step()
                 self.decoder_optim.step()
                 self.attn_optim.step()
-                #print ("Epoch: {} Step: {} Total Loss: {:.3f}, BCE loss: {:.3f}, Diversity Loss: {:.3f} \
-                #    (Diversity_weight = {})".format(epoch, idx, loss, bce_loss.cpu().data, diverity_loss, self.diversity_weight))
+                # print ("Epoch: {} Step: {} Total Loss: {:.3f}, BCE loss: {:.3f}, Diversity Loss: {:.3f} \
+                #     (Diversity_weight = {})".format(epoch, idx, loss, bce_loss.cpu().data, diverity_loss, self.diversity_weight))
 
                 n_iters = total_iter*epoch + idx
                 sys.stdout.flush()
@@ -218,8 +216,8 @@ class Model() :
                 self.generator_optim.zero_grad()
                 loss.backward()
                 self.generator_optim.step()
-                print ("Epoch: {}, Step: {} Loss {}, Total Reward: {}, BCE loss: {} Sparsity Reward: {} (sparsity_lambda = {})".format(epoch, idx, loss, total_reward.mean(),
-                                                                                     bce_loss.mean(), sparsity_reward.mean(), self.configuration['model']['generator']['sparsity_lambda']))
+                # print ("Epoch: {}, Step: {} Loss {}, Total Reward: {}, BCE loss: {} Sparsity Reward: {} (sparsity_lambda = {})".format(epoch, idx, loss, total_reward.mean(),
+                #                                                                      bce_loss.mean(), sparsity_reward.mean(), self.configuration['model']['generator']['sparsity_lambda']))
                 n_iters = total_iter*epoch + idx
                 sys.stdout.flush()
             loss_total += float(loss.data.cpu().item())
