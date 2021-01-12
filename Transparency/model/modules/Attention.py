@@ -76,6 +76,111 @@ class TanhAttention(Attention) :
 
         return attn
 
+@Attention.register('equal')
+class EqualAttention(Attention) :
+    def __init__(self, hidden_size) :
+        super().__init__()
+        self.type=type
+
+        self.hidden_size = hidden_size
+        
+    def forward(self, data) :
+        #input_seq = (B, L), hidden : (B, L, H), masks : (B, L)
+        input_seq, hidden, masks = data.seq, data.hidden, data.masks
+        lengths = data.lengths
+
+        attn2=torch.ones(data.B,data.maxlen).to(device)
+        
+        data.attn_logit = attn2
+        attn = masked_softmax(attn2, masks)
+        
+        inf = 1e9
+        if isTrue(data, 'erase_max'):
+            attn2[:,attn.max(dim=1)[1]] = -1*inf
+            attn = masked_softmax(attn2, masks)
+        
+        if isTrue(data, 'erase_random'):
+            rand_len = (torch.rand(size=lengths.size()).to(device) * (lengths).float()).long()
+            attn2[:,rand_len] = -1*inf
+            attn = masked_softmax(attn2, masks)
+
+        if isTrue(data, 'erase_given'):
+            attn2[:,data.erase_attn] = -1*inf
+            attn = masked_softmax(attn2,masks) 
+
+        return attn
+
+@Attention.register('first_only')
+class FirstOnlyAttention(Attention) :
+    def __init__(self, hidden_size) :
+        super().__init__()
+        self.type=type
+
+        self.hidden_size = hidden_size
+        
+    def forward(self, data) :
+        #input_seq = (B, L), hidden : (B, L, H), masks : (B, L)
+        input_seq, hidden, masks = data.seq, data.hidden, data.masks
+        lengths = data.lengths
+
+        attn2=torch.zeros(data.B,data.maxlen).to(device)
+        attn2[:,1]=1e6
+        
+        data.attn_logit = attn2
+        attn = masked_softmax(attn2, masks)
+        
+        inf = 1e9
+        if isTrue(data, 'erase_max'):
+            attn2[:,attn.max(dim=1)[1]] = -1*inf
+            attn = masked_softmax(attn2, masks)
+        
+        if isTrue(data, 'erase_random'):
+            rand_len = (torch.rand(size=lengths.size()).to(device) * (lengths).float()).long()
+            attn2[:,rand_len] = -1*inf
+            attn = masked_softmax(attn2, masks)
+
+        if isTrue(data, 'erase_given'):
+            attn2[:,data.erase_attn] = -1*inf
+            attn = masked_softmax(attn2,masks) 
+
+        return attn
+
+@Attention.register('last_only')
+class LastOnlyAttention(Attention) :
+    def __init__(self, hidden_size) :
+        super().__init__()
+        self.type=type
+
+        self.hidden_size = hidden_size
+        
+    def forward(self, data) :
+        #input_seq = (B, L), hidden : (B, L, H), masks : (B, L)
+        input_seq, hidden, masks = data.seq, data.hidden, data.masks
+        lengths = data.lengths
+
+        attn2=torch.zeros(data.B,data.maxlen).to(device)
+        idx=lengths.unsqueeze(1)-2
+        attn2=torch.scatter(attn2,1,idx,1e6)
+        
+        data.attn_logit = attn2
+        attn = masked_softmax(attn2, masks)
+        
+        inf = 1e9
+        if isTrue(data, 'erase_max'):
+            attn2[:,attn.max(dim=1)[1]] = -1*inf
+            attn = masked_softmax(attn2, masks)
+        
+        if isTrue(data, 'erase_random'):
+            rand_len = (torch.rand(size=lengths.size()).to(device) * (lengths).float()).long()
+            attn2[:,rand_len] = -1*inf
+            attn = masked_softmax(attn2, masks)
+
+        if isTrue(data, 'erase_given'):
+            attn2[:,data.erase_attn] = -1*inf
+            attn = masked_softmax(attn2,masks) 
+
+        return attn
+
 @Attention.register('multi_tanh')
 class MultiTanhAttention(Attention) :
     def __init__(self, hidden_size, heads=2) :
