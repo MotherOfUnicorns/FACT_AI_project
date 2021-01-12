@@ -4,10 +4,10 @@ from Transparency.configurations import configurations
 from Transparency.Trainers.TrainerBC import Trainer, Evaluator, RationaleTrainer
 
 
-def train_dataset(dataset, config="lstm"):
+def train_dataset(dataset, args, encoder="vanilla_lstm"):
     print("STARTING TRAINING")
 
-    config = configurations[config](dataset)
+    config = configurations[encoder](dataset)
     trainer = Trainer(dataset, config=config, _type=dataset.trainer_type)
     if hasattr(dataset, "n_iter"):
         n_iters = dataset.n_iter
@@ -37,8 +37,8 @@ def generate_graphs_on_encoders(dataset, encoders):
         generate_graphs_on_latest_model(dataset, e)
 
 
-def run_rationale_on_latest_model(dataset, config="lstm"):
-    config = configurations[config](dataset)
+def run_rationale_on_latest_model(dataset, encoder="vanilla_lstm"):
+    config = configurations[encoder](dataset)
     latest_model = get_latest_model(
         os.path.join(config["training"]["basepath"], config["training"]["exp_dirname"])
     )
@@ -52,10 +52,10 @@ def run_rationale_on_latest_model(dataset, config="lstm"):
     return rationale_gen
 
 
-def run_evaluator_on_latest_model(dataset, config="lstm"):
+def run_evaluator_on_latest_model(dataset, encoder="vanilla_lstm"):
     print("EVALUATING LATEST MODEL")
 
-    config = configurations[config](dataset)
+    config = configurations[encoder](dataset)
     latest_model = get_latest_model(
         os.path.join(config["training"]["basepath"], config["training"]["exp_dirname"])
     )
@@ -64,8 +64,8 @@ def run_evaluator_on_latest_model(dataset, config="lstm"):
     return evaluator
 
 
-def run_experiments_on_latest_model(dataset, config="lstm", force_run=True):
-    evaluator = run_evaluator_on_latest_model(dataset, config)
+def run_experiments_on_latest_model(dataset, encoder="vanilla_lstm", force_run=True):
+    evaluator = run_evaluator_on_latest_model(dataset, encoder)
     test_data = dataset.test_data
     print("RUNNING GRADIENT EXPERIMENT ON LATEST MODEL")
     evaluator.gradient_experiment(test_data, force_run=force_run)
@@ -81,10 +81,10 @@ def run_experiments_on_latest_model(dataset, config="lstm", force_run=True):
     evaluator.integrated_gradient_experiment(dataset, force_run=force_run)
 
 
-def generate_graphs_on_latest_model(dataset, config="lstm"):
+def generate_graphs_on_latest_model(dataset, encoder="vanilla_lstm"):
     print("GENERATING GRAPHS FOR EXPERIMENT ON LATEST MODEL")
 
-    config = configurations[config](dataset)
+    config = configurations[encoder](dataset)
     latest_model = get_latest_model(
         os.path.join(config["training"]["basepath"], config["training"]["exp_dirname"])
     )
