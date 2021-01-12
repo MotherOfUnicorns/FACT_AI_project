@@ -424,6 +424,7 @@ class Model() :
         outputs = []
         attns = []
         conicity_values = []
+        h_vecs=[]
 
         for n in (range(0, N, bsize)) :
             torch.cuda.empty_cache()
@@ -444,12 +445,18 @@ class Model() :
             predict = batch_data.predict.cpu().data.numpy()
             outputs.append(predict)
 
+            h_temp = batch_data.hidden.detach().cpu().numpy()
+            for i in range(h_temp.shape[0]):
+                h_vecs.append(h_temp[i,:,:])
+
+            #h_vecs.append(batch_data.hidden.detach().cpu().numpy())
+
         outputs = [x for y in outputs for x in y]
         if self.decoder.use_attention :
             attns = [x for y in attns for x in y]
         
         conicity_values = np.concatenate(conicity_values,axis=0)
-        return outputs, attns, conicity_values
+        return outputs, attns, conicity_values,h_vecs
 
 
     def conicity_analysis(self,data):

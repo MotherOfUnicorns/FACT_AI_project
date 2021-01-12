@@ -26,7 +26,7 @@ class Attention(nn.Module, Registrable) :
 
 @Attention.register('tanh')
 class TanhAttention(Attention) :
-    def __init__(self, hidden_size,type='first_only') :
+    def __init__(self, hidden_size,type='default') :
         super().__init__()
         self.type=type
 

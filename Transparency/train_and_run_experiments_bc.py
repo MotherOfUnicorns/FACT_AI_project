@@ -22,5 +22,5 @@ dataset.diversity = args.diversity
 encoders = [args.encoder]
 
 train_dataset_on_encoders(dataset, encoders)
-#generate_graphs_on_encoders(dataset, encoders)
+generate_graphs_on_encoders(dataset, encoders)
 
