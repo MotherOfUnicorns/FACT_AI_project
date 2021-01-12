@@ -12,7 +12,8 @@ def update_config_with_args(dataset, args):
     config['model']['decoder']['attention']['type'] = args.attention
 
     if args.attention != 'tanh':
-        config['training']['exp_dirname'] += '_' + args.attention
+        exp_dirname = config['training']['exp_dirname']
+        config['training']['exp_dirname'] = exp_dirname[:-4] + args.attention
     return config
 
 

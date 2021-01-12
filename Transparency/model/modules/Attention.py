@@ -83,6 +83,9 @@ class EqualAttention(Attention) :
         self.type=type
 
         self.hidden_size = hidden_size
+
+        self.attn2 = nn.Linear(hidden_size // 2, 1, bias=False)
+        self.attn2.requires_grad_=False
         
     def forward(self, data) :
         #input_seq = (B, L), hidden : (B, L, H), masks : (B, L)
@@ -117,6 +120,8 @@ class FirstOnlyAttention(Attention) :
         self.type=type
 
         self.hidden_size = hidden_size
+        self.attn2 = nn.Linear(hidden_size // 2, 1, bias=False)
+        self.attn2.requires_grad_=False
         
     def forward(self, data) :
         #input_seq = (B, L), hidden : (B, L, H), masks : (B, L)
@@ -152,6 +157,8 @@ class LastOnlyAttention(Attention) :
         self.type=type
 
         self.hidden_size = hidden_size
+        self.attn2 = nn.Linear(hidden_size // 2, 1, bias=False)
+        self.attn2.requires_grad_=False
         
     def forward(self, data) :
         #input_seq = (B, L), hidden : (B, L, H), masks : (B, L)
