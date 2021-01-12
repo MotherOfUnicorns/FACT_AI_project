@@ -5,6 +5,8 @@ from Transparency.Trainers.TrainerQA import Trainer, Evaluator
 
 
 def train_dataset(dataset, config):
+    print('STARTING TRAINING')
+
     config = configurations_qa[config](dataset)
     n_iters = dataset.n_iters if hasattr(dataset, "n_iters") else 25
     trainer = Trainer(dataset, config=config, _type=dataset.trainer_type)
@@ -12,6 +14,8 @@ def train_dataset(dataset, config):
     return trainer
 
 def run_evaluator_on_latest_model(dataset, config):
+    print('EVALUATING LATEST MODEL')
+
     config = configurations_qa[config](dataset)
     latest_model = get_latest_model(os.path.join(config["training"]["basepath"], config["training"]["exp_dirname"]))
     evaluator = Evaluator(dataset, latest_model)
@@ -23,13 +27,19 @@ def run_experiments_on_latest_model(dataset, config, force_run=True):
     evaluator = run_evaluator_on_latest_model(dataset, config)
     test_data = dataset.test_data
     
+    print('RUNNING GRADIENT EXPERIMENT ON LATEST MODEL')
     evaluator.gradient_experiment(test_data, force_run=force_run)
+    print('RUNNING IMPORTANCE RANKING EXPERIMENT ON LATEST MODEL')
     evaluator.importance_ranking_experiment(test_data, force_run=force_run)
+    print('RUNNING PERMUTATION EXPERIMENT ON LATEST MODEL')
     evaluator.permutation_experiment(test_data, force_run=force_run)
+    print('RUNNING QUANTITATIVE ANALYSIS EXPERIMENT ON LATEST MODEL')
     evaluator.quantitative_analysis_experiment(test_data, dataset, force_run=force_run)
+    print('RUNNING INTEGRATED GRADIENT EXPERIMENT ON LATEST MODEL')
     evaluator.integrated_gradient_experiment(test_data, force_run=force_run, no_of_instances=len(test_data.P))
 
 def generate_graphs_on_latest_model(dataset, config):
+    print('GENERATING GRAPHS FOR EXPERIMENT ON LATEST MODEL')
 
     config = configurations_qa[config](dataset)
     latest_model = get_latest_model(os.path.join(config["training"]["basepath"], config["training"]["exp_dirname"]))

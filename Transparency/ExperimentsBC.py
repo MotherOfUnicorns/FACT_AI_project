@@ -4,6 +4,7 @@ from Transparency.configurations import configurations
 from Transparency.Trainers.TrainerBC import Trainer, Evaluator, RationaleTrainer
 
 def train_dataset(dataset, config='lstm') :
+    print('STARTING TRAINING')
 
     config = configurations[config](dataset)
     trainer = Trainer(dataset, config=config, _type=dataset.trainer_type)
@@ -38,6 +39,8 @@ def run_rationale_on_latest_model(dataset, config='lstm') :
     return rationale_gen
 
 def run_evaluator_on_latest_model(dataset, config='lstm') :
+    print('EVALUATING LATEST MODEL')
+
     config = configurations[config](dataset)
     latest_model = get_latest_model(os.path.join(config['training']['basepath'], config['training']['exp_dirname']))
     evaluator = Evaluator(dataset, latest_model, _type=dataset.trainer_type)
@@ -47,14 +50,21 @@ def run_evaluator_on_latest_model(dataset, config='lstm') :
 def run_experiments_on_latest_model(dataset, config='lstm', force_run=True) :
         evaluator = run_evaluator_on_latest_model(dataset, config)
         test_data = dataset.test_data
+        print('RUNNING GRADIENT EXPERIMENT ON LATEST MODEL')
         evaluator.gradient_experiment(test_data, force_run=force_run)
+        print('RUNNING QUANTITATIVE ANALYSIS EXPERIMENT ON LATEST MODEL')
         evaluator.quantitative_analysis_experiment(test_data, dataset, force_run=force_run)
+        print('RUNNING IMPORTANCE RANKING EXPERIMENT ON LATEST MODEL')
         evaluator.importance_ranking_experiment(test_data, force_run=force_run)
+        print('RUNNING CONICITY ANALYSIS EXPERIMENT ON LATEST MODEL')
         evaluator.conicity_analysis_experiment(test_data)
+        print('RUNNING PERMUTATION EXPERIMENT ON LATEST MODEL')
         evaluator.permutation_experiment(test_data, force_run=force_run)
+        print('RUNNING INTEGRATED GRADIENT EXPERIMENT ON LATEST MODEL')
         evaluator.integrated_gradient_experiment(dataset, force_run=force_run)
 
 def generate_graphs_on_latest_model(dataset, config='lstm'):
+    print('GENERATING GRAPHS FOR EXPERIMENT ON LATEST MODEL')
 
     config = configurations[config](dataset)
     latest_model = get_latest_model(os.path.join(config['training']['basepath'], config['training']['exp_dirname']))
