@@ -14,6 +14,7 @@ class Trainer() :
         self.model = Model(config, pre_embed=dataset.vec.embeddings)
         self.metrics = metrics_type[_type]
         self.display_metrics = True
+        self.vec = dataset.vec
 
     def train(self, train_data, test_data, n_iters=8, save_on_metric='roc_auc') :
         best_metric = 0.0
@@ -22,8 +23,25 @@ class Trainer() :
             print ('Starting Epoch: {}'.format(i))
 
             self.model.train(train_data.X, train_data.y,epoch=i)
-            predictions, attentions, conicity_values = self.model.evaluate(test_data.X)
+            predictions, attentions, conicity_values, hvecs = self.model.evaluate(test_data.X)
             predictions = np.array(predictions)
+
+            printExamples=True
+            if printExamples:
+                for i in range(10):
+                    # print sentence
+                    print('Sentence: ',end='')
+                    sen = test_data.X[i]
+                    for idx in sen:
+                        print(self.vec.idx2word[idx],' ',end='')
+                    print(' Label: ',test_data.y[i],', Prediction: ',predictions[i])
+
+                    # print attentions
+                    print('Attentions: ',end='')
+                    for j in range(len(sen)):
+                        print("%.2f" %attentions[i][j],', ',end='')
+                    print()
+
             test_metrics = self.metrics(test_data.y, predictions)
 
             if conicity_values is not None:
@@ -122,7 +140,7 @@ class Evaluator() :
         self.dataset = dataset
 
     def evaluate(self, test_data, save_results=False) :
-        predictions, attentions, conicity_values = self.model.evaluate(test_data.X)
+        predictions, attentions, conicity_values,_ = self.model.evaluate(test_data.X)
         predictions = np.array(predictions)
 
         test_metrics = self.metrics(test_data.y, predictions)
