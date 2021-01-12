@@ -12,7 +12,7 @@ def train_dataset(dataset, args, encoder="vanilla_lstm"):
     if hasattr(dataset, "n_iter"):
         n_iters = dataset.n_iter
     else:
-        n_iters = 1#8 # TODO: change this back
+        n_iters = 8 # TODO: change this back to original (n_iters = 8)
 
     trainer.train(
         dataset.train_data,
