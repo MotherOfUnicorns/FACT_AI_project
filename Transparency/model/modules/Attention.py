@@ -283,6 +283,7 @@ class EqualQAAttention(Attention) :
         # self.attn1p = nn.Linear(hidden_size, hidden_size // 2)
         # self.attn1q = nn.Linear(hidden_size, hidden_size // 2)
         self.attn2 = nn.Linear(hidden_size // 2, 1, bias=False)
+        self.attn2.requires_grad_=False
         self.hidden_size = hidden_size
 
     def forward(self, input_seq, hidden_1, hidden_2, masks, data) :
@@ -297,6 +298,55 @@ class EqualQAAttention(Attention) :
 
         inf = 1e9
 
+        if isTrue(data, 'erase_given'):
+            attn2[:,data.erase_attn] = -1*inf
+            attn = masked_softmax(attn2,masks)
+
+        return attn
+
+
+@Attention.register('first_only_qa')
+class FirstOnlyQAAttention(Attention) :
+    def __init__(self, hidden_size) :
+        super().__init__()
+        self.attn2 = nn.Linear(hidden_size // 2, 1, bias=False)
+        self.attn2.requires_grad_=False
+        self.hidden_size = hidden_size
+
+    def forward(self, input_seq, hidden_1, hidden_2, masks, data) :
+
+        attn2 = torch.zeros(data.P.B, data.P.maxlen).to(device)
+        attn2[:, 1] = 1e6
+        attn = masked_softmax(attn2, masks)
+        # this is not using any information from Q at all
+        # but in Decoder.py the final prediction is based on context (derived here) and Q
+
+        inf = 1e9
+        if isTrue(data, 'erase_given'):
+            attn2[:,data.erase_attn] = -1*inf
+            attn = masked_softmax(attn2,masks)
+
+        return attn
+
+
+@Attention.register('last_only_qa')
+class LastOnlyQAAttention(Attention) :
+    def __init__(self, hidden_size) :
+        super().__init__()
+        self.attn2 = nn.Linear(hidden_size // 2, 1, bias=False)
+        self.attn2.requires_grad_=False
+        self.hidden_size = hidden_size
+
+    def forward(self, input_seq, hidden_1, hidden_2, masks, data) :
+
+        attn2 = torch.zeros(data.P.B, data.P.maxlen).to(device)
+        idx = data.P.lengths.unsqueeze(1) - 2
+        attn2 = torch.scatter(attn2, 1, idx, 1e6)
+        attn = masked_softmax(attn2, masks)
+        # this is not using any information from Q at all
+        # but in Decoder.py the final prediction is based on context (derived here) and Q
+
+        inf = 1e9
         if isTrue(data, 'erase_given'):
             attn2[:,data.erase_attn] = -1*inf
             attn = masked_softmax(attn2,masks)
