@@ -95,7 +95,7 @@ class RationaleTrainer() :
         self.model = Model.init_from_config(self.dirname, config_update=self.config, load_gen=False)
         self.model.dirname = self.dirname
     
-    def train(self, train_data, test_data, n_iters=40) :
+    def train(self, train_data, test_data, n_iters=6):#40) :
         best_reward = float('-inf')
 
         for i in (range(n_iters)) :
@@ -152,7 +152,7 @@ class Evaluator() :
         self.dataset = dataset
 
     def evaluate(self, test_data, save_results=False) :
-        predictions, attentions, conicity_values,_ = self.model.evaluate(test_data.X)
+        predictions, attentions, conicity_values, hvecs = self.model.evaluate(test_data.X)
         predictions = np.array(predictions)
 
         test_metrics = self.metrics(test_data.y, predictions)
@@ -171,8 +171,9 @@ class Evaluator() :
 
         test_data.yt_hat = predictions
         test_data.attn_hat = attentions
+        test_data.hvecs=hvecs
 
-        test_output = {'X': test_data.X,'y': test_data.y, 'yt_hat':test_data.yt_hat, 'attn_hat': test_data.attn_hat}
+        test_output = {'X': test_data.X,'y': test_data.y, 'yt_hat':test_data.yt_hat, 'attn_hat': test_data.attn_hat, 'hvecs': hvecs}
         pdump(self.model, test_output, 'test_output')
 
         return predictions, attentions

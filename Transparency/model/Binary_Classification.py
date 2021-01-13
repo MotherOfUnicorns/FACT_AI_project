@@ -443,12 +443,13 @@ class Model() :
             predict = batch_data.predict.cpu().data.numpy()
             outputs.append(predict)
 
-            # DISABLED TO SAVE COMP COST
-            #h_temp = batch_data.hidden.detach().cpu().numpy()
-            #for i in range(h_temp.shape[0]):
-            #    h_vecs.append(h_temp[i,:,:])
+            # Aggregate all cell state vectors for later use
+            # CAN BE DISABLED TO SAVE COMP COST
+            h_temp = batch_data.hidden.detach().cpu().numpy()
+            for i in range(h_temp.shape[0]):
+                h_vecs.append(h_temp[i,:,:])
 
-            #h_vecs.append(batch_data.hidden.detach().cpu().numpy())
+            h_vecs.append(batch_data.hidden.detach().cpu().numpy())
 
         outputs = [x for y in outputs for x in y]
         if self.decoder.use_attention :
