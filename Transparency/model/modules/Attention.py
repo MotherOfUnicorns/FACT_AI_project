@@ -26,36 +26,20 @@ class Attention(nn.Module, Registrable) :
 
 @Attention.register('tanh')
 class TanhAttention(Attention) :
-    def __init__(self, hidden_size,type='default') :
+    def __init__(self, hidden_size) :
         super().__init__()
-        self.type=type
 
         self.hidden_size = hidden_size
         self.attn1 = nn.Linear(hidden_size, hidden_size // 2)
         self.attn2 = nn.Linear(hidden_size // 2, 1, bias=False)
-        
-        if type in ['equal','first_only','last_only']:
-            self.attn1.requires_grad_=False
-            self.attn2.requires_grad_=False
         
     def forward(self, data) :
         #input_seq = (B, L), hidden : (B, L, H), masks : (B, L)
         input_seq, hidden, masks = data.seq, data.hidden, data.masks
         lengths = data.lengths
 
-        if self.type == 'default':
-            attn1 = nn.Tanh()(self.attn1(hidden))
-            attn2 = self.attn2(attn1).squeeze(-1)
-        elif self.type == 'equal':
-            # Use equal (constant) attention to all output vectors at each timestep
-            attn2=torch.ones(data.B,data.maxlen).to(device)
-        elif self.type == 'last_only':
-            attn2=torch.zeros(data.B,data.maxlen).to(device)
-            idx=lengths.unsqueeze(1)-2
-            attn2=torch.scatter(attn2,1,idx,1e6)
-        elif self.type == 'first_only':
-            attn2=torch.zeros(data.B,data.maxlen).to(device)
-            attn2[:,1]=1e6
+        attn1 = nn.Tanh()(self.attn1(hidden))
+        attn2 = self.attn2(attn1).squeeze(-1)
         
         data.attn_logit = attn2
         attn = masked_softmax(attn2, masks)
@@ -80,7 +64,6 @@ class TanhAttention(Attention) :
 class EqualAttention(Attention) :
     def __init__(self, hidden_size) :
         super().__init__()
-        self.type=type
 
         self.hidden_size = hidden_size
 
@@ -117,7 +100,6 @@ class EqualAttention(Attention) :
 class FirstOnlyAttention(Attention) :
     def __init__(self, hidden_size) :
         super().__init__()
-        self.type=type
 
         self.hidden_size = hidden_size
         self.attn2 = nn.Linear(hidden_size // 2, 1, bias=False)
@@ -154,7 +136,6 @@ class FirstOnlyAttention(Attention) :
 class LastOnlyAttention(Attention) :
     def __init__(self, hidden_size) :
         super().__init__()
-        self.type=type
 
         self.hidden_size = hidden_size
         self.attn2 = nn.Linear(hidden_size // 2, 1, bias=False)
@@ -292,6 +273,83 @@ class TanhQAAttention(Attention) :
         if isTrue(data, 'erase_given'):
             attn2[:,data.erase_attn] = -1*inf
             attn = masked_softmax(attn2,masks) 
+
+        return attn
+
+@Attention.register('equal_qa')
+class EqualQAAttention(Attention) :
+    def __init__(self, hidden_size) :
+        super().__init__()
+        # self.attn1p = nn.Linear(hidden_size, hidden_size // 2)
+        # self.attn1q = nn.Linear(hidden_size, hidden_size // 2)
+        self.attn2 = nn.Linear(hidden_size // 2, 1, bias=False)
+        self.attn2.requires_grad_=False
+        self.hidden_size = hidden_size
+
+    def forward(self, input_seq, hidden_1, hidden_2, masks, data) :
+
+        # attn1 = nn.Tanh()(self.attn1p(hidden_1) + self.attn1q(hidden_2).unsqueeze(1))
+        # attn2 = self.attn2(attn1).squeeze(-1)
+        attn2 = torch.ones(data.P.B, data.P.maxlen).to(device)
+        attn = masked_softmax(attn2, masks)
+        # this is not using any information from Q at all
+        # but in Decoder.py the final prediction is based on context (derived here) and Q
+        # hidden_1 + hidden_2.unsqueeze(1)
+
+        inf = 1e9
+
+        if isTrue(data, 'erase_given'):
+            attn2[:,data.erase_attn] = -1*inf
+            attn = masked_softmax(attn2,masks)
+
+        return attn
+
+
+@Attention.register('first_only_qa')
+class FirstOnlyQAAttention(Attention) :
+    def __init__(self, hidden_size) :
+        super().__init__()
+        self.attn2 = nn.Linear(hidden_size // 2, 1, bias=False)
+        self.attn2.requires_grad_=False
+        self.hidden_size = hidden_size
+
+    def forward(self, input_seq, hidden_1, hidden_2, masks, data) :
+
+        attn2 = torch.zeros(data.P.B, data.P.maxlen).to(device)
+        attn2[:, 1] = 1e6
+        attn = masked_softmax(attn2, masks)
+        # this is not using any information from Q at all
+        # but in Decoder.py the final prediction is based on context (derived here) and Q
+
+        inf = 1e9
+        if isTrue(data, 'erase_given'):
+            attn2[:,data.erase_attn] = -1*inf
+            attn = masked_softmax(attn2,masks)
+
+        return attn
+
+
+@Attention.register('last_only_qa')
+class LastOnlyQAAttention(Attention) :
+    def __init__(self, hidden_size) :
+        super().__init__()
+        self.attn2 = nn.Linear(hidden_size // 2, 1, bias=False)
+        self.attn2.requires_grad_=False
+        self.hidden_size = hidden_size
+
+    def forward(self, input_seq, hidden_1, hidden_2, masks, data) :
+
+        attn2 = torch.zeros(data.P.B, data.P.maxlen).to(device)
+        idx = data.P.lengths.unsqueeze(1) - 2
+        attn2 = torch.scatter(attn2, 1, idx, 1e6)
+        attn = masked_softmax(attn2, masks)
+        # this is not using any information from Q at all
+        # but in Decoder.py the final prediction is based on context (derived here) and Q
+
+        inf = 1e9
+        if isTrue(data, 'erase_given'):
+            attn2[:,data.erase_attn] = -1*inf
+            attn = masked_softmax(attn2,masks)
 
         return attn
 
