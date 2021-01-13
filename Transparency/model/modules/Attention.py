@@ -280,6 +280,32 @@ class TanhQAAttention(Attention) :
 
         return attn
 
+@Attention.register('equal_qa')
+class EqualQAAttention(Attention) :
+    def __init__(self, hidden_size) :
+        super().__init__()
+        # self.attn1p = nn.Linear(hidden_size, hidden_size // 2)
+        # self.attn1q = nn.Linear(hidden_size, hidden_size // 2)
+        self.attn2 = nn.Linear(hidden_size // 2, 1, bias=False)
+        self.hidden_size = hidden_size
+
+    def forward(self, input_seq, hidden_1, hidden_2, masks, data) :
+
+        # attn1 = nn.Tanh()(self.attn1p(hidden_1) + self.attn1q(hidden_2).unsqueeze(1))
+        # attn2 = self.attn2(attn1).squeeze(-1)
+        attn2 = torch.ones(data.P.B, data.P.maxlen).to(device)
+        attn = masked_softmax(attn2, masks)
+        # TODO: this is not using any information from Q at all
+        # hidden_1 + hidden_2.unsqueeze(1)
+
+        inf = 1e9
+
+        if isTrue(data, 'erase_given'):
+            attn2[:,data.erase_attn] = -1*inf
+            attn = masked_softmax(attn2,masks)
+
+        return attn
+
 @Attention.register('dot_qa')
 class DotQAAttention(Attention) :
     def __init__(self, hidden_size) :
