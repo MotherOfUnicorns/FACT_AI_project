@@ -7,7 +7,7 @@ parser.add_argument("--output_dir", type=str)
 parser.add_argument(
     "--encoder",
     type=str,
-    choices=["vanilla_lstm", "ortho_lstm", "diversity_lstm"],
+    choices=["vanilla_lstm", "ortho_lstm", "diversity_lstm","bi_lstm"],
     required=True,
 )
 parser.add_argument(
