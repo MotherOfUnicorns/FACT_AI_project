@@ -295,7 +295,8 @@ class EqualQAAttention(Attention) :
         # attn2 = self.attn2(attn1).squeeze(-1)
         attn2 = torch.ones(data.P.B, data.P.maxlen).to(device)
         attn = masked_softmax(attn2, masks)
-        # TODO: this is not using any information from Q at all
+        # this is not using any information from Q at all
+        # but in Decoder.py the final prediction is based on context (derived here) and Q
         # hidden_1 + hidden_2.unsqueeze(1)
 
         inf = 1e9
