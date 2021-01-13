@@ -28,7 +28,6 @@ class Attention(nn.Module, Registrable) :
 class TanhAttention(Attention) :
     def __init__(self, hidden_size) :
         super().__init__()
-        self.type=type
 
         self.hidden_size = hidden_size
         self.attn1 = nn.Linear(hidden_size, hidden_size // 2)
@@ -65,7 +64,6 @@ class TanhAttention(Attention) :
 class EqualAttention(Attention) :
     def __init__(self, hidden_size) :
         super().__init__()
-        self.type=type
 
         self.hidden_size = hidden_size
 
@@ -102,7 +100,6 @@ class EqualAttention(Attention) :
 class FirstOnlyAttention(Attention) :
     def __init__(self, hidden_size) :
         super().__init__()
-        self.type=type
 
         self.hidden_size = hidden_size
         self.attn2 = nn.Linear(hidden_size // 2, 1, bias=False)
@@ -139,7 +136,6 @@ class FirstOnlyAttention(Attention) :
 class LastOnlyAttention(Attention) :
     def __init__(self, hidden_size) :
         super().__init__()
-        self.type=type
 
         self.hidden_size = hidden_size
         self.attn2 = nn.Linear(hidden_size // 2, 1, bias=False)
