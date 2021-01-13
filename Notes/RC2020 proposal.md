@@ -14,7 +14,7 @@ DO WE AGREE WITH THEIR CLAIMS?
 # Review the definitions
 - what is faithful
 - what is plausible
-- how do they relate (is there ONE best explanation for a prediction?)
+- how do they relate (is there ONE best explanation for a prediction? what combinations can theoretically exist, for example can we have non-faithful explanations that are plausible)
 - look at not not paper
 
 # Checking assumptions, expectation and hypotheses
