@@ -15,6 +15,7 @@ DO WE AGREE WITH THEIR CLAIMS?
 - what is faithful
 - what is plausible
 - how do they relate (is there ONE best explanation for a prediction?)
+- look at not not paper
 
 # Checking assumptions, expectation and hypotheses
 How can attention work at all if all hidden states have narrow conicity  -> maybe attention isn't doing its job in these tasks
