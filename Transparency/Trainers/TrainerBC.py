@@ -23,36 +23,43 @@ class Trainer() :
             print ('Starting Epoch: {}'.format(i))
 
             self.model.train(train_data.X, train_data.y,epoch=i)
-            predictions, attentions, conicity_values, hvecs = self.model.evaluate(test_data.X)
+            predictions, attentions, conicity_values, hnorms_sm = self.model.evaluate(test_data.X)
             predictions = np.array(predictions)
 
-            printExamples=False # only if you want to sample some results
+            printExamples=True # only if you want to sample some results
             if printExamples:
-                for i in range(10):
+                for i in range(100,400,50):
                     # print sentence
-                    print('Sentence  : ',end='')
+                    print('Sentence   : ',end='')
                     sen = test_data.X[i]
                     for idx in sen:
-                        print(self.vec.idx2word[idx],' ',end='')
+                        print(self.vec.idx2word[idx],'    ',end='')
                     print(' | Label: ',test_data.y[i],', Prediction: ',predictions[i])
 
                     # print attentions
-                    print('Attentions: ',end='')
+                    print('Attentions : ',end='')
                     for j in range(len(sen)):
-                        print("%.2f" %attentions[i][j],' '*max(0,len(self.vec.idx2word[sen[j]])-3),end='')
+                        print("%.2f" %attentions[i][j],' '*max(0,len(self.vec.idx2word[sen[j]])),end='')
                     print()
+
+                    # print softmaxed norms of the cell output vectors h_i
+                    print('SM(||h_i||): ',end='')
+                    for j in range(len(sen)):
+                        print("%.2f" %hnorms_sm[i][j],' '*max(0,len(self.vec.idx2word[sen[j]])),end='')
+                    print('\n')
+
 
                     # print ||h_i||
-                    print('h norms   : ',end='')
-                    for j in range(len(sen)):
-                        print("%.2f" %np.linalg.norm(hvecs[i][j+1]),' '*max(0,len(self.vec.idx2word[sen[j]])-3),end='')
-                    print()
+                    #print('h norms   : ',end='')
+                    #for j in range(len(sen)):
+                    #    print("%.2f" %np.linalg.norm(hvecs[i][j+1]),' '*max(0,len(self.vec.idx2word[sen[j]])-3),end='')
+                    #print()
 
                     # print ||delta_i||
-                    print('d norms   : ',end='')
-                    for j in range(len(sen)):
-                        print("%.2f" %np.linalg.norm(hvecs[i][j+1]-hvecs[i][j]),' '*max(0,len(self.vec.idx2word[sen[j]])-3),end='')
-                    print()
+                    #print('d norms   : ',end='')
+                    #for j in range(len(sen)):
+                    #    print("%.2f" %np.linalg.norm(hvecs[i][j+1]-hvecs[i][j]),' '*max(0,len(self.vec.idx2word[sen[j]])-3),end='')
+                    #print()
 
             test_metrics = self.metrics(test_data.y, predictions)
 
@@ -95,7 +102,7 @@ class RationaleTrainer() :
         self.model = Model.init_from_config(self.dirname, config_update=self.config, load_gen=False)
         self.model.dirname = self.dirname
     
-    def train(self, train_data, test_data, n_iters=6):#40) :
+    def train(self, train_data, test_data, n_iters=6):#40) : #CHANGE BACK
         best_reward = float('-inf')
 
         for i in (range(n_iters)) :
@@ -152,7 +159,7 @@ class Evaluator() :
         self.dataset = dataset
 
     def evaluate(self, test_data, save_results=False) :
-        predictions, attentions, conicity_values, hvecs = self.model.evaluate(test_data.X)
+        predictions, attentions, conicity_values, hnorms_sm = self.model.evaluate(test_data.X)
         predictions = np.array(predictions)
 
         test_metrics = self.metrics(test_data.y, predictions)
@@ -171,9 +178,9 @@ class Evaluator() :
 
         test_data.yt_hat = predictions
         test_data.attn_hat = attentions
-        test_data.hvecs=hvecs
+        test_data.hnorms_sm=hnorms_sm
 
-        test_output = {'X': test_data.X,'y': test_data.y, 'yt_hat':test_data.yt_hat, 'attn_hat': test_data.attn_hat, 'hvecs': hvecs}
+        test_output = {'X': test_data.X,'y': test_data.y, 'yt_hat':test_data.yt_hat, 'attn_hat': test_data.attn_hat}
         pdump(self.model, test_output, 'test_output')
 
         return predictions, attentions

@@ -423,6 +423,7 @@ class Model() :
         attns = []
         conicity_values = []
         h_vecs=[]
+        hnorms_sm=[]
 
         for n in (range(0, N, bsize)) :
             torch.cuda.empty_cache()
@@ -443,20 +444,23 @@ class Model() :
             predict = batch_data.predict.cpu().data.numpy()
             outputs.append(predict)
 
+            # Fill container with softmaxed norms of cell output vectors
+            hnorms = torch.norm(batch_data.hidden.detach(),dim=2) # shape (B x maxlen)mask
+            hnorms_sm_tmp = masked_softmax(hnorms,batch_data.masks)
+            hnorms_sm.append(hnorms_sm_tmp.cpu().numpy())
             # Aggregate all cell state vectors for later use
             # CAN BE DISABLED TO SAVE COMP COST
             h_temp = batch_data.hidden.detach().cpu().numpy()
             for i in range(h_temp.shape[0]):
                 h_vecs.append(h_temp[i,:,:])
 
-            h_vecs.append(batch_data.hidden.detach().cpu().numpy())
-
+        hnorms_sm = [x for y in hnorms_sm for x in y] # convert to list (length size of dataset) of np arrays (sentence lenghts)
         outputs = [x for y in outputs for x in y]
         if self.decoder.use_attention :
             attns = [x for y in attns for x in y]
         
         conicity_values = np.concatenate(conicity_values,axis=0)
-        return outputs, attns, conicity_values,h_vecs
+        return outputs, attns, conicity_values, hnorms_sm
 
 
     def conicity_analysis(self,data):
