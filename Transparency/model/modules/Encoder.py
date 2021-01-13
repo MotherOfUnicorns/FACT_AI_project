@@ -135,7 +135,7 @@ class EncoderorthoRNN(Encoder) :
 
         self.hidden_size = hidden_size
         self.rnn = LSTM(LSTMCell, input_size=embed_size, hidden_size=2*hidden_size, num_layers=self.num_layers, batch_first=True)
-        self.output_size = self.hidden_size * 4
+        self.output_size = self.hidden_size * 2
 
     def forward(self, data,hx=None,is_embds=False) :
         seq = data.seq
