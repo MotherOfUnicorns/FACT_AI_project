@@ -443,9 +443,10 @@ class Model() :
             predict = batch_data.predict.cpu().data.numpy()
             outputs.append(predict)
 
-            h_temp = batch_data.hidden.detach().cpu().numpy()
-            for i in range(h_temp.shape[0]):
-                h_vecs.append(h_temp[i,:,:])
+            # DISABLED TO SAVE COMP COST
+            #h_temp = batch_data.hidden.detach().cpu().numpy()
+            #for i in range(h_temp.shape[0]):
+            #    h_vecs.append(h_temp[i,:,:])
 
             #h_vecs.append(batch_data.hidden.detach().cpu().numpy())
 

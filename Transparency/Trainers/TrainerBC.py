@@ -26,7 +26,7 @@ class Trainer() :
             predictions, attentions, conicity_values, hvecs = self.model.evaluate(test_data.X)
             predictions = np.array(predictions)
 
-            printExamples=True
+            printExamples=False # only if you want to sample some results
             if printExamples:
                 for i in range(10):
                     # print sentence
