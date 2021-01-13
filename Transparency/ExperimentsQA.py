@@ -11,6 +11,10 @@ def update_config_with_args(dataset, args):
     config = configurations_qa[args.encoder](dataset)
     config['model']['decoder']['attention']['type'] = args.attention + '_qa'
     # TODO this is doing the same work as wrap_config_for_qa in configurations.py
+
+    if args.attention != 'tanh':
+        exp_dirname = config['training']['exp_dirname']
+        config['training']['exp_dirname'] = exp_dirname[:-4] + args.attention
     return config
 
 
