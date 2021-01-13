@@ -65,11 +65,23 @@ def generate_lstm_config(dataset) :
 
     return config
 
+def generate_bi_lstm_config(dataset) :
+    
+    config = generate_basic_config(dataset, exp_name='bi_lstm+tanh')
+    
+    hidden_size = dataset.hidden_size if hasattr(dataset, 'hidden_size') else 128
+    sparsity_lambda = dataset.sparsity_lambda if hasattr(dataset, 'sparsity_lambda') else 0.2
+    config['model']['encoder'].update({'type': 'bilstm', 'hidden_size' : hidden_size})
+    config['model']['generator'].update({'hidden_size' : 256,'sparsity_lambda':sparsity_lambda})
+
+    return config
+
 
 configurations = {
     'vanilla_lstm': generate_lstm_config,
     'diversity_lstm': generate_diversity_lstm_config,
-    'ortho_lstm': generate_orthogonal_lstm_config
+    'ortho_lstm': generate_orthogonal_lstm_config,
+    'bi_lstm': generate_bi_lstm_config
 }
 
 def wrap_config_for_qa(func) :
