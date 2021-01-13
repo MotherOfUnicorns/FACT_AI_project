@@ -1,4 +1,5 @@
-Important Q1: some results are not matching. How do we handle this. What kind of explanations are we required to give (how deep).
+Important Q1: some results are not matching. How do we handle this. What kind of explanations are we required to give (how deep). Highlight Babi1
+
 Important Q2: some of our results seem to be conflicting with the general narrative of the paper, but whether they conflict, and if so, 
 how exactly, depends on the exact definitions of faithfulness and plausibility, and whether the proposed metrics like conicity and correlation 
 with integrated gradients actually quantify these concepts well.
@@ -9,3 +10,4 @@ Q1: why Amazon keeps running out of memory (already fixed?)
 
 Q2: how to reproduce Random Conicity Table 2?
 
+Q3: what is exactly shown in the violin plots?
