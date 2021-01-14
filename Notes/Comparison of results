@@ -5,7 +5,7 @@ First:
 - no comparison (yet) for CNN, Tweets [not finished yet]
 
 Method:
-- rerun once
+- rerun all models once, compare information in output files (numerical and graphical) with numbers and figures in the paper
 
 OBSERVATIONS, SORTED BY METRIC
 
@@ -23,7 +23,7 @@ Do observations of paper still hold, namely:
 - Conicity is much lower in Diversity and Ortho --> YES
 
 2. Box plots/fraction of hidden representation needed for decision flip
-Possible comparison on 5 of the 14 datasets; qualitative/visual comparison of charts
+Comparison possible on 5 of the 14 datasets; qualitative/visual comparison of charts
 - very different results in 5 of the 30 boxes (2 not yet entered):
   - IMDB: LSTM attention -> LOWER fractions
   - Yelp: Diversity attention -> HIGHER fractions
@@ -36,10 +36,61 @@ Do observations of paper still hold, namely:
   - NO: does not hold (at all) for Babi1, Babi2, Babi3, and also less for SNLI
   - Somewhat: for other datasets, but our rerun shows lower 1st quartile boundaries for all datasets than is illustrated in figure 3
 - There is a much quicker decision flip in the Diversity and Orthogonal LSTM models: 
-  - No: does is not the case for ANY of the Q&A tasks
-  - Only: for the classification tasks 
+  - No: is not the case for ANY of the Q&A tasks
+  - Only: for the binary classification tasks 
 
-3. 
+3. Violin plots
+[TO BE DONE]
+
+4. Mean attention given to rationales
+Possible comparison on 6 of the 8 datasets shown in table 3; numerical comparison
+- overall results look very DIFFERENT
+  - SST: we see HIGHER rationale attention and rationale length for LSTM
+  - IMDB: we see HIGHER rationale attention and rationale length for LSTM and Diversity
+  - Yelp: we see HIGHER rationale length for LSTM and lower rationale attention for Diversity
+  - 20News: we see HIGHER rationale length for LSTM and Diversity
+- no comparison possible for Ortho
+
+Do observations of paper still hold, namely:
+- Diversity LSTM model provides much higher attention to rationales [...]: 
+  - NO: in our rerun, Diversity gives LESS attention to rationale in SST, IMDB, Yelp;
+  - Only: for 20News Diversity gives higher attention
+- [...] which are even often shorter than the vanilla LSTM model’s rationales:
+  - YES
+
+5. Correlations
+Numerical comparison of 12 of the 14 datasets [but not possible on Ortho] --> 12 x 2 = 24 comparisons
+Of the 20 comparisons we have run so far, we see notable differences in 10:
+- SST: similar results for LSTM and Diversity
+- IMDB: we see higher correlation and somewhat lower JSD for LSTM
+- Yelp: we see lower correction and higher JSD for Diversity
+- 20News: we see lower correlation in LSTM and higher JSD and higher correlation with IntGradients in Diversity
+- Tweets: similar results for LSTM and Diversity
+- SNLI: similar results for LSTM and Diversity
+- QQP: we see higher correlation and somewhat lower JSD for LSTM
+- Babi1: we see higher correlation and lower JSD for LSTM
+- Babi2: we see higher correlation and lower JSD for LSTM, and lower correlation and higher JSD for Diversity
+- Babi3: we see higher correlation and lower JSD for LSTM, and lower correlation and higher JSD for Diversity
+
+Do observations of paper still hold, namely:
+- Attention weights in Diversity LSTM better agree with gradients with a 65% increase in Pearson correlation and a 17% decrease in JS divergence over the vanilla LSTM across the datasets:
+  - Somewhat: increase in correlation, but much less than 65%
+    - Correlation does increase for the classification tasks
+    - Very mixed picture for Q&A tasks
+      - Decrease for SNLI, Increase for QQP
+      - Numbers for Babi1, Babi2, Babi3 look 'erratic'
+  - NO: JSD increases (instead of decreases) on average over the dataset
+    - Increase or similar for ALL datasets, except 20News
+
+5. Distribution of attention over POS tags
+Qualitative comparison on 5 of the 14 datasets [but not possible on Ortho]
+
+[TO BE DONE]
+
+Do observations of paper still hold, namely:
+- Attention given to punctuation marks is significantly reduced from 28.6%, 34.0% and 23.0% in the vanilla LSTM to 3.1%, 13.8% and 3.4% in the Diversity LSTM on the Yelp, Amazon and QQP datasets respectively
+- Across the four sentiment analysis datasets, Diversity LSTM gives an average of 49.27 % (relative) more attention to adjectives than the vanilla LSTM
+- For the other text classification tasks where nouns play an important role, we observe higher attention to nouns
 
 OBSERVATIONS, SORTED BY MODEL
 
