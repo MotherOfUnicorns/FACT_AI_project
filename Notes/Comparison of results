@@ -2,24 +2,50 @@ Initial conclusions about reproducibility of results
 
 First:
 - no comparison for Diabetes, Amenia [no access to dataset]
-- no comparison (yet) for CNN, Tweets (not finished yet)
+- no comparison (yet) for CNN, Tweets [not finished yet]
 
 Method:
 - rerun once
 
-CONCLUSIONS, SORTED BY METRIC
+OBSERVATIONS, SORTED BY METRIC
 
-Accuracy:
+1. Accuracy and conicity
+- numerical comparison
 - overall results look similar
 - notable differences found for:
   - Yelp: conicity Ortho
   - Babi1: conicity LSTM
   - Babi2: differences in accuracy and conicity, for LSTM, Diversity and Ortho
   - Babi3: differences in accuracy and conicity for LSTM, and to a lesser degree in accuracy for Diversity and Ortho
-  
-CONCLUSIONS, SORTED BY MODEL
+
+Do observations of paper still hold, namely:
+- Diversity and Ortho reach similar accuracy and LSTM --> YES [but something strange happens with babi3]
+- Conicity is much lower in Diversity and Ortho --> YES
+
+2. Box plots/fraction of hidden representation needed for decision flip
+Possible comparison on 5 of the 14 datasets; qualitative/visual comparison of charts
+- very different results in 5 of the 30 boxes (2 not yet entered):
+  - IMDB: LSTM attention -> LOWER fractions
+  - Yelp: Diversity attention -> HIGHER fractions
+  - 20News: LSTM attention -> LOWER fractions
+  - Babi1: LSTM rando -> LOWER fractions
+  - Babi1: Diversity -> LOWER fractions
+
+Do observations of paper still hold, namely:
+- In several datasets, a large fraction of the representations have to be erased to obtain a decision flip in the vanilla LSTM model: 
+  - NO: does not hold (at all) for Babi1, Babi2, Babi3, and also less for SNLI
+  - Somewhat: for other datasets, but our rerun shows lower 1st quartile boundaries for all datasets than is illustrated in figure 3
+- There is a much quicker decision flip in the Diversity and Orthogonal LSTM models: 
+  - No: does is not the case for ANY of the Q&A tasks
+  - Only: for the classification tasks 
+
+3. 
+
+OBSERVATIONS, SORTED BY MODEL
 
 SST: Very similar results
 - only notable difference: mean attention for rationales in LSTM
+
+IMDB:
 
 
