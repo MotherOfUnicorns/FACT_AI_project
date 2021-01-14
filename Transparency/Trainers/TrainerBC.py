@@ -2,7 +2,7 @@ from Transparency.common_code.common import *
 from Transparency.common_code.metrics import *
 import Transparency.model.Binary_Classification as BC
 import numpy as np
-
+from copy import deepcopy
 metrics_type = {
     'Single_Label' : calc_metrics_classification,
     'Multi_Label' : calc_metrics_multilabel
@@ -26,6 +26,10 @@ class Trainer() :
             predictions, attentions, conicity_values, hnorms_sm = self.model.evaluate(test_data.X)
             predictions = np.array(predictions)
 
+            dhnorms_sm=deepcopy(hnorms_sm)
+            for i in range(len(dhnorms_sm)):
+                dhnorms_sm[i][1:]=dhnorms_sm[i][1:]-dhnorms_sm[i][0:-1]
+
             printExamples=True # only if you want to sample some results
             if printExamples:
                 for i in range(10):#100,400,50):
@@ -46,8 +50,12 @@ class Trainer() :
                     print('SM(||h_i||): ',end='')
                     for j in range(len(sen)):
                         print("%.2f" %hnorms_sm[i][j],' '*max(0,len(self.vec.idx2word[sen[j]])),end='')
+                    print()
+                    # print difference between hnorms
+                    print('SM(|dh_i||): ',end='')
+                    for j in range(len(sen)):
+                        print("%.2f" %dhnorms_sm[i][j],' '*max(0,len(self.vec.idx2word[sen[j]])),end='')
                     print('\n')
-
 
                     # print ||h_i||
                     #print('h norms   : ',end='')
@@ -176,10 +184,12 @@ class Evaluator() :
             json.dump(test_metrics, f)
             f.close()
 
+
+
         test_data.yt_hat = predictions
         test_data.attn_hat = attentions
         test_data.hnorms_sm=hnorms_sm
-        test_data.normdict = {'attn_hat':attn_hat, 'hnorms_sm':hnorms_sm, 'dnorms_sm':[]}
+        test_data.normdict = {'attn_hat':test_data.attn_hat, 'hnorms_sm':test_data.hnorms_sm, 'dnorms_sm':[]}
         
         test_output = {'X': test_data.X,'y': test_data.y, 'yt_hat':test_data.yt_hat, 'attn_hat': test_data.attn_hat,'hnorms_sm':hnorms_sm}
         pdump(self.model, test_output, 'test_output')
