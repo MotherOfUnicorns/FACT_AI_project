@@ -25,7 +25,7 @@ def train_dataset(dataset, args):
     if hasattr(dataset, "n_iter"):
         n_iters = dataset.n_iter
     else:
-        n_iters = 8 #CHANGE BACK
+        n_iters = 8 #CHANGE BACK 8
 
     trainer.train(
         dataset.train_data,

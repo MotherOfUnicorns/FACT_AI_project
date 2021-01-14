@@ -424,6 +424,7 @@ class Model() :
         conicity_values = []
         h_vecs=[]
         hnorms_sm=[]
+        dnorms_sm=[]
 
         for n in (range(0, N, bsize)) :
             torch.cuda.empty_cache()

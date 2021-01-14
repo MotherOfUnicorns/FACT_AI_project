@@ -229,6 +229,7 @@ def generate_graphs(dataset, exp_name, model, test_data):
     process_grads(grads,test_data.X)
 
     attn = test_data.attn_hat
+    hnorms_sm = test_data.hnorms_sm
     yhat = test_data.yt_hat
 
     int_grads = pload(model, 'integrated_gradients')

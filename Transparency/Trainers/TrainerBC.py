@@ -28,7 +28,7 @@ class Trainer() :
 
             printExamples=True # only if you want to sample some results
             if printExamples:
-                for i in range(100,400,50):
+                for i in range(10):#100,400,50):
                     # print sentence
                     print('Sentence   : ',end='')
                     sen = test_data.X[i]
@@ -179,8 +179,9 @@ class Evaluator() :
         test_data.yt_hat = predictions
         test_data.attn_hat = attentions
         test_data.hnorms_sm=hnorms_sm
-
-        test_output = {'X': test_data.X,'y': test_data.y, 'yt_hat':test_data.yt_hat, 'attn_hat': test_data.attn_hat}
+        test_data.normdict = {'attn_hat':attn_hat, 'hnorms_sm':hnorms_sm, 'dnorms_sm':[]}
+        
+        test_output = {'X': test_data.X,'y': test_data.y, 'yt_hat':test_data.yt_hat, 'attn_hat': test_data.attn_hat,'hnorms_sm':hnorms_sm}
         pdump(self.model, test_output, 'test_output')
 
         return predictions, attentions
