@@ -1,0 +1,1354 @@
+NEWJOB
+seed  0 , dataset  sst , model  vanilla_lstm , diversity  0
+
+{'accuracy': 0.7807551766138855, 'roc_auc': 0.8687918825150895, 'pr_auc': 0.8718154452885436, 'conicity_mean': 0.6947379, 'conicity_std': 0.15974669}
+                 0        1  micro avg  macro avg  weighted avg
+f1-score     0.758    0.800      0.781      0.779         0.779
+precision    0.813    0.757      0.781      0.785         0.784
+recall       0.710    0.847      0.781      0.779         0.781
+support    397.000  424.000    821.000    821.000       821.000
+Model not saved on  roc_auc 0.8687918825150895
+saved config  {'model': {'encoder': {'vocab_size': 13826, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128}, 'decoder': {'attention': {'type': 'tanh'}, 'output_size': 1}, 'generator': {'hidden_size': 256, 'sparsity_lambda': 0.2}}, 'training': {'bsize': 32, 'weight_decay': 1e-05, 'pos_weight': [0.9135802469135803], 'basepath': '/home/lgpu0136/test_seeds', 'exp_dirname': 'sst/lstm+tanh'}}
+/home/lgpu0136/test_seeds/sst/lstm+tanh/Sat_Jan__9_00:01:57_2021
+encoder params {'vocab_size': 13826, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None}
+/home/lgpu0136/.conda/envs/fact/lib/python3.6/site-packages/torch/nn/modules/rnn.py:54: UserWarning: dropout option adds dropout after all but last recurrent layer, so non-zero dropout expects num_layers greater than 1, but got dropout=0.3 and num_layers=1
+  "num_layers={}".format(dropout, num_layers))
+/home/lgpu0136/project/Transparency/model/modules/lstm.py:75: UserWarning: nn.init.xavier_uniform is now deprecated in favor of nn.init.xavier_uniform_.
+  hx = (Variable(nn.init.xavier_uniform(torch.empty(self.num_layers, batch_size, self.hidden_size,device=device))),
+/home/lgpu0136/project/Transparency/model/modules/lstm.py:76: UserWarning: nn.init.xavier_uniform is now deprecated in favor of nn.init.xavier_uniform_.
+  Variable(nn.init.xavier_uniform(torch.empty(self.num_layers, batch_size, self.hidden_size,device=device))))
+INFO - 2021-01-09 00:03:09,118 - instantiating class <class 'Transparency.model.modules.Encoder.Encoder'> from params {'vocab_size': 13826, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-09 00:03:09,118 - type = vanillalstm
+INFO - 2021-01-09 00:03:09,118 - instantiating class <class 'Transparency.model.modules.Encoder.EncoderorthoRNN'> from params {'vocab_size': 13826, 'embed_size': 300, 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-09 00:03:09,119 - vocab_size = 13826
+INFO - 2021-01-09 00:03:09,119 - embed_size = 300
+INFO - 2021-01-09 00:03:09,119 - hidden_size = 128
+INFO - 2021-01-09 00:03:09,119 - pre_embed = None
+INFO - 2021-01-09 00:03:09,208 - instantiating class <class 'Transparency.model.modules.Decoder.AttnDecoder'> from params {'attention': {'type': 'tanh'}, 'output_size': 1, 'hidden_size': 256} and extras set()
+INFO - 2021-01-09 00:03:09,209 - hidden_size = 256
+INFO - 2021-01-09 00:03:09,209 - output_size = 1
+INFO - 2021-01-09 00:03:09,209 - use_attention = True
+INFO - 2021-01-09 00:03:09,209 - regularizer_attention = None
+INFO - 2021-01-09 00:03:09,209 - instantiating class <class 'Transparency.model.modules.Attention.Attention'> from params <allennlp.common.params.Params object at 0x14ca7090aa20> and extras set()
+INFO - 2021-01-09 00:03:09,209 - attention.type = tanh
+INFO - 2021-01-09 00:03:09,209 - type = tanh
+INFO - 2021-01-09 00:03:09,209 - instantiating class <class 'Transparency.model.modules.Attention.TanhAttention'> from params <allennlp.common.params.Params object at 0x14ca7090aa20> and extras set()
+INFO - 2021-01-09 00:03:09,210 - attention.hidden_size = 256
+INFO - 2021-01-09 00:03:09,210 - hidden_size = 256
+config  {'model': {'encoder': {}, 'decoder': {}, 'generator': {'hidden_size': 256, 'sparsity_lambda': 0.2}}, 'training': {'bsize': 32, 'weight_decay': 1e-05, 'pos_weight': [0.9135802469135803], 'basepath': '/home/lgpu0136/test_seeds', 'exp_dirname': 'sst/lstm+tanh'}}
+Running on device: cuda:0
+{'accuracy': 0.8052173913043478, 'roc_auc': 0.8938481474809988, 'pr_auc': 0.8973884836253695, 'conicity_mean': '0.69686127', 'conicity_std': '0.17307843'}
+                 0        1  micro avg  macro avg  weighted avg
+f1-score     0.818    0.791      0.805      0.804         0.804
+precision    0.769    0.853      0.805      0.811         0.811
+recall       0.874    0.737      0.805      0.805         0.805
+support    863.000  862.000   1725.000   1725.000      1725.000
+encoder params {'vocab_size': 13826, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None}
+INFO - 2021-01-09 00:03:09,979 - instantiating class <class 'Transparency.model.modules.Encoder.Encoder'> from params {'vocab_size': 13826, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-09 00:03:09,979 - type = vanillalstm
+INFO - 2021-01-09 00:03:09,979 - instantiating class <class 'Transparency.model.modules.Encoder.EncoderorthoRNN'> from params {'vocab_size': 13826, 'embed_size': 300, 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-09 00:03:09,979 - vocab_size = 13826
+INFO - 2021-01-09 00:03:09,979 - embed_size = 300
+INFO - 2021-01-09 00:03:09,979 - hidden_size = 128
+INFO - 2021-01-09 00:03:09,979 - pre_embed = None
+INFO - 2021-01-09 00:03:10,066 - instantiating class <class 'Transparency.model.modules.Decoder.AttnDecoder'> from params {'attention': {'type': 'tanh'}, 'output_size': 1, 'hidden_size': 256} and extras set()
+INFO - 2021-01-09 00:03:10,066 - hidden_size = 256
+INFO - 2021-01-09 00:03:10,066 - output_size = 1
+INFO - 2021-01-09 00:03:10,066 - use_attention = True
+INFO - 2021-01-09 00:03:10,066 - regularizer_attention = None
+INFO - 2021-01-09 00:03:10,066 - instantiating class <class 'Transparency.model.modules.Attention.Attention'> from params <allennlp.common.params.Params object at 0x14ca7087ef60> and extras set()
+INFO - 2021-01-09 00:03:10,066 - attention.type = tanh
+INFO - 2021-01-09 00:03:10,066 - type = tanh
+INFO - 2021-01-09 00:03:10,066 - instantiating class <class 'Transparency.model.modules.Attention.TanhAttention'> from params <allennlp.common.params.Params object at 0x14ca7087ef60> and extras set()
+INFO - 2021-01-09 00:03:10,067 - attention.hidden_size = 256
+INFO - 2021-01-09 00:03:10,067 - hidden_size = 256
+
+  0%|          | 0/1725 [00:00<?, ?it/s]
+  0%|          | 4/1725 [00:00<00:51, 33.14it/s]
+
+SKIP
+
+100%|##########| 1725/1725 [01:30<00:00,  8.33it/s]config  {'model': {'encoder': {}, 'decoder': {}, 'generator': {'hidden_size': 256, 'sparsity_lambda': 0.2}}, 'training': {'bsize': 32, 'weight_decay': 1e-05, 'pos_weight': [0.9135802469135803], 'basepath': '/home/lgpu0136/test_seeds', 'exp_dirname': 'sst/lstm+tanh'}}
+Running on device: cuda:0
+{'accuracy': 0.8052173913043478, 'roc_auc': 0.8938481474809988, 'pr_auc': 0.8973884836253695, 'conicity_mean': '0.69686127', 'conicity_std': '0.17307843'}
+                 0        1  micro avg  macro avg  weighted avg
+f1-score     0.818    0.791      0.805      0.804         0.804
+precision    0.769    0.853      0.805      0.811         0.811
+recall       0.874    0.737      0.805      0.805         0.805
+support    863.000  862.000   1725.000   1725.000      1725.000
+Running Gradients Expt ...
+Dumping Gradients Outputs
+Running Analysis by Parts-of-speech Expt ...
+Dumping Parts-of-speech Expt Outputs
+Running Importance Ranking Expt ...
+Dumping Importance Ranking Outputs
+Conicity Analysis {'Conicity_hidden': 0.6968491}
+Running Permutation Expt ...
+Dumping Permutation Outputs
+Running Integrated Gradients Expt ...
+running Int grad for 1725 instances
+calculating IG
+Dumping Integrated Gradients Outputs
+encoder params {'vocab_size': 13826, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None}
+
+INFO - 2021-01-09 00:06:20,222 - instantiating class <class 'Transparency.model.modules.Encoder.Encoder'> from params {'vocab_size': 13826, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-09 00:06:20,223 - type = vanillalstm
+INFO - 2021-01-09 00:06:20,223 - instantiating class <class 'Transparency.model.modules.Encoder.EncoderorthoRNN'> from params {'vocab_size': 13826, 'embed_size': 300, 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-09 00:06:20,223 - vocab_size = 13826
+INFO - 2021-01-09 00:06:20,224 - embed_size = 300
+INFO - 2021-01-09 00:06:20,224 - hidden_size = 128
+INFO - 2021-01-09 00:06:20,224 - pre_embed = None
+INFO - 2021-01-09 00:06:20,316 - instantiating class <class 'Transparency.model.modules.Decoder.AttnDecoder'> from params {'attention': {'type': 'tanh'}, 'output_size': 1, 'hidden_size': 256} and extras set()
+INFO - 2021-01-09 00:06:20,317 - hidden_size = 256
+INFO - 2021-01-09 00:06:20,317 - output_size = 1
+INFO - 2021-01-09 00:06:20,317 - use_attention = True
+INFO - 2021-01-09 00:06:20,317 - regularizer_attention = None
+INFO - 2021-01-09 00:06:20,317 - instantiating class <class 'Transparency.model.modules.Attention.Attention'> from params <allennlp.common.params.Params object at 0x14caa0e4fcf8> and extras set()
+INFO - 2021-01-09 00:06:20,317 - attention.type = tanh
+INFO - 2021-01-09 00:06:20,317 - type = tanh
+INFO - 2021-01-09 00:06:20,317 - instantiating class <class 'Transparency.model.modules.Attention.TanhAttention'> from params <allennlp.common.params.Params object at 0x14caa0e4fcf8> and extras set()
+INFO - 2021-01-09 00:06:20,317 - attention.hidden_size = 256
+INFO - 2021-01-09 00:06:20,317 - hidden_size = 256
+config  {'model': {'encoder': {}, 'decoder': {}, 'generator': {'hidden_size': 256, 'sparsity_lambda': 0.2}}, 'training': {'bsize': 32, 'weight_decay': 1e-05, 'pos_weight': [0.9135802469135803], 'basepath': '/home/lgpu0136/test_seeds', 'exp_dirname': 'sst/lstm+tanh'}}
+Running on device: cuda:0
+Training the Rationale Generator ...
+Starting Epoch: 0
+Epoch: 0, Step: 0 Loss -4.547933578491211, Total Reward: -0.37581801414489746, BCE loss: 0.4752355217933655 Sparsity Reward: 0.49708759784698486 (sparsity_lambda = 0.2)
+Epoch: 0, Step: 1 Loss -3.699251890182495, Total Reward: -0.293745219707489, BCE loss: 0.3770102262496948 Sparsity Reward: 0.4163249731063843 (sparsity_lambda = 0.2)
+
+SKIP
+
+Epoch: 39, Step: 198 Loss -0.11636669188737869, Total Reward: -0.14434579014778137, BCE loss: 0.19533595442771912 Sparsity Reward: 0.25495079159736633 (sparsity_lambda = 0.2)
+Epoch: 39, Train Reward -0.1476774560509251, Train Accuracy 0.9446105428796223, Validation Reward -0.3499901514992699, Validation Accuracy 0.8233861144945189
+Model Saved
+Running Exp to Compute Attention given to Rationales ...
+encoder params {'vocab_size': 13826, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None}
+INFO - 2021-01-09 00:13:38,826 - instantiating class <class 'Transparency.model.modules.Encoder.Encoder'> from params {'vocab_size': 13826, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-09 00:13:38,827 - type = vanillalstm
+INFO - 2021-01-09 00:13:38,827 - instantiating class <class 'Transparency.model.modules.Encoder.EncoderorthoRNN'> from params {'vocab_size': 13826, 'embed_size': 300, 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-09 00:13:38,827 - vocab_size = 13826
+INFO - 2021-01-09 00:13:38,827 - embed_size = 300
+INFO - 2021-01-09 00:13:38,828 - hidden_size = 128
+INFO - 2021-01-09 00:13:38,828 - pre_embed = None
+INFO - 2021-01-09 00:13:38,918 - instantiating class <class 'Transparency.model.modules.Decoder.AttnDecoder'> from params {'attention': {'type': 'tanh'}, 'output_size': 1, 'hidden_size': 256} and extras set()
+INFO - 2021-01-09 00:13:38,918 - hidden_size = 256
+INFO - 2021-01-09 00:13:38,918 - output_size = 1
+INFO - 2021-01-09 00:13:38,918 - use_attention = True
+INFO - 2021-01-09 00:13:38,918 - regularizer_attention = None
+INFO - 2021-01-09 00:13:38,918 - instantiating class <class 'Transparency.model.modules.Attention.Attention'> from params <allennlp.common.params.Params object at 0x14ca706771d0> and extras set()
+INFO - 2021-01-09 00:13:38,918 - attention.type = tanh
+INFO - 2021-01-09 00:13:38,918 - type = tanh
+INFO - 2021-01-09 00:13:38,918 - instantiating class <class 'Transparency.model.modules.Attention.TanhAttention'> from params <allennlp.common.params.Params object at 0x14ca706771d0> and extras set()
+INFO - 2021-01-09 00:13:38,919 - attention.hidden_size = 256
+INFO - 2021-01-09 00:13:38,919 - hidden_size = 256
+config  {'model': {'encoder': {}, 'decoder': {}, 'generator': {'hidden_size': 256, 'sparsity_lambda': 0.2}}, 'training': {'bsize': 32, 'weight_decay': 1e-05, 'pos_weight': [0.9135802469135803], 'basepath': '/home/lgpu0136/test_seeds', 'exp_dirname': 'sst/lstm+tanh'}}
+Running on device: cuda:0
+Summary on Test Dataset {'Fraction Length Average': 0.7187420233695403, 'Fraction Length STD': 0.12149967385294086, 'Attn Sum Average': 0.7416028257642967, 'Attn Sum STD': 0.1231822841043285, 'loss': 0.40252878361854}
+encoder params {'vocab_size': 13826, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None}
+INFO - 2021-01-09 00:13:39,985 - instantiating class <class 'Transparency.model.modules.Encoder.Encoder'> from params {'vocab_size': 13826, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-09 00:13:39,985 - type = vanillalstm
+INFO - 2021-01-09 00:13:39,986 - instantiating class <class 'Transparency.model.modules.Encoder.EncoderorthoRNN'> from params {'vocab_size': 13826, 'embed_size': 300, 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-09 00:13:39,986 - vocab_size = 13826
+INFO - 2021-01-09 00:13:39,986 - embed_size = 300
+INFO - 2021-01-09 00:13:39,986 - hidden_size = 128
+INFO - 2021-01-09 00:13:39,986 - pre_embed = None
+INFO - 2021-01-09 00:13:40,072 - instantiating class <class 'Transparency.model.modules.Decoder.AttnDecoder'> from params {'attention': {'type': 'tanh'}, 'output_size': 1, 'hidden_size': 256} and extras set()
+INFO - 2021-01-09 00:13:40,072 - hidden_size = 256
+INFO - 2021-01-09 00:13:40,073 - output_size = 1
+INFO - 2021-01-09 00:13:40,073 - use_attention = True
+INFO - 2021-01-09 00:13:40,073 - regularizer_attention = None
+INFO - 2021-01-09 00:13:40,073 - instantiating class <class 'Transparency.model.modules.Attention.Attention'> from params <allennlp.common.params.Params object at 0x14ca70677080> and extras set()
+INFO - 2021-01-09 00:13:40,073 - attention.type = tanh
+INFO - 2021-01-09 00:13:40,073 - type = tanh
+INFO - 2021-01-09 00:13:40,073 - instantiating class <class 'Transparency.model.modules.Attention.TanhAttention'> from params <allennlp.common.params.Params object at 0x14ca70677080> and extras set()
+INFO - 2021-01-09 00:13:40,073 - attention.hidden_size = 256
+INFO - 2021-01-09 00:13:40,073 - hidden_size = 256
+INFO - 2021-01-09 00:13:40,803 - Generating graph for /home/lgpu0136/test_seeds/sst/lstm+tanh/Sat_Jan__9_00:01:57_2021
+INFO - 2021-01-09 00:13:40,806 - Average Length of test set 10
+INFO - 2021-01-09 00:13:41,647 - Generating Gradients Graph ...
+INFO - 2021-01-09 00:14:20,229 - Generating Permutations Graph ...
+INFO - 2021-01-09 00:14:26,217 - Generating importance ranking Graph ...
+config  {'model': {'encoder': {}, 'decoder': {}, 'generator': {'hidden_size': 256, 'sparsity_lambda': 0.2}}, 'training': {'bsize': 32, 'weight_decay': 1e-05, 'pos_weight': [0.9135802469135803], 'basepath': '/home/lgpu0136/test_seeds', 'exp_dirname': 'sst/lstm+tanh'}}
+Running on device: cuda:0
+{'accuracy': 0.8052173913043478, 'roc_auc': 0.8938481474809988, 'pr_auc': 0.8973884836253695, 'conicity_mean': '0.69686127', 'conicity_std': '0.17307843'}
+                 0        1  micro avg  macro avg  weighted avg
+f1-score     0.818    0.791      0.805      0.804         0.804
+precision    0.769    0.853      0.805      0.811         0.811
+recall       0.874    0.737      0.805      0.805         0.805
+support    863.000  862.000   1725.000   1725.000      1725.000
+pos tags ['NOUN', 'ADJ', 'VERB', 'ADP', 'ADV', 'DET', 'CONJ', 'PRON', 'PRT', 'NUM', 'X', '.']
+words_positive ['<UNK>', 'and', 'of', 'the', 'a', 'to', 'that', 's', 'it', 'in']
+words_negative ['<UNK>', 'and', 'the', 'of', 'a', 'to', 'bad', 'as', 'movie', 'n']
+rationale_length None
+============================================================================================================================================================================================================================================================================================================
+
+
+
+
+
+
+NEWJOB
+seed  0 , dataset  imdb , model  vanilla_lstm , diversity  0
+
+Epoch: 7 Step: 537 Total Loss: 0.016, BCE loss: 0.016, Diversity Loss: 0.555                     (Diversity_weight = 0)
+{'accuracy': 0.8855015126832674, 'roc_auc': 0.9527076195615194, 'pr_auc': 0.9487199594816268, 'conicity_mean': 0.54786795, 'conicity_std': 0.12978074}
+                  0         1  micro avg  macro avg  weighted avg
+f1-score      0.890     0.881      0.886      0.885         0.885
+precision     0.873     0.900      0.886      0.886         0.886
+recall        0.907     0.863      0.886      0.885         0.886
+support    2187.000  2110.000   4297.000   4297.000      4297.000
+Model not saved on  roc_auc 0.9527076195615194
+saved config  {'model': {'encoder': {'vocab_size': 12487, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128}, 'decoder': {'attention': {'type': 'tanh'}, 'output_size': 1}, 'generator': {'hidden_size': 256, 'sparsity_lambda': 0.2}}, 'training': {'bsize': 32, 'weight_decay': 1e-05, 'pos_weight': [1.0157037384272822], 'basepath': '/home/lgpu0136/test_seeds', 'exp_dirname': 'imdb/lstm+tanh'}}
+/home/lgpu0136/test_seeds/imdb/lstm+tanh/Sat_Jan__9_00:15:12_2021
+encoder params {'vocab_size': 12487, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None}
+/home/lgpu0136/.conda/envs/fact/lib/python3.6/site-packages/torch/nn/modules/rnn.py:54: UserWarning: dropout option adds dropout after all but last recurrent layer, so non-zero dropout expects num_layers greater than 1, but got dropout=0.3 and num_layers=1
+  "num_layers={}".format(dropout, num_layers))
+/home/lgpu0136/project/Transparency/model/modules/lstm.py:75: UserWarning: nn.init.xavier_uniform is now deprecated in favor of nn.init.xavier_uniform_.
+  hx = (Variable(nn.init.xavier_uniform(torch.empty(self.num_layers, batch_size, self.hidden_size,device=device))),
+/home/lgpu0136/project/Transparency/model/modules/lstm.py:76: UserWarning: nn.init.xavier_uniform is now deprecated in favor of nn.init.xavier_uniform_.
+  Variable(nn.init.xavier_uniform(torch.empty(self.num_layers, batch_size, self.hidden_size,device=device))))
+INFO - 2021-01-09 00:30:55,893 - instantiating class <class 'Transparency.model.modules.Encoder.Encoder'> from params {'vocab_size': 12487, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-09 00:30:55,893 - type = vanillalstm
+INFO - 2021-01-09 00:30:55,893 - instantiating class <class 'Transparency.model.modules.Encoder.EncoderorthoRNN'> from params {'vocab_size': 12487, 'embed_size': 300, 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-09 00:30:55,894 - vocab_size = 12487
+INFO - 2021-01-09 00:30:55,894 - embed_size = 300
+INFO - 2021-01-09 00:30:55,894 - hidden_size = 128
+INFO - 2021-01-09 00:30:55,894 - pre_embed = None
+INFO - 2021-01-09 00:30:55,978 - instantiating class <class 'Transparency.model.modules.Decoder.AttnDecoder'> from params {'attention': {'type': 'tanh'}, 'output_size': 1, 'hidden_size': 256} and extras set()
+INFO - 2021-01-09 00:30:55,978 - hidden_size = 256
+INFO - 2021-01-09 00:30:55,979 - output_size = 1
+INFO - 2021-01-09 00:30:55,979 - use_attention = True
+INFO - 2021-01-09 00:30:55,979 - regularizer_attention = None
+INFO - 2021-01-09 00:30:55,979 - instantiating class <class 'Transparency.model.modules.Attention.Attention'> from params <allennlp.common.params.Params object at 0x1474a0ebe780> and extras set()
+INFO - 2021-01-09 00:30:55,979 - attention.type = tanh
+INFO - 2021-01-09 00:30:55,979 - type = tanh
+INFO - 2021-01-09 00:30:55,979 - instantiating class <class 'Transparency.model.modules.Attention.TanhAttention'> from params <allennlp.common.params.Params object at 0x1474a0ebe780> and extras set()
+INFO - 2021-01-09 00:30:55,979 - attention.hidden_size = 256
+INFO - 2021-01-09 00:30:55,979 - hidden_size = 256
+config  {'model': {'encoder': {}, 'decoder': {}, 'generator': {'hidden_size': 256, 'sparsity_lambda': 0.2}}, 'training': {'bsize': 32, 'weight_decay': 1e-05, 'pos_weight': [1.0157037384272822], 'basepath': '/home/lgpu0136/test_seeds', 'exp_dirname': 'imdb/lstm+tanh'}}
+Running on device: cuda:0
+{'accuracy': 0.8999081726354453, 'roc_auc': 0.962051357942242, 'pr_auc': 0.9554644053051646, 'conicity_mean': '0.5680326', 'conicity_std': '0.13531592'}
+                  0         1  micro avg  macro avg  weighted avg
+f1-score      0.899     0.900        0.9        0.9           0.9
+precision     0.907     0.893        0.9        0.9           0.9
+recall        0.892     0.908        0.9        0.9           0.9
+support    2184.000  2172.000     4356.0     4356.0        4356.0
+encoder params {'vocab_size': 12487, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None}
+INFO - 2021-01-09 00:31:06,429 - instantiating class <class 'Transparency.model.modules.Encoder.Encoder'> from params {'vocab_size': 12487, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-09 00:31:06,429 - type = vanillalstm
+INFO - 2021-01-09 00:31:06,429 - instantiating class <class 'Transparency.model.modules.Encoder.EncoderorthoRNN'> from params {'vocab_size': 12487, 'embed_size': 300, 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-09 00:31:06,429 - vocab_size = 12487
+INFO - 2021-01-09 00:31:06,430 - embed_size = 300
+INFO - 2021-01-09 00:31:06,430 - hidden_size = 128
+INFO - 2021-01-09 00:31:06,430 - pre_embed = None
+INFO - 2021-01-09 00:31:06,511 - instantiating class <class 'Transparency.model.modules.Decoder.AttnDecoder'> from params {'attention': {'type': 'tanh'}, 'output_size': 1, 'hidden_size': 256} and extras set()
+INFO - 2021-01-09 00:31:06,511 - hidden_size = 256
+INFO - 2021-01-09 00:31:06,511 - output_size = 1
+INFO - 2021-01-09 00:31:06,511 - use_attention = True
+INFO - 2021-01-09 00:31:06,511 - regularizer_attention = None
+INFO - 2021-01-09 00:31:06,512 - instantiating class <class 'Transparency.model.modules.Attention.Attention'> from params <allennlp.common.params.Params object at 0x1474e8d52cf8> and extras set()
+INFO - 2021-01-09 00:31:06,512 - attention.type = tanh
+INFO - 2021-01-09 00:31:06,512 - type = tanh
+INFO - 2021-01-09 00:31:06,512 - instantiating class <class 'Transparency.model.modules.Attention.TanhAttention'> from params <allennlp.common.params.Params object at 0x1474e8d52cf8> and extras set()
+INFO - 2021-01-09 00:31:06,512 - attention.hidden_size = 256
+INFO - 2021-01-09 00:31:06,512 - hidden_size = 256
+
+  0%|          | 0/4356 [00:00<?, ?it/s]
+  0%|          | 2/4356 [00:00<03:43, 19.48it/s]
+
+SKIP
+
+100%|#########9| 4355/4356 [30:27<00:00,  1.09it/s]
+100%|##########| 4356/4356 [30:28<00:00,  1.09it/s]config  {'model': {'encoder': {}, 'decoder': {}, 'generator': {'hidden_size': 256, 'sparsity_lambda': 0.2}}, 'training': {'bsize': 32, 'weight_decay': 1e-05, 'pos_weight': [1.0157037384272822], 'basepath': '/home/lgpu0136/test_seeds', 'exp_dirname': 'imdb/lstm+tanh'}}
+Running on device: cuda:0
+{'accuracy': 0.8999081726354453, 'roc_auc': 0.962051357942242, 'pr_auc': 0.9554644053051646, 'conicity_mean': '0.5680326', 'conicity_std': '0.13531592'}
+                  0         1  micro avg  macro avg  weighted avg
+f1-score      0.899     0.900        0.9        0.9           0.9
+precision     0.907     0.893        0.9        0.9           0.9
+recall        0.892     0.908        0.9        0.9           0.9
+support    2184.000  2172.000     4356.0     4356.0        4356.0
+Running Gradients Expt ...
+Dumping Gradients Outputs
+Running Analysis by Parts-of-speech Expt ...
+Dumping Parts-of-speech Expt Outputs
+Running Importance Ranking Expt ...
+Dumping Importance Ranking Outputs
+Conicity Analysis {'Conicity_hidden': 0.56803966}
+Running Permutation Expt ...
+Dumping Permutation Outputs
+Running Integrated Gradients Expt ...
+running Int grad for 4356 instances
+calculating IG
+Dumping Integrated Gradients Outputs
+encoder params {'vocab_size': 12487, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None}
+
+INFO - 2021-01-09 01:23:33,857 - instantiating class <class 'Transparency.model.modules.Encoder.Encoder'> from params {'vocab_size': 12487, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-09 01:23:33,857 - type = vanillalstm
+INFO - 2021-01-09 01:23:33,858 - instantiating class <class 'Transparency.model.modules.Encoder.EncoderorthoRNN'> from params {'vocab_size': 12487, 'embed_size': 300, 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-09 01:23:33,858 - vocab_size = 12487
+INFO - 2021-01-09 01:23:33,858 - embed_size = 300
+INFO - 2021-01-09 01:23:33,858 - hidden_size = 128
+INFO - 2021-01-09 01:23:33,858 - pre_embed = None
+INFO - 2021-01-09 01:23:33,942 - instantiating class <class 'Transparency.model.modules.Decoder.AttnDecoder'> from params {'attention': {'type': 'tanh'}, 'output_size': 1, 'hidden_size': 256} and extras set()
+INFO - 2021-01-09 01:23:33,942 - hidden_size = 256
+INFO - 2021-01-09 01:23:33,942 - output_size = 1
+INFO - 2021-01-09 01:23:33,942 - use_attention = True
+INFO - 2021-01-09 01:23:33,942 - regularizer_attention = None
+INFO - 2021-01-09 01:23:33,942 - instantiating class <class 'Transparency.model.modules.Attention.Attention'> from params <allennlp.common.params.Params object at 0x1474e16d7c18> and extras set()
+INFO - 2021-01-09 01:23:33,942 - attention.type = tanh
+INFO - 2021-01-09 01:23:33,943 - type = tanh
+INFO - 2021-01-09 01:23:33,943 - instantiating class <class 'Transparency.model.modules.Attention.TanhAttention'> from params <allennlp.common.params.Params object at 0x1474e16d7c18> and extras set()
+INFO - 2021-01-09 01:23:33,943 - attention.hidden_size = 256
+INFO - 2021-01-09 01:23:33,943 - hidden_size = 256
+config  {'model': {'encoder': {}, 'decoder': {}, 'generator': {'hidden_size': 256, 'sparsity_lambda': 0.2}}, 'training': {'bsize': 32, 'weight_decay': 1e-05, 'pos_weight': [1.0157037384272822], 'basepath': '/home/lgpu0136/test_seeds', 'exp_dirname': 'imdb/lstm+tanh'}}
+Running on device: cuda:0
+Training the Rationale Generator ...
+Starting Epoch: 0
+Epoch: 0, Step: 0 Loss -34.80387878417969, Total Reward: -0.23095476627349854, BCE loss: 0.32891303300857544 Sparsity Reward: 0.48979127407073975 (sparsity_lambda = 0.2)
+Epoch: 0, Step: 1 Loss -19.98921775817871, Total Reward: -0.12514330446720123, BCE loss: 0.22526302933692932 Sparsity Reward: 0.5005986094474792 (sparsity_lambda = 0.2)
+
+SKIP
+
+Epoch: 39, Step: 537 Loss -0.00913752056658268, Total Reward: -0.05217190831899643, BCE loss: 0.05223032087087631 Sparsity Reward: 0.000292056065518409 (sparsity_lambda = 0.2)
+Epoch: 39, Train Reward -0.11322013982247543, Train Accuracy 0.9702325581395349, Validation Reward -0.24262715938642496, Validation Accuracy 0.9043518734000465
+Model not saved
+Running Exp to Compute Attention given to Rationales ...
+encoder params {'vocab_size': 12487, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None}
+INFO - 2021-01-09 03:15:31,673 - instantiating class <class 'Transparency.model.modules.Encoder.Encoder'> from params {'vocab_size': 12487, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-09 03:15:31,673 - type = vanillalstm
+INFO - 2021-01-09 03:15:31,674 - instantiating class <class 'Transparency.model.modules.Encoder.EncoderorthoRNN'> from params {'vocab_size': 12487, 'embed_size': 300, 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-09 03:15:31,674 - vocab_size = 12487
+INFO - 2021-01-09 03:15:31,674 - embed_size = 300
+INFO - 2021-01-09 03:15:31,674 - hidden_size = 128
+INFO - 2021-01-09 03:15:31,674 - pre_embed = None
+INFO - 2021-01-09 03:15:31,757 - instantiating class <class 'Transparency.model.modules.Decoder.AttnDecoder'> from params {'attention': {'type': 'tanh'}, 'output_size': 1, 'hidden_size': 256} and extras set()
+INFO - 2021-01-09 03:15:31,757 - hidden_size = 256
+INFO - 2021-01-09 03:15:31,757 - output_size = 1
+INFO - 2021-01-09 03:15:31,758 - use_attention = True
+INFO - 2021-01-09 03:15:31,758 - regularizer_attention = None
+INFO - 2021-01-09 03:15:31,758 - instantiating class <class 'Transparency.model.modules.Attention.Attention'> from params <allennlp.common.params.Params object at 0x1474a0bc3e80> and extras set()
+INFO - 2021-01-09 03:15:31,758 - attention.type = tanh
+INFO - 2021-01-09 03:15:31,758 - type = tanh
+INFO - 2021-01-09 03:15:31,758 - instantiating class <class 'Transparency.model.modules.Attention.TanhAttention'> from params <allennlp.common.params.Params object at 0x1474a0bc3e80> and extras set()
+INFO - 2021-01-09 03:15:31,758 - attention.hidden_size = 256
+INFO - 2021-01-09 03:15:31,758 - hidden_size = 256
+config  {'model': {'encoder': {}, 'decoder': {}, 'generator': {'hidden_size': 256, 'sparsity_lambda': 0.2}}, 'training': {'bsize': 32, 'weight_decay': 1e-05, 'pos_weight': [1.0157037384272822], 'basepath': '/home/lgpu0136/test_seeds', 'exp_dirname': 'imdb/lstm+tanh'}}
+Running on device: cuda:0
+Summary on Test Dataset {'Fraction Length Average': 0.9204661951522635, 'Fraction Length STD': 0.025451259647474602, 'Attn Sum Average': 0.9675157935494562, 'Attn Sum STD': 0.01681457662405918, 'loss': 0.25104757359377083}
+encoder params {'vocab_size': 12487, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None}
+INFO - 2021-01-09 03:15:43,742 - instantiating class <class 'Transparency.model.modules.Encoder.Encoder'> from params {'vocab_size': 12487, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-09 03:15:43,742 - type = vanillalstm
+INFO - 2021-01-09 03:15:43,742 - instantiating class <class 'Transparency.model.modules.Encoder.EncoderorthoRNN'> from params {'vocab_size': 12487, 'embed_size': 300, 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-09 03:15:43,742 - vocab_size = 12487
+INFO - 2021-01-09 03:15:43,742 - embed_size = 300
+INFO - 2021-01-09 03:15:43,742 - hidden_size = 128
+INFO - 2021-01-09 03:15:43,743 - pre_embed = None
+INFO - 2021-01-09 03:15:43,823 - instantiating class <class 'Transparency.model.modules.Decoder.AttnDecoder'> from params {'attention': {'type': 'tanh'}, 'output_size': 1, 'hidden_size': 256} and extras set()
+INFO - 2021-01-09 03:15:43,823 - hidden_size = 256
+INFO - 2021-01-09 03:15:43,823 - output_size = 1
+INFO - 2021-01-09 03:15:43,823 - use_attention = True
+INFO - 2021-01-09 03:15:43,824 - regularizer_attention = None
+INFO - 2021-01-09 03:15:43,824 - instantiating class <class 'Transparency.model.modules.Attention.Attention'> from params <allennlp.common.params.Params object at 0x1474a0bc3e80> and extras set()
+INFO - 2021-01-09 03:15:43,824 - attention.type = tanh
+INFO - 2021-01-09 03:15:43,824 - type = tanh
+INFO - 2021-01-09 03:15:43,824 - instantiating class <class 'Transparency.model.modules.Attention.TanhAttention'> from params <allennlp.common.params.Params object at 0x1474a0bc3e80> and extras set()
+INFO - 2021-01-09 03:15:43,824 - attention.hidden_size = 256
+INFO - 2021-01-09 03:15:43,824 - hidden_size = 256
+INFO - 2021-01-09 03:15:54,284 - Generating graph for /home/lgpu0136/test_seeds/imdb/lstm+tanh/Sat_Jan__9_00:15:12_2021
+INFO - 2021-01-09 03:15:54,289 - Average Length of test set 17
+INFO - 2021-01-09 03:15:55,214 - Generating Gradients Graph ...
+INFO - 2021-01-09 03:16:38,349 - Generating Permutations Graph ...
+INFO - 2021-01-09 03:16:44,353 - Generating importance ranking Graph ...
+config  {'model': {'encoder': {}, 'decoder': {}, 'generator': {'hidden_size': 256, 'sparsity_lambda': 0.2}}, 'training': {'bsize': 32, 'weight_decay': 1e-05, 'pos_weight': [1.0157037384272822], 'basepath': '/home/lgpu0136/test_seeds', 'exp_dirname': 'imdb/lstm+tanh'}}
+Running on device: cuda:0
+{'accuracy': 0.8999081726354453, 'roc_auc': 0.962051357942242, 'pr_auc': 0.9554644053051646, 'conicity_mean': '0.5680326', 'conicity_std': '0.13531592'}
+                  0         1  micro avg  macro avg  weighted avg
+f1-score      0.899     0.900        0.9        0.9           0.9
+precision     0.907     0.893        0.9        0.9           0.9
+recall        0.892     0.908        0.9        0.9           0.9
+support    2184.000  2172.000     4356.0     4356.0        4356.0
+pos tags ['NOUN', 'ADJ', 'VERB', 'ADV', 'PRON', 'ADP', 'NUM', 'DET', 'CONJ', 'PRT', 'X', '.']
+words_positive ['great', 'good', 'movie', 'film', 'best', 'well', '10', 'and', 'it', 'excellent']
+words_negative ['bad', 'movie', 'good', 'worst', '10', 'film', 'awful', 'waste', 'boring', 'nothing']
+rationale_length None
+============================================================================================================================================================================================================================================================================================================
+
+
+
+
+NEWJOB
+
+seed  0 , dataset  yelp , model  vanilla_lstm , diversity  0
+encoder params {'vocab_size': 63328, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128,
+
+Epoch: 7 Step: 10789 Total Loss: 0.008, BCE loss: 0.008, Diversity Loss: 0.523                     (Diversity_weight = 0)
+Epoch: 7 Step: 10790 Total Loss: 0.000, BCE loss: 0.000, Diversity Loss: 0.512                     (Diversity_weight = 0)
+{'accuracy': 0.9453027139874739, 'roc_auc': 0.9881407177555603, 'pr_auc': 0.9902274980815245, 'conicity_mean': 0.5213911, 'conicity_std': 0.10378359}
+                  0         1  micro avg  macro avg  weighted avg
+f1-score      0.941     0.949      0.945      0.945         0.945
+precision     0.938     0.952      0.945      0.945         0.945
+recall        0.944     0.947      0.945      0.945         0.945
+support    2196.000  2594.000   4790.000   4790.000      4790.000
+Model not saved on  roc_auc 0.9881407177555603
+saved config  {'model': {'encoder': {'vocab_size': 63328, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128}, 'decoder': {'attention': {'type': 'tanh'}, 'output_size': 1}, 'generator': {'hidden_size': 256, 'sparsity_lambda': 0.2}}, 'training': {'bsize': 32, 'weight_decay': 1e-05, 'pos_weight': [0.843437174661648], 'basepath': '/home/lgpu0136/test_seeds', 'exp_dirname': 'Yelp/lstm+tanh'}}
+/home/lgpu0136/test_seeds/Yelp/lstm+tanh/Sat_Jan__9_03:17:41_2021
+encoder params {'vocab_size': 63328, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None}
+/home/lgpu0136/.conda/envs/fact/lib/python3.6/site-packages/torch/nn/modules/rnn.py:54: UserWarning: dropout option adds dropout after all but last recurrent layer, so non-zero dropout expects num_layers greater than 1, but got dropout=0.3 and num_layers=1
+  "num_layers={}".format(dropout, num_layers))
+/home/lgpu0136/project/Transparency/model/modules/lstm.py:75: UserWarning: nn.init.xavier_uniform is now deprecated in favor of nn.init.xavier_uniform_.
+  hx = (Variable(nn.init.xavier_uniform(torch.empty(self.num_layers, batch_size, self.hidden_size,device=device))),
+/home/lgpu0136/project/Transparency/model/modules/lstm.py:76: UserWarning: nn.init.xavier_uniform is now deprecated in favor of nn.init.xavier_uniform_.
+  Variable(nn.init.xavier_uniform(torch.empty(self.num_layers, batch_size, self.hidden_size,device=device))))
+INFO - 2021-01-09 05:37:36,065 - instantiating class <class 'Transparency.model.modules.Encoder.Encoder'> from params {'vocab_size': 63328, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-09 05:37:36,065 - type = vanillalstm
+INFO - 2021-01-09 05:37:36,066 - instantiating class <class 'Transparency.model.modules.Encoder.EncoderorthoRNN'> from params {'vocab_size': 63328, 'embed_size': 300, 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-09 05:37:36,066 - vocab_size = 63328
+INFO - 2021-01-09 05:37:36,066 - embed_size = 300
+INFO - 2021-01-09 05:37:36,066 - hidden_size = 128
+INFO - 2021-01-09 05:37:36,066 - pre_embed = None
+INFO - 2021-01-09 05:37:36,422 - instantiating class <class 'Transparency.model.modules.Decoder.AttnDecoder'> from params {'attention': {'type': 'tanh'}, 'output_size': 1, 'hidden_size': 256} and extras set()
+INFO - 2021-01-09 05:37:36,423 - hidden_size = 256
+INFO - 2021-01-09 05:37:36,423 - output_size = 1
+INFO - 2021-01-09 05:37:36,423 - use_attention = True
+INFO - 2021-01-09 05:37:36,423 - regularizer_attention = None
+INFO - 2021-01-09 05:37:36,423 - instantiating class <class 'Transparency.model.modules.Attention.Attention'> from params <allennlp.common.params.Params object at 0x14788e284390> and extras set()
+INFO - 2021-01-09 05:37:36,423 - attention.type = tanh
+INFO - 2021-01-09 05:37:36,423 - type = tanh
+INFO - 2021-01-09 05:37:36,423 - instantiating class <class 'Transparency.model.modules.Attention.TanhAttention'> from params <allennlp.common.params.Params object at 0x14788e284390> and extras set()
+INFO - 2021-01-09 05:37:36,423 - attention.hidden_size = 256
+INFO - 2021-01-09 05:37:36,423 - hidden_size = 256
+config  {'model': {'encoder': {}, 'decoder': {}, 'generator': {'hidden_size': 256, 'sparsity_lambda': 0.2}}, 'training': {'bsize': 32, 'weight_decay': 1e-05, 'pos_weight': [0.843437174661648], 'basepath': '/home/lgpu0136/test_seeds', 'exp_dirname': 'Yelp/lstm+tanh'}}
+Running on device: cuda:0
+{'accuracy': 0.9487456264423435, 'roc_auc': 0.9907882074137963, 'pr_auc': 0.9923939133118247, 'conicity_mean': '0.5356172', 'conicity_std': '0.12138684'}
+                   0          1  micro avg  macro avg  weighted avg
+f1-score       0.945      0.952      0.949      0.949         0.949
+precision      0.925      0.970      0.949      0.948         0.950
+recall         0.966      0.934      0.949      0.950         0.949
+support    12284.000  14582.000  26866.000  26866.000     26866.000
+encoder params {'vocab_size': 63328, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None}
+INFO - 2021-01-09 05:38:05,353 - instantiating class <class 'Transparency.model.modules.Encoder.Encoder'> from params {'vocab_size': 63328, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-09 05:38:05,354 - type = vanillalstm
+INFO - 2021-01-09 05:38:05,354 - instantiating class <class 'Transparency.model.modules.Encoder.EncoderorthoRNN'> from params {'vocab_size': 63328, 'embed_size': 300, 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-09 05:38:05,354 - vocab_size = 63328
+INFO - 2021-01-09 05:38:05,354 - embed_size = 300
+INFO - 2021-01-09 05:38:05,354 - hidden_size = 128
+INFO - 2021-01-09 05:38:05,354 - pre_embed = None
+INFO - 2021-01-09 05:38:05,712 - instantiating class <class 'Transparency.model.modules.Decoder.AttnDecoder'> from params {'attention': {'type': 'tanh'}, 'output_size': 1, 'hidden_size': 256} and extras set()
+INFO - 2021-01-09 05:38:05,713 - hidden_size = 256
+INFO - 2021-01-09 05:38:05,713 - output_size = 1
+INFO - 2021-01-09 05:38:05,713 - use_attention = True
+INFO - 2021-01-09 05:38:05,713 - regularizer_attention = None
+INFO - 2021-01-09 05:38:05,713 - instantiating class <class 'Transparency.model.modules.Attention.Attention'> from params <allennlp.common.params.Params object at 0x147952fc8c88> and extras set()
+INFO - 2021-01-09 05:38:05,713 - attention.type = tanh
+INFO - 2021-01-09 05:38:05,713 - type = tanh
+INFO - 2021-01-09 05:38:05,713 - instantiating class <class 'Transparency.model.modules.Attention.TanhAttention'> from params <allennlp.common.params.Params object at 0x147952fc8c88> and extras set()
+INFO - 2021-01-09 05:38:05,714 - attention.hidden_size = 256
+INFO - 2021-01-09 05:38:05,714 - hidden_size = 256
+
+  0%|          | 0/26866 [00:00<?, ?it/s]
+  0%|          | 4/26866 [00:00<13:36, 32.91it/s]
+
+SKIP
+
+100%|#########9| 26865/26866 [1:22:07<00:00,  2.73it/s]
+100%|##########| 26866/26866 [1:22:07<00:00,  2.73it/s]config  {'model': {'encoder': {}, 'decoder': {}, 'generator': {'hidden_size': 256, 'sparsity_lambda': 0.2}}, 'training': {'bsize': 32, 'weight_decay': 1e-05, 'pos_weight': [0.843437174661648], 'basepath': '/home/lgpu0136/test_seeds', 'exp_dirname': 'Yelp/lstm+tanh'}}
+Running on device: cuda:0
+{'accuracy': 0.9487456264423435, 'roc_auc': 0.9907882074137963, 'pr_auc': 0.9923939133118247, 'conicity_mean': '0.5356172', 'conicity_std': '0.12138684'}
+                   0          1  micro avg  macro avg  weighted avg
+f1-score       0.945      0.952      0.949      0.949         0.949
+precision      0.925      0.970      0.949      0.948         0.950
+recall         0.966      0.934      0.949      0.950         0.949
+support    12284.000  14582.000  26866.000  26866.000     26866.000
+Running Gradients Expt ...
+Dumping Gradients Outputs
+Running Analysis by Parts-of-speech Expt ...
+Dumping Parts-of-speech Expt Outputs
+Running Importance Ranking Expt ...
+Dumping Importance Ranking Outputs
+Conicity Analysis {'Conicity_hidden': 0.5356163}
+Running Permutation Expt ...
+Dumping Permutation Outputs
+Running Integrated Gradients Expt ...
+running Int grad for 26866 instances
+calculating IG
+Dumping Integrated Gradients Outputs
+encoder params {'vocab_size': 63328, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None}
+
+INFO - 2021-01-09 08:12:23,192 - instantiating class <class 'Transparency.model.modules.Encoder.Encoder'> from params {'vocab_size': 63328, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-09 08:12:23,192 - type = vanillalstm
+INFO - 2021-01-09 08:12:23,193 - instantiating class <class 'Transparency.model.modules.Encoder.EncoderorthoRNN'> from params {'vocab_size': 63328, 'embed_size': 300, 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-09 08:12:23,193 - vocab_size = 63328
+INFO - 2021-01-09 08:12:23,193 - embed_size = 300
+INFO - 2021-01-09 08:12:23,193 - hidden_size = 128
+INFO - 2021-01-09 08:12:23,193 - pre_embed = None
+INFO - 2021-01-09 08:12:23,547 - instantiating class <class 'Transparency.model.modules.Decoder.AttnDecoder'> from params {'attention': {'type': 'tanh'}, 'output_size': 1, 'hidden_size': 256} and extras set()
+INFO - 2021-01-09 08:12:23,547 - hidden_size = 256
+INFO - 2021-01-09 08:12:23,548 - output_size = 1
+INFO - 2021-01-09 08:12:23,548 - use_attention = True
+INFO - 2021-01-09 08:12:23,548 - regularizer_attention = None
+INFO - 2021-01-09 08:12:23,548 - instantiating class <class 'Transparency.model.modules.Attention.Attention'> from params <allennlp.common.params.Params object at 0x14788d82a240> and extras set()
+INFO - 2021-01-09 08:12:23,548 - attention.type = tanh
+INFO - 2021-01-09 08:12:23,548 - type = tanh
+INFO - 2021-01-09 08:12:23,548 - instantiating class <class 'Transparency.model.modules.Attention.TanhAttention'> from params <allennlp.common.params.Params object at 0x14788d82a240> and extras set()
+INFO - 2021-01-09 08:12:23,548 - attention.hidden_size = 256
+INFO - 2021-01-09 08:12:23,548 - hidden_size = 256
+config  {'model': {'encoder': {}, 'decoder': {}, 'generator': {'hidden_size': 256, 'sparsity_lambda': 0.2}}, 'training': {'bsize': 32, 'weight_decay': 1e-05, 'pos_weight': [0.843437174661648], 'basepath': '/home/lgpu0136/test_seeds', 'exp_dirname': 'Yelp/lstm+tanh'}}
+Running on device: cuda:0
+Training the Rationale Generator ...
+Starting Epoch: 0
+Epoch: 0, Step: 0 Loss -5.091682434082031, Total Reward: -0.20315352082252502, BCE loss: 0.3051625192165375 Sparsity Reward: 0.5100449323654175 (sparsity_lambda = 0.2)
+Epoch: 0, Step: 1 Loss -4.3088226318359375, Total Reward: -0.07863400876522064, BCE loss: 0.17927686870098114 Sparsity Reward: 0.5032142996788025 (sparsity_lambda = 0.2)
+
+SKIP
+
+Epoch: 39, Step: 10790 Loss 0.2116231620311737, Total Reward: 0.06246545910835266, BCE loss: 0.06574451178312302 Sparsity Reward: 0.641049861907959 (sparsity_lambda = 0.2)
+Epoch: 39, Train Reward 0.004108610628734102, Train Accuracy 0.9514053607889135, Validation Reward -0.02366564760221818, Validation Accuracy 0.9336116910229645
+Model not saved
+Running Exp to Compute Attention given to Rationales ...
+encoder params {'vocab_size': 63328, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None}
+INFO - 2021-01-10 01:22:50,944 - instantiating class <class 'Transparency.model.modules.Encoder.Encoder'> from params {'vocab_size': 63328, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-10 01:22:50,944 - type = vanillalstm
+INFO - 2021-01-10 01:22:50,945 - instantiating class <class 'Transparency.model.modules.Encoder.EncoderorthoRNN'> from params {'vocab_size': 63328, 'embed_size': 300, 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-10 01:22:50,945 - vocab_size = 63328
+INFO - 2021-01-10 01:22:50,945 - embed_size = 300
+INFO - 2021-01-10 01:22:50,945 - hidden_size = 128
+INFO - 2021-01-10 01:22:50,945 - pre_embed = None
+INFO - 2021-01-10 01:22:51,299 - instantiating class <class 'Transparency.model.modules.Decoder.AttnDecoder'> from params {'attention': {'type': 'tanh'}, 'output_size': 1, 'hidden_size': 256} and extras set()
+INFO - 2021-01-10 01:22:51,299 - hidden_size = 256
+INFO - 2021-01-10 01:22:51,299 - output_size = 1
+INFO - 2021-01-10 01:22:51,299 - use_attention = True
+INFO - 2021-01-10 01:22:51,300 - regularizer_attention = None
+INFO - 2021-01-10 01:22:51,300 - instantiating class <class 'Transparency.model.modules.Attention.Attention'> from params <allennlp.common.params.Params object at 0x14788c00f160> and extras set()
+INFO - 2021-01-10 01:22:51,300 - attention.type = tanh
+INFO - 2021-01-10 01:22:51,300 - type = tanh
+INFO - 2021-01-10 01:22:51,300 - instantiating class <class 'Transparency.model.modules.Attention.TanhAttention'> from params <allennlp.common.params.Params object at 0x14788c00f160> and extras set()
+INFO - 2021-01-10 01:22:51,300 - attention.hidden_size = 256
+INFO - 2021-01-10 01:22:51,300 - hidden_size = 256
+config  {'model': {'encoder': {}, 'decoder': {}, 'generator': {'hidden_size': 256, 'sparsity_lambda': 0.2}}, 'training': {'bsize': 32, 'weight_decay': 1e-05, 'pos_weight': [0.843437174661648], 'basepath': '/home/lgpu0136/test_seeds', 'exp_dirname': 'Yelp/lstm+tanh'}}
+Running on device: cuda:0
+Summary on Test Dataset {'Fraction Length Average': 0.3836687984391365, 'Fraction Length STD': 0.07822409372187543, 'Attn Sum Average': 0.4312572339925001, 'Attn Sum STD': 0.11642171096962844, 'loss': 0.1560679656676259}
+encoder params {'vocab_size': 63328, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None}
+INFO - 2021-01-10 01:23:24,500 - instantiating class <class 'Transparency.model.modules.Encoder.Encoder'> from params {'vocab_size': 63328, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-10 01:23:24,501 - type = vanillalstm
+INFO - 2021-01-10 01:23:24,501 - instantiating class <class 'Transparency.model.modules.Encoder.EncoderorthoRNN'> from params {'vocab_size': 63328, 'embed_size': 300, 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-10 01:23:24,501 - vocab_size = 63328
+INFO - 2021-01-10 01:23:24,501 - embed_size = 300
+INFO - 2021-01-10 01:23:24,501 - hidden_size = 128
+INFO - 2021-01-10 01:23:24,501 - pre_embed = None
+INFO - 2021-01-10 01:23:24,856 - instantiating class <class 'Transparency.model.modules.Decoder.AttnDecoder'> from params {'attention': {'type': 'tanh'}, 'output_size': 1, 'hidden_size': 256} and extras set()
+INFO - 2021-01-10 01:23:24,856 - hidden_size = 256
+INFO - 2021-01-10 01:23:24,856 - output_size = 1
+INFO - 2021-01-10 01:23:24,856 - use_attention = True
+INFO - 2021-01-10 01:23:24,856 - regularizer_attention = None
+INFO - 2021-01-10 01:23:24,856 - instantiating class <class 'Transparency.model.modules.Attention.Attention'> from params <allennlp.common.params.Params object at 0x14788d3fa550> and extras set()
+INFO - 2021-01-10 01:23:24,856 - attention.type = tanh
+INFO - 2021-01-10 01:23:24,856 - type = tanh
+INFO - 2021-01-10 01:23:24,857 - instantiating class <class 'Transparency.model.modules.Attention.TanhAttention'> from params <allennlp.common.params.Params object at 0x14788d3fa550> and extras set()
+INFO - 2021-01-10 01:23:24,857 - attention.hidden_size = 256
+INFO - 2021-01-10 01:23:24,857 - hidden_size = 256
+INFO - 2021-01-10 01:23:52,901 - Generating graph for /home/lgpu0136/test_seeds/Yelp/lstm+tanh/Sat_Jan__9_03:17:41_2021
+INFO - 2021-01-10 01:23:52,920 - Average Length of test set 10
+INFO - 2021-01-10 01:23:55,124 - Generating Gradients Graph ...
+INFO - 2021-01-10 01:24:55,596 - Generating Permutations Graph ...
+INFO - 2021-01-10 01:25:02,455 - Generating importance ranking Graph ...
+config  {'model': {'encoder': {}, 'decoder': {}, 'generator': {'hidden_size': 256, 'sparsity_lambda': 0.2}}, 'training': {'bsize': 32, 'weight_decay': 1e-05, 'pos_weight': [0.843437174661648], 'basepath': '/home/lgpu0136/test_seeds', 'exp_dirname': 'Yelp/lstm+tanh'}}
+Running on device: cuda:0
+{'accuracy': 0.9487456264423435, 'roc_auc': 0.9907882074137963, 'pr_auc': 0.9923939133118247, 'conicity_mean': '0.5356172', 'conicity_std': '0.12138684'}
+                   0          1  micro avg  macro avg  weighted avg
+f1-score       0.945      0.952      0.949      0.949         0.949
+precision      0.925      0.970      0.949      0.948         0.950
+recall         0.966      0.934      0.949      0.950         0.949
+support    12284.000  14582.000  26866.000  26866.000     26866.000
+pos tags ['NOUN', 'ADJ', 'VERB', 'DET', 'ADV', 'PRON', 'ADP', 'CONJ', 'PRT', 'NUM', '.', 'X']
+words_positive ['<UNK>', 'I', 'and', 'the', 'great', 'The', 'Great', 'good', 'this', 'This']
+words_negative ['<UNK>', 'I', 'the', 'and', 'The', 'but', 'this', 'good', 'This', 'to']
+rationale_length None
+============================================================================================================================================================================================================================================================================================================
+
+
+
+
+NEWJOB
+seed  0 , dataset  amazon , model  vanilla_lstm , diversity  0
+encoder params {'vocab_size': 49883, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 
+
+Epoch: 7 Step: 47751 Total Loss: 0.086, BCE loss: 0.086, Diversity Loss: 0.435                     (Diversity_weight = 0)
+Epoch: 7 Step: 47752 Total Loss: 0.048, BCE loss: 0.048, Diversity Loss: 0.438                     (Diversity_weight = 0)
+{'accuracy': 0.9360412926391383, 'roc_auc': 0.9807922609330374, 'pr_auc': 0.9822183785530824, 'conicity_mean': 0.4607397, 'conicity_std': 0.09165228}
+                  0         1  micro avg  macro avg  weighted avg
+f1-score      0.933     0.939      0.936      0.936         0.936
+precision     0.934     0.938      0.936      0.936         0.936
+recall        0.931     0.940      0.936      0.936         0.936
+support    2121.000  2335.000   4456.000   4456.000      4456.000
+Model not saved on  roc_auc 0.9807922609330374
+saved config  {'model': {'encoder': {'vocab_size': 49883, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128}, 'decoder': {'attention': {'type': 'tanh'}, 'output_size': 1}, 'generator': {'hidden_size': 256, 'sparsity_lambda': 0.2}}, 'training': {'bsize': 32, 'weight_decay': 1e-05, 'pos_weight': [0.9254894746259479], 'basepath': '/home/lgpu0136/test_seeds', 'exp_dirname': 'Amazon/lstm+tanh'}}
+/home/lgpu0136/test_seeds/Amazon/lstm+tanh/Sun_Jan_10_01:26:44_2021
+encoder params {'vocab_size': 49883, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None}
+/home/lgpu0136/.conda/envs/fact/lib/python3.6/site-packages/torch/nn/modules/rnn.py:54: UserWarning: dropout option adds dropout after all but last recurrent layer, so non-zero dropout expects num_layers greater than 1, but got dropout=0.3 and num_layers=1
+  "num_layers={}".format(dropout, num_layers))
+/home/lgpu0136/project/Transparency/model/modules/lstm.py:75: UserWarning: nn.init.xavier_uniform is now deprecated in favor of nn.init.xavier_uniform_.
+  hx = (Variable(nn.init.xavier_uniform(torch.empty(self.num_layers, batch_size, self.hidden_size,device=device))),
+/home/lgpu0136/project/Transparency/model/modules/lstm.py:76: UserWarning: nn.init.xavier_uniform is now deprecated in favor of nn.init.xavier_uniform_.
+  Variable(nn.init.xavier_uniform(torch.empty(self.num_layers, batch_size, self.hidden_size,device=device))))
+INFO - 2021-01-10 10:05:31,373 - instantiating class <class 'Transparency.model.modules.Encoder.Encoder'> from params {'vocab_size': 49883, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-10 10:05:31,373 - type = vanillalstm
+INFO - 2021-01-10 10:05:31,374 - instantiating class <class 'Transparency.model.modules.Encoder.EncoderorthoRNN'> from params {'vocab_size': 49883, 'embed_size': 300, 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-10 10:05:31,374 - vocab_size = 49883
+INFO - 2021-01-10 10:05:31,374 - embed_size = 300
+INFO - 2021-01-10 10:05:31,374 - hidden_size = 128
+INFO - 2021-01-10 10:05:31,374 - pre_embed = None
+INFO - 2021-01-10 10:05:31,658 - instantiating class <class 'Transparency.model.modules.Decoder.AttnDecoder'> from params {'attention': {'type': 'tanh'}, 'output_size': 1, 'hidden_size': 256} and extras set()
+INFO - 2021-01-10 10:05:31,658 - hidden_size = 256
+INFO - 2021-01-10 10:05:31,659 - output_size = 1
+INFO - 2021-01-10 10:05:31,659 - use_attention = True
+INFO - 2021-01-10 10:05:31,659 - regularizer_attention = None
+INFO - 2021-01-10 10:05:31,659 - instantiating class <class 'Transparency.model.modules.Attention.Attention'> from params <allennlp.common.params.Params object at 0x14e94aeacdd8> and extras set()
+INFO - 2021-01-10 10:05:31,659 - attention.type = tanh
+INFO - 2021-01-10 10:05:31,659 - type = tanh
+INFO - 2021-01-10 10:05:31,659 - instantiating class <class 'Transparency.model.modules.Attention.TanhAttention'> from params <allennlp.common.params.Params object at 0x14e94aeacdd8> and extras set()
+INFO - 2021-01-10 10:05:31,659 - attention.hidden_size = 256
+INFO - 2021-01-10 10:05:31,659 - hidden_size = 256
+config  {'model': {'encoder': {}, 'decoder': {}, 'generator': {'hidden_size': 256, 'sparsity_lambda': 0.2}}, 'training': {'bsize': 32, 'weight_decay': 1e-05, 'pos_weight': [0.9254894746259479], 'basepath': '/home/lgpu0136/test_seeds', 'exp_dirname': 'Amazon/lstm+tanh'}}
+Running on device: cuda:0
+{'accuracy': 0.9368726904459059, 'roc_auc': 0.9826364900144292, 'pr_auc': 0.9826728544182666, 'conicity_mean': '0.45699856', 'conicity_std': '0.08421219'}
+                    0           1   micro avg   macro avg  weighted avg
+f1-score        0.935       0.939       0.937       0.937         0.937
+precision       0.927       0.946       0.937       0.937         0.937
+recall          0.942       0.932       0.937       0.937         0.937
+support    159016.000  172758.000  331774.000  331774.000    331774.000
+encoder params {'vocab_size': 49883, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None}
+INFO - 2021-01-10 10:10:07,898 - instantiating class <class 'Transparency.model.modules.Encoder.Encoder'> from params {'vocab_size': 49883, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-10 10:10:07,898 - type = vanillalstm
+INFO - 2021-01-10 10:10:07,899 - instantiating class <class 'Transparency.model.modules.Encoder.EncoderorthoRNN'> from params {'vocab_size': 49883, 'embed_size': 300, 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-10 10:10:07,900 - vocab_size = 49883
+INFO - 2021-01-10 10:10:07,900 - embed_size = 300
+INFO - 2021-01-10 10:10:07,900 - hidden_size = 128
+INFO - 2021-01-10 10:10:07,900 - pre_embed = None
+INFO - 2021-01-10 10:10:08,191 - instantiating class <class 'Transparency.model.modules.Decoder.AttnDecoder'> from params {'attention': {'type': 'tanh'}, 'output_size': 1, 'hidden_size': 256} and extras set()
+INFO - 2021-01-10 10:10:08,191 - hidden_size = 256
+INFO - 2021-01-10 10:10:08,191 - output_size = 1
+INFO - 2021-01-10 10:10:08,191 - use_attention = True
+INFO - 2021-01-10 10:10:08,191 - regularizer_attention = None
+INFO - 2021-01-10 10:10:08,192 - instantiating class <class 'Transparency.model.modules.Attention.Attention'> from params <allennlp.common.params.Params object at 0x14e9408bf748> and extras set()
+INFO - 2021-01-10 10:10:08,192 - attention.type = tanh
+INFO - 2021-01-10 10:10:08,192 - type = tanh
+INFO - 2021-01-10 10:10:08,192 - instantiating class <class 'Transparency.model.modules.Attention.TanhAttention'> from params <allennlp.common.params.Params object at 0x14e9408bf748> and extras set()
+INFO - 2021-01-10 10:10:08,192 - attention.hidden_size = 256
+INFO - 2021-01-10 10:10:08,192 - hidden_size = 256
+/var/spool/slurm/slurmd/job7333265/slurm_script: line 47: 28163 Killed                  python train_and_run_experiments_bc.py --dataset amazon --encoder vanilla_lstm --data_dir . --output_dir $output_dir --seed 0
+============================================================================================================================================================================================================================================================================================================
+
+
+
+NEWJOB
+seed  0 , dataset  20News_sports , model  vanilla_lstm , diversity  0
+encoder params {'vocab_size': 6515, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': array([[ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       [ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       [ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       ...,
+       [ 0.31336999, -0.1891    ,  0.06034   , ...,  0.19617   ,
+        -0.11479   ,  0.053594  ],
+       [ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       [ 0.13421001, -1.01919997,  0.014029  , ...,  0.59031999,
+        -0.32427001, -0.21134999]])}
+/home/lgpu0136/.conda/envs/fact/lib/python3.6/site-packages/allennlp/common/params.py:531: FutureWarning: elementwise comparison failed; returning scalar instead, but in the future will perform elementwise comparison
+  if dictionary[key] == "None":
+INFO - 2021-01-10 10:31:28,774 - instantiating class <class 'Transparency.model.modules.Encoder.Encoder'> from params {'vocab_size': 6515, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': array([[ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       [ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       [ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       ...,
+       [ 0.31336999, -0.1891    ,  0.06034   , ...,  0.19617   ,
+        -0.11479   ,  0.053594  ],
+       [ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       [ 0.13421001, -1.01919997,  0.014029  , ...,  0.59031999,
+        -0.32427001, -0.21134999]])} and extras set()
+INFO - 2021-01-10 10:31:28,775 - type = vanillalstm
+INFO - 2021-01-10 10:31:28,776 - instantiating class <class 'Transparency.model.modules.Encoder.EncoderorthoRNN'> from params {'vocab_size': 6515, 'embed_size': 300, 'hidden_size': 128, 'pre_embed': array([[ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       [ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       [ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       ...,
+       [ 0.31336999, -0.1891    ,  0.06034   , ...,  0.19617   ,
+        -0.11479   ,  0.053594  ],
+       [ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       [ 0.13421001, -1.01919997,  0.014029  , ...,  0.59031999,
+        -0.32427001, -0.21134999]])} and extras set()
+INFO - 2021-01-10 10:31:28,816 - Better speed can be achieved with apex installed from https://www.github.com/nvidia/apex .
+INFO - 2021-01-10 10:31:29,452 - vocab_size = 6515
+INFO - 2021-01-10 10:31:29,452 - embed_size = 300
+INFO - 2021-01-10 10:31:29,452 - hidden_size = 128
+INFO - 2021-01-10 10:31:29,454 - pre_embed = [[ 0.          0.          0.         ...  0.          0.
+   0.        ]
+ [ 0.          0.          0.         ...  0.          0.
+   0.        ]
+ [ 0.          0.          0.         ...  0.          0.
+   0.        ]
+ ...
+ [ 0.31336999 -0.1891      0.06034    ...  0.19617    -0.11479
+   0.053594  ]
+ [ 0.          0.          0.         ...  0.          0.
+   0.        ]
+ [ 0.13421001 -1.01919997  0.014029   ...  0.59031999 -0.32427001
+  -0.21134999]]
+INFO - 2021-01-10 10:31:33,502 - instantiating class <class 'Transparency.model.modules.Decoder.AttnDecoder'> from params {'attention': {'type': 'tanh'}, 'output_size': 1, 'hidden_size': 256} and extras set()
+INFO - 2021-01-10 10:31:33,503 - hidden_size = 256
+INFO - 2021-01-10 10:31:33,503 - output_size = 1
+INFO - 2021-01-10 10:31:33,503 - use_attention = True
+INFO - 2021-01-10 10:31:33,504 - regularizer_attention = None
+INFO - 2021-01-10 10:31:33,504 - instantiating class <class 'Transparency.model.modules.Attention.Attention'> from params <allennlp.common.params.Params object at 0x1476f3bb6cf8> and extras set()
+INFO - 2021-01-10 10:31:33,504 - attention.type = tanh
+INFO - 2021-01-10 10:31:33,504 - type = tanh
+INFO - 2021-01-10 10:31:33,504 - instantiating class <class 'Transparency.model.modules.Attention.TanhAttention'> from params <allennlp.common.params.Params object at 0x1476f3bb6cf8> and extras set()
+INFO - 2021-01-10 10:31:33,505 - attention.hidden_size = 256
+INFO - 2021-01-10 10:31:33,505 - hidden_size = 256
+Setting Embedding
+Setting Embedding
+config  {'model': {'encoder': {}, 'decoder': {}, 'generator': {'hidden_size': 256, 'sparsity_lambda': 0.2}}, 'training': {'bsize': 32, 'weight_decay': 1e-05, 'pos_weight': [0.9844020797227035], 'basepath': '/home/lgpu0136/test_seeds', 'exp_dirname': '20News_sports/lstm+tanh'}}
+Running on device: cuda:0
+Starting Epoch: 0
+Epoch: 0 Step: 0 Total Loss: 0.690, BCE loss: 0.690, Diversity Loss: 0.800                     (Diversity_weight = 0)
+Epoch: 0 Step: 1 Total Loss: 0.690, BCE loss: 0.690, Diversity Loss: 0.817                     (Diversity_weight = 0)
+
+SKIP
+
+Epoch: 7 Step: 34 Total Loss: 0.003, BCE loss: 0.003, Diversity Loss: 0.890                     (Diversity_weight = 0)
+Epoch: 7 Step: 35 Total Loss: 0.034, BCE loss: 0.034, Diversity Loss: 0.885                     (Diversity_weight = 0)
+{'accuracy': 0.9316546762589928, 'roc_auc': 0.9779503105590062, 'pr_auc': 0.9828767316105309, 'conicity_mean': 0.8602201, 'conicity_std': 0.124474995}
+                 0        1  micro avg  macro avg  weighted avg
+f1-score     0.936    0.927      0.932      0.931         0.931
+precision    0.890    0.984      0.932      0.937         0.937
+recall       0.986    0.877      0.932      0.931         0.932
+support    140.000  138.000    278.000    278.000       278.000
+Model not saved on  roc_auc 0.9779503105590062
+saved config  {'model': {'encoder': {'vocab_size': 6515, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128}, 'decoder': {'attention': {'type': 'tanh'}, 'output_size': 1}, 'generator': {'hidden_size': 256, 'sparsity_lambda': 0.2}}, 'training': {'bsize': 32, 'weight_decay': 1e-05, 'pos_weight': [0.9844020797227035], 'basepath': '/home/lgpu0136/test_seeds', 'exp_dirname': '20News_sports/lstm+tanh'}}
+/home/lgpu0136/test_seeds/20News_sports/lstm+tanh/Sun_Jan_10_10:31:33_2021
+encoder params {'vocab_size': 6515, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None}
+/home/lgpu0136/.conda/envs/fact/lib/python3.6/site-packages/torch/nn/modules/rnn.py:54: UserWarning: dropout option adds dropout after all but last recurrent layer, so non-zero dropout expects num_layers greater than 1, but got dropout=0.3 and num_layers=1
+  "num_layers={}".format(dropout, num_layers))
+/home/lgpu0136/project/Transparency/model/modules/lstm.py:75: UserWarning: nn.init.xavier_uniform is now deprecated in favor of nn.init.xavier_uniform_.
+  hx = (Variable(nn.init.xavier_uniform(torch.empty(self.num_layers, batch_size, self.hidden_size,device=device))),
+/home/lgpu0136/project/Transparency/model/modules/lstm.py:76: UserWarning: nn.init.xavier_uniform is now deprecated in favor of nn.init.xavier_uniform_.
+  Variable(nn.init.xavier_uniform(torch.empty(self.num_layers, batch_size, self.hidden_size,device=device))))
+INFO - 2021-01-10 10:32:20,609 - instantiating class <class 'Transparency.model.modules.Encoder.Encoder'> from params {'vocab_size': 6515, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-10 10:32:20,609 - type = vanillalstm
+INFO - 2021-01-10 10:32:20,610 - instantiating class <class 'Transparency.model.modules.Encoder.EncoderorthoRNN'> from params {'vocab_size': 6515, 'embed_size': 300, 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-10 10:32:20,611 - vocab_size = 6515
+INFO - 2021-01-10 10:32:20,611 - embed_size = 300
+INFO - 2021-01-10 10:32:20,611 - hidden_size = 128
+INFO - 2021-01-10 10:32:20,611 - pre_embed = None
+INFO - 2021-01-10 10:32:20,670 - instantiating class <class 'Transparency.model.modules.Decoder.AttnDecoder'> from params {'attention': {'type': 'tanh'}, 'output_size': 1, 'hidden_size': 256} and extras set()
+INFO - 2021-01-10 10:32:20,670 - hidden_size = 256
+INFO - 2021-01-10 10:32:20,671 - output_size = 1
+INFO - 2021-01-10 10:32:20,671 - use_attention = True
+INFO - 2021-01-10 10:32:20,671 - regularizer_attention = None
+INFO - 2021-01-10 10:32:20,671 - instantiating class <class 'Transparency.model.modules.Attention.Attention'> from params <allennlp.common.params.Params object at 0x1476dd91d9b0> and extras set()
+INFO - 2021-01-10 10:32:20,671 - attention.type = tanh
+INFO - 2021-01-10 10:32:20,671 - type = tanh
+INFO - 2021-01-10 10:32:20,671 - instantiating class <class 'Transparency.model.modules.Attention.TanhAttention'> from params <allennlp.common.params.Params object at 0x1476dd91d9b0> and extras set()
+INFO - 2021-01-10 10:32:20,671 - attention.hidden_size = 256
+INFO - 2021-01-10 10:32:20,671 - hidden_size = 256
+config  {'model': {'encoder': {}, 'decoder': {}, 'generator': {'hidden_size': 256, 'sparsity_lambda': 0.2}}, 'training': {'bsize': 32, 'weight_decay': 1e-05, 'pos_weight': [0.9844020797227035], 'basepath': '/home/lgpu0136/test_seeds', 'exp_dirname': '20News_sports/lstm+tanh'}}
+Running on device: cuda:0
+{'accuracy': 0.907563025210084, 'roc_auc': 0.9765551440587534, 'pr_auc': 0.9766175395512363, 'conicity_mean': '0.7614443', 'conicity_std': '0.18898024'}
+                 0        1  micro avg  macro avg  weighted avg
+f1-score     0.914    0.900      0.908      0.907         0.907
+precision    0.854    0.980      0.908      0.917         0.917
+recall       0.983    0.831      0.908      0.907         0.908
+support    179.000  178.000    357.000    357.000       357.000
+encoder params {'vocab_size': 6515, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None}
+INFO - 2021-01-10 10:32:21,594 - instantiating class <class 'Transparency.model.modules.Encoder.Encoder'> from params {'vocab_size': 6515, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-10 10:32:21,594 - type = vanillalstm
+INFO - 2021-01-10 10:32:21,594 - instantiating class <class 'Transparency.model.modules.Encoder.EncoderorthoRNN'> from params {'vocab_size': 6515, 'embed_size': 300, 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-10 10:32:21,594 - vocab_size = 6515
+INFO - 2021-01-10 10:32:21,594 - embed_size = 300
+INFO - 2021-01-10 10:32:21,594 - hidden_size = 128
+INFO - 2021-01-10 10:32:21,594 - pre_embed = None
+INFO - 2021-01-10 10:32:21,643 - instantiating class <class 'Transparency.model.modules.Decoder.AttnDecoder'> from params {'attention': {'type': 'tanh'}, 'output_size': 1, 'hidden_size': 256} and extras set()
+INFO - 2021-01-10 10:32:21,644 - hidden_size = 256
+INFO - 2021-01-10 10:32:21,644 - output_size = 1
+INFO - 2021-01-10 10:32:21,644 - use_attention = True
+INFO - 2021-01-10 10:32:21,644 - regularizer_attention = None
+INFO - 2021-01-10 10:32:21,644 - instantiating class <class 'Transparency.model.modules.Attention.Attention'> from params <allennlp.common.params.Params object at 0x147718bf9cc0> and extras set()
+INFO - 2021-01-10 10:32:21,644 - attention.type = tanh
+INFO - 2021-01-10 10:32:21,644 - type = tanh
+INFO - 2021-01-10 10:32:21,644 - instantiating class <class 'Transparency.model.modules.Attention.TanhAttention'> from params <allennlp.common.params.Params object at 0x147718bf9cc0> and extras set()
+INFO - 2021-01-10 10:32:21,645 - attention.hidden_size = 256
+INFO - 2021-01-10 10:32:21,645 - hidden_size = 256
+
+  0%|          | 0/357 [00:00<?, ?it/s]
+  1%|          | 3/357 [00:00<00:12, 29.49it/s]
+  2%|1         | 7/357 [00:00<00:11, 29.50it/s]
+
+SKIP
+
+100%|#########9| 356/357 [01:35<00:00,  1.02it/s]
+100%|##########| 357/357 [01:36<00:00,  1.04s/it]config  {'model': {'encoder': {}, 'decoder': {}, 'generator': {'hidden_size': 256, 'sparsity_lambda': 0.2}}, 'training': {'bsize': 32, 'weight_decay': 1e-05, 'pos_weight': [0.9844020797227035], 'basepath': '/home/lgpu0136/test_seeds', 'exp_dirname': '20News_sports/lstm+tanh'}}
+Running on device: cuda:0
+{'accuracy': 0.907563025210084, 'roc_auc': 0.9765551440587534, 'pr_auc': 0.9766175395512363, 'conicity_mean': '0.7614443', 'conicity_std': '0.18898024'}
+                 0        1  micro avg  macro avg  weighted avg
+f1-score     0.914    0.900      0.908      0.907         0.907
+precision    0.854    0.980      0.908      0.917         0.917
+recall       0.983    0.831      0.908      0.907         0.908
+support    179.000  178.000    357.000    357.000       357.000
+Running Gradients Expt ...
+Dumping Gradients Outputs
+Running Analysis by Parts-of-speech Expt ...
+Dumping Parts-of-speech Expt Outputs
+Running Importance Ranking Expt ...
+Dumping Importance Ranking Outputs
+Conicity Analysis {'Conicity_hidden': 0.76146734}
+Running Permutation Expt ...
+Dumping Permutation Outputs
+Running Integrated Gradients Expt ...
+running Int grad for 357 instances
+calculating IG
+Dumping Integrated Gradients Outputs
+encoder params {'vocab_size': 6515, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None}
+
+INFO - 2021-01-10 10:35:20,892 - instantiating class <class 'Transparency.model.modules.Encoder.Encoder'> from params {'vocab_size': 6515, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-10 10:35:20,892 - type = vanillalstm
+INFO - 2021-01-10 10:35:20,893 - instantiating class <class 'Transparency.model.modules.Encoder.EncoderorthoRNN'> from params {'vocab_size': 6515, 'embed_size': 300, 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-10 10:35:20,893 - vocab_size = 6515
+INFO - 2021-01-10 10:35:20,893 - embed_size = 300
+INFO - 2021-01-10 10:35:20,893 - hidden_size = 128
+INFO - 2021-01-10 10:35:20,893 - pre_embed = None
+INFO - 2021-01-10 10:35:20,942 - instantiating class <class 'Transparency.model.modules.Decoder.AttnDecoder'> from params {'attention': {'type': 'tanh'}, 'output_size': 1, 'hidden_size': 256} and extras set()
+INFO - 2021-01-10 10:35:20,942 - hidden_size = 256
+INFO - 2021-01-10 10:35:20,943 - output_size = 1
+INFO - 2021-01-10 10:35:20,943 - use_attention = True
+INFO - 2021-01-10 10:35:20,943 - regularizer_attention = None
+INFO - 2021-01-10 10:35:20,943 - instantiating class <class 'Transparency.model.modules.Attention.Attention'> from params <allennlp.common.params.Params object at 0x1476dd91d898> and extras set()
+INFO - 2021-01-10 10:35:20,943 - attention.type = tanh
+INFO - 2021-01-10 10:35:20,943 - type = tanh
+INFO - 2021-01-10 10:35:20,943 - instantiating class <class 'Transparency.model.modules.Attention.TanhAttention'> from params <allennlp.common.params.Params object at 0x1476dd91d898> and extras set()
+INFO - 2021-01-10 10:35:20,943 - attention.hidden_size = 256
+INFO - 2021-01-10 10:35:20,943 - hidden_size = 256
+config  {'model': {'encoder': {}, 'decoder': {}, 'generator': {'hidden_size': 256, 'sparsity_lambda': 0.2}}, 'training': {'bsize': 32, 'weight_decay': 1e-05, 'pos_weight': [0.9844020797227035], 'basepath': '/home/lgpu0136/test_seeds', 'exp_dirname': '20News_sports/lstm+tanh'}}
+Running on device: cuda:0
+Training the Rationale Generator ...
+Starting Epoch: 0
+Epoch: 0, Step: 0 Loss 6.3069682121276855, Total Reward: 0.06051225587725639, BCE loss: 0.04140378534793854 Sparsity Reward: 0.5095802545547485 (sparsity_lambda = 0.2)
+Epoch: 0, Step: 1 Loss -2.2142152786254883, Total Reward: -0.146695077419281, BCE loss: 0.23768511414527893 Sparsity Reward: 0.454950213432312 (sparsity_lambda = 0.2)
+
+
+SKIP
+
+Epoch: 39, Step: 35 Loss -0.013143789023160934, Total Reward: -0.07564031332731247, BCE loss: 0.08261032402515411 Sparsity Reward: 0.03485006466507912 (sparsity_lambda = 0.2)
+Epoch: 39, Train Reward -0.02624752965570716, Train Accuracy 0.993886462882096, Validation Reward -0.2732986187107573, Validation Accuracy 0.9100719424460432
+Model not saved
+Running Exp to Compute Attention given to Rationales ...
+encoder params {'vocab_size': 6515, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None}
+INFO - 2021-01-10 10:42:25,089 - instantiating class <class 'Transparency.model.modules.Encoder.Encoder'> from params {'vocab_size': 6515, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-10 10:42:25,089 - type = vanillalstm
+INFO - 2021-01-10 10:42:25,090 - instantiating class <class 'Transparency.model.modules.Encoder.EncoderorthoRNN'> from params {'vocab_size': 6515, 'embed_size': 300, 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-10 10:42:25,090 - vocab_size = 6515
+INFO - 2021-01-10 10:42:25,090 - embed_size = 300
+INFO - 2021-01-10 10:42:25,090 - hidden_size = 128
+INFO - 2021-01-10 10:42:25,090 - pre_embed = None
+INFO - 2021-01-10 10:42:25,141 - instantiating class <class 'Transparency.model.modules.Decoder.AttnDecoder'> from params {'attention': {'type': 'tanh'}, 'output_size': 1, 'hidden_size': 256} and extras set()
+INFO - 2021-01-10 10:42:25,142 - hidden_size = 256
+INFO - 2021-01-10 10:42:25,142 - output_size = 1
+INFO - 2021-01-10 10:42:25,142 - use_attention = True
+INFO - 2021-01-10 10:42:25,142 - regularizer_attention = None
+INFO - 2021-01-10 10:42:25,142 - instantiating class <class 'Transparency.model.modules.Attention.Attention'> from params <allennlp.common.params.Params object at 0x1476dd91dac8> and extras set()
+INFO - 2021-01-10 10:42:25,142 - attention.type = tanh
+INFO - 2021-01-10 10:42:25,142 - type = tanh
+INFO - 2021-01-10 10:42:25,142 - instantiating class <class 'Transparency.model.modules.Attention.TanhAttention'> from params <allennlp.common.params.Params object at 0x1476dd91dac8> and extras set()
+INFO - 2021-01-10 10:42:25,142 - attention.hidden_size = 256
+INFO - 2021-01-10 10:42:25,143 - hidden_size = 256
+config  {'model': {'encoder': {}, 'decoder': {}, 'generator': {'hidden_size': 256, 'sparsity_lambda': 0.2}}, 'training': {'bsize': 32, 'weight_decay': 1e-05, 'pos_weight': [0.9844020797227035], 'basepath': '/home/lgpu0136/test_seeds', 'exp_dirname': '20News_sports/lstm+tanh'}}
+Running on device: cuda:0
+Summary on Test Dataset {'Fraction Length Average': 0.5875244767559009, 'Fraction Length STD': 0.07987760613685778, 'Attn Sum Average': 0.617344079794837, 'Attn Sum STD': 0.17455688602424693, 'loss': 0.2920442492781332}
+encoder params {'vocab_size': 6515, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None}
+INFO - 2021-01-10 10:42:26,142 - instantiating class <class 'Transparency.model.modules.Encoder.Encoder'> from params {'vocab_size': 6515, 'embed_size': 300, 'type': 'vanillalstm', 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-10 10:42:26,142 - type = vanillalstm
+INFO - 2021-01-10 10:42:26,143 - instantiating class <class 'Transparency.model.modules.Encoder.EncoderorthoRNN'> from params {'vocab_size': 6515, 'embed_size': 300, 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-10 10:42:26,143 - vocab_size = 6515
+INFO - 2021-01-10 10:42:26,143 - embed_size = 300
+INFO - 2021-01-10 10:42:26,143 - hidden_size = 128
+INFO - 2021-01-10 10:42:26,143 - pre_embed = None
+INFO - 2021-01-10 10:42:26,196 - instantiating class <class 'Transparency.model.modules.Decoder.AttnDecoder'> from params {'attention': {'type': 'tanh'}, 'output_size': 1, 'hidden_size': 256} and extras set()
+INFO - 2021-01-10 10:42:26,197 - hidden_size = 256
+INFO - 2021-01-10 10:42:26,197 - output_size = 1
+INFO - 2021-01-10 10:42:26,197 - use_attention = True
+INFO - 2021-01-10 10:42:26,197 - regularizer_attention = None
+INFO - 2021-01-10 10:42:26,197 - instantiating class <class 'Transparency.model.modules.Attention.Attention'> from params <allennlp.common.params.Params object at 0x147762a8a940> and extras set()
+INFO - 2021-01-10 10:42:26,197 - attention.type = tanh
+INFO - 2021-01-10 10:42:26,197 - type = tanh
+INFO - 2021-01-10 10:42:26,197 - instantiating class <class 'Transparency.model.modules.Attention.TanhAttention'> from params <allennlp.common.params.Params object at 0x147762a8a940> and extras set()
+INFO - 2021-01-10 10:42:26,197 - attention.hidden_size = 256
+INFO - 2021-01-10 10:42:26,197 - hidden_size = 256
+INFO - 2021-01-10 10:42:27,086 - Generating graph for /home/lgpu0136/test_seeds/20News_sports/lstm+tanh/Sun_Jan_10_10:31:33_2021
+INFO - 2021-01-10 10:42:27,089 - Average Length of test set 11
+INFO - 2021-01-10 10:42:27,778 - Generating Gradients Graph ...
+INFO - 2021-01-10 10:43:05,299 - Generating Permutations Graph ...
+INFO - 2021-01-10 10:43:11,194 - Generating importance ranking Graph ...
+config  {'model': {'encoder': {}, 'decoder': {}, 'generator': {'hidden_size': 256, 'sparsity_lambda': 0.2}}, 'training': {'bsize': 32, 'weight_decay': 1e-05, 'pos_weight': [0.9844020797227035], 'basepath': '/home/lgpu0136/test_seeds', 'exp_dirname': '20News_sports/lstm+tanh'}}
+Running on device: cuda:0
+{'accuracy': 0.907563025210084, 'roc_auc': 0.9765551440587534, 'pr_auc': 0.9766175395512363, 'conicity_mean': '0.7614443', 'conicity_std': '0.18898024'}
+                 0        1  micro avg  macro avg  weighted avg
+f1-score     0.914    0.900      0.908      0.907         0.907
+precision    0.854    0.980      0.908      0.917         0.917
+recall       0.983    0.831      0.908      0.907         0.908
+support    179.000  178.000    357.000    357.000       357.000
+pos tags ['NOUN', 'VERB', 'ADJ', 'ADP', 'DET', 'ADV', 'PRON', '.', 'NUM', 'CONJ', 'PRT', 'X']
+words_positive ['hockey', '<UNK>', 'nhl', 'the', 'playoff', 'playoffs', 'leafs', 'and', '.', 'coach']
+words_negative ['<UNK>', 'the', '0.0', 'and', '.', 'a', 'in', 'to', 'of', 'is']
+rationale_length None
+============================================================================================================================================================================================================================================================================================================
+
+
+
+NEWJOB
+
+seed  0 , dataset  tweet , model  vanilla_lstm , diversity  0
+
+FAILED: 
+
+Traceback (most recent call last):
+  File "train_and_run_experiments_bc.py", line 29, in <module>
+    dataset = datasets[args.dataset](args)
+  File "/home/lgpu0136/project/Transparency/Trainers/DatasetBC.py", line 128, in ADR_dataset
+    dataset = Dataset(name='tweet', path='preprocess/Tweets/vec_adr.p', min_length=5, max_length=100, args=args)
+  File "/home/lgpu0136/project/Transparency/Trainers/DatasetBC.py", line 55, in __init__
+    self.vec = pickle.load(open(path, 'rb'))
+FileNotFoundError: [Errno 2] No such file or directory: './preprocess/Tweets/vec_adr.p'
+
+============================================================================================================================================================================================================================================================================================================
+
+
+
+
+NEWJOB
+seed  0 , dataset  sst , model  ortho_lstm , diversity  0
+encoder params {'vocab_size': 13826, 'embed_size': 300, 'type': 'ortholstm', 'hidden_size': 128, 'pre_embed': array([[ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       [ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       [ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       ...,
+       [ 0.024119  , -0.083228  ,  0.59245002, ...,  0.013568  ,
+        -0.26155999, -0.54530001],
+       [ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       [ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ]])}
+/home/lgpu0136/.conda/envs/fact/lib/python3.6/site-packages/allennlp/common/params.py:531: FutureWarning: elementwise comparison failed; returning scalar instead, but in the future will perform elementwise comparison
+  if dictionary[key] == "None":
+INFO - 2021-01-10 10:43:58,466 - instantiating class <class 'Transparency.model.modules.Encoder.Encoder'> from params {'vocab_size': 13826, 'embed_size': 300, 'type': 'ortholstm', 'hidden_size': 128, 'pre_embed': array([[ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       [ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       [ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       ...,
+       [ 0.024119  , -0.083228  ,  0.59245002, ...,  0.013568  ,
+        -0.26155999, -0.54530001],
+       [ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       [ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ]])} and extras set()
+INFO - 2021-01-10 10:43:58,467 - type = ortholstm
+INFO - 2021-01-10 10:43:58,467 - instantiating class <class 'Transparency.model.modules.Encoder.EncoderorthoRNN'> from params {'vocab_size': 13826, 'embed_size': 300, 'hidden_size': 128, 'pre_embed': array([[ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       [ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       [ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       ...,
+       [ 0.024119  , -0.083228  ,  0.59245002, ...,  0.013568  ,
+        -0.26155999, -0.54530001],
+       [ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       [ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ]])} and extras set()
+INFO - 2021-01-10 10:43:58,503 - Better speed can be achieved with apex installed from https://www.github.com/nvidia/apex .
+INFO - 2021-01-10 10:43:59,000 - vocab_size = 13826
+INFO - 2021-01-10 10:43:59,000 - embed_size = 300
+INFO - 2021-01-10 10:43:59,000 - hidden_size = 128
+INFO - 2021-01-10 10:43:59,001 - pre_embed = [[ 0.          0.          0.         ...  0.          0.
+   0.        ]
+ [ 0.          0.          0.         ...  0.          0.
+   0.        ]
+ [ 0.          0.          0.         ...  0.          0.
+   0.        ]
+ ...
+ [ 0.024119   -0.083228    0.59245002 ...  0.013568   -0.26155999
+  -0.54530001]
+ [ 0.          0.          0.         ...  0.          0.
+   0.        ]
+ [ 0.          0.          0.         ...  0.          0.
+   0.        ]]
+INFO - 2021-01-10 10:44:02,560 - instantiating class <class 'Transparency.model.modules.Decoder.AttnDecoder'> from params {'attention': {'type': 'tanh'}, 'output_size': 1, 'hidden_size': 256} and extras set()
+INFO - 2021-01-10 10:44:02,561 - hidden_size = 256
+INFO - 2021-01-10 10:44:02,562 - output_size = 1
+INFO - 2021-01-10 10:44:02,562 - use_attention = True
+INFO - 2021-01-10 10:44:02,562 - regularizer_attention = None
+INFO - 2021-01-10 10:44:02,563 - instantiating class <class 'Transparency.model.modules.Attention.Attention'> from params <allennlp.common.params.Params object at 0x14f0ce99d6a0> and extras set()
+INFO - 2021-01-10 10:44:02,563 - attention.type = tanh
+INFO - 2021-01-10 10:44:02,563 - type = tanh
+INFO - 2021-01-10 10:44:02,563 - instantiating class <class 'Transparency.model.modules.Attention.TanhAttention'> from params <allennlp.common.params.Params object at 0x14f0ce99d6a0> and extras set()
+INFO - 2021-01-10 10:44:02,563 - attention.hidden_size = 256
+INFO - 2021-01-10 10:44:02,564 - hidden_size = 256
+Setting Embedding
+Setting Embedding
+config  {'model': {'encoder': {}, 'decoder': {}, 'generator': {'hidden_size': 64, 'sparsity_lambda': 0.5}}, 'training': {'bsize': 32, 'weight_decay': 1e-05, 'pos_weight': [0.9135802469135803], 'basepath': '/home/lgpu0136/test_seeds', 'exp_dirname': 'sst/ortho_lstm+tanh'}}
+Running on device: cuda:0
+Starting Epoch: 0
+Epoch: 0 Step: 0 Total Loss: 0.665, BCE loss: 0.665, Diversity Loss: 0.238                     (Diversity_weight = 0)
+Epoch: 0 Step: 1 Total Loss: 0.655, BCE loss: 0.655, Diversity Loss: 0.299                     (Diversity_weight = 0)
+
+SKIP
+
+Epoch: 7 Step: 197 Total Loss: 0.007, BCE loss: 0.007, Diversity Loss: 0.278                     (Diversity_weight = 0)
+Epoch: 7 Step: 198 Total Loss: 0.121, BCE loss: 0.121, Diversity Loss: 0.289                     (Diversity_weight = 0)
+{'accuracy': 0.7941534713763703, 'roc_auc': 0.852270566988261, 'pr_auc': 0.8452231023887133, 'conicity_mean': 0.28307495, 'conicity_std': 0.055098366}
+                 0        1  micro avg  macro avg  weighted avg
+f1-score     0.782    0.805      0.794      0.794         0.794
+precision    0.800    0.789      0.794      0.795         0.794
+recall       0.766    0.821      0.794      0.793         0.794
+support    397.000  424.000    821.000    821.000       821.000
+Model not saved on  roc_auc 0.852270566988261
+saved config  {'model': {'encoder': {'vocab_size': 13826, 'embed_size': 300, 'type': 'ortholstm', 'hidden_size': 128}, 'decoder': {'attention': {'type': 'tanh'}, 'output_size': 1}, 'generator': {'hidden_size': 64, 'sparsity_lambda': 0.5}}, 'training': {'bsize': 32, 'weight_decay': 1e-05, 'pos_weight': [0.9135802469135803], 'basepath': '/home/lgpu0136/test_seeds', 'exp_dirname': 'sst/ortho_lstm+tanh'}}
+/home/lgpu0136/test_seeds/sst/ortho_lstm+tanh/Sun_Jan_10_10:44:02_2021
+encoder params {'vocab_size': 13826, 'embed_size': 300, 'type': 'ortholstm', 'hidden_size': 128, 'pre_embed': None}
+/home/lgpu0136/.conda/envs/fact/lib/python3.6/site-packages/torch/nn/modules/rnn.py:54: UserWarning: dropout option adds dropout after all but last recurrent layer, so non-zero dropout expects num_layers greater than 1, but got dropout=0.3 and num_layers=1
+  "num_layers={}".format(dropout, num_layers))
+/home/lgpu0136/project/Transparency/model/modules/ortholstm.py:85: UserWarning: nn.init.xavier_uniform is now deprecated in favor of nn.init.xavier_uniform_.
+  hx = (Variable(nn.init.xavier_uniform(torch.empty(self.num_layers, batch_size, self.hidden_size,device=device))),
+/home/lgpu0136/project/Transparency/model/modules/ortholstm.py:86: UserWarning: nn.init.xavier_uniform is now deprecated in favor of nn.init.xavier_uniform_.
+  Variable(nn.init.xavier_uniform(torch.empty(self.num_layers, batch_size, self.hidden_size,device=device))))
+INFO - 2021-01-10 10:45:40,242 - instantiating class <class 'Transparency.model.modules.Encoder.Encoder'> from params {'vocab_size': 13826, 'embed_size': 300, 'type': 'ortholstm', 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-10 10:45:40,243 - type = ortholstm
+INFO - 2021-01-10 10:45:40,243 - instantiating class <class 'Transparency.model.modules.Encoder.EncoderorthoRNN'> from params {'vocab_size': 13826, 'embed_size': 300, 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-10 10:45:40,243 - vocab_size = 13826
+INFO - 2021-01-10 10:45:40,243 - embed_size = 300
+INFO - 2021-01-10 10:45:40,243 - hidden_size = 128
+INFO - 2021-01-10 10:45:40,244 - pre_embed = None
+INFO - 2021-01-10 10:45:40,333 - instantiating class <class 'Transparency.model.modules.Decoder.AttnDecoder'> from params {'attention': {'type': 'tanh'}, 'output_size': 1, 'hidden_size': 256} and extras set()
+INFO - 2021-01-10 10:45:40,333 - hidden_size = 256
+INFO - 2021-01-10 10:45:40,334 - output_size = 1
+INFO - 2021-01-10 10:45:40,334 - use_attention = True
+INFO - 2021-01-10 10:45:40,334 - regularizer_attention = None
+INFO - 2021-01-10 10:45:40,334 - instantiating class <class 'Transparency.model.modules.Attention.Attention'> from params <allennlp.common.params.Params object at 0x14f0ce74c240> and extras set()
+INFO - 2021-01-10 10:45:40,334 - attention.type = tanh
+INFO - 2021-01-10 10:45:40,334 - type = tanh
+INFO - 2021-01-10 10:45:40,334 - instantiating class <class 'Transparency.model.modules.Attention.TanhAttention'> from params <allennlp.common.params.Params object at 0x14f0ce74c240> and extras set()
+INFO - 2021-01-10 10:45:40,334 - attention.hidden_size = 256
+INFO - 2021-01-10 10:45:40,334 - hidden_size = 256
+config  {'model': {'encoder': {}, 'decoder': {}, 'generator': {'hidden_size': 64, 'sparsity_lambda': 0.5}}, 'training': {'bsize': 32, 'weight_decay': 1e-05, 'pos_weight': [0.9135802469135803], 'basepath': '/home/lgpu0136/test_seeds', 'exp_dirname': 'sst/ortho_lstm+tanh'}}
+Running on device: cuda:0
+{'accuracy': 0.776231884057971, 'roc_auc': 0.8644304522345565, 'pr_auc': 0.8699344389757497, 'conicity_mean': '0.28307343', 'conicity_std': '0.057833955'}
+                 0        1  micro avg  macro avg  weighted avg
+f1-score     0.794    0.755      0.776      0.775         0.775
+precision    0.736    0.832      0.776      0.784         0.784
+recall       0.861    0.691      0.776      0.776         0.776
+support    863.000  862.000   1725.000   1725.000      1725.000
+encoder params {'vocab_size': 13826, 'embed_size': 300, 'type': 'ortholstm', 'hidden_size': 128, 'pre_embed': None}
+INFO - 2021-01-10 10:45:41,380 - instantiating class <class 'Transparency.model.modules.Encoder.Encoder'> from params {'vocab_size': 13826, 'embed_size': 300, 'type': 'ortholstm', 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-10 10:45:41,380 - type = ortholstm
+INFO - 2021-01-10 10:45:41,380 - instantiating class <class 'Transparency.model.modules.Encoder.EncoderorthoRNN'> from params {'vocab_size': 13826, 'embed_size': 300, 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-10 10:45:41,381 - vocab_size = 13826
+INFO - 2021-01-10 10:45:41,381 - embed_size = 300
+INFO - 2021-01-10 10:45:41,381 - hidden_size = 128
+INFO - 2021-01-10 10:45:41,381 - pre_embed = None
+INFO - 2021-01-10 10:45:41,467 - instantiating class <class 'Transparency.model.modules.Decoder.AttnDecoder'> from params {'attention': {'type': 'tanh'}, 'output_size': 1, 'hidden_size': 256} and extras set()
+INFO - 2021-01-10 10:45:41,467 - hidden_size = 256
+INFO - 2021-01-10 10:45:41,467 - output_size = 1
+INFO - 2021-01-10 10:45:41,467 - use_attention = True
+INFO - 2021-01-10 10:45:41,468 - regularizer_attention = None
+INFO - 2021-01-10 10:45:41,468 - instantiating class <class 'Transparency.model.modules.Attention.Attention'> from params <allennlp.common.params.Params object at 0x14f0ce7272b0> and extras set()
+INFO - 2021-01-10 10:45:41,468 - attention.type = tanh
+INFO - 2021-01-10 10:45:41,468 - type = tanh
+INFO - 2021-01-10 10:45:41,468 - instantiating class <class 'Transparency.model.modules.Attention.TanhAttention'> from params <allennlp.common.params.Params object at 0x14f0ce7272b0> and extras set()
+INFO - 2021-01-10 10:45:41,468 - attention.hidden_size = 256
+INFO - 2021-01-10 10:45:41,468 - hidden_size = 256
+
+  0%|          | 0/1725 [00:00<?, ?it/s]
+  0%|          | 3/1725 [00:00<01:03, 27.10it/s]
+
+
+SKIP
+
+100%|#########9| 1724/1725 [02:24<00:00,  5.50it/s]
+100%|##########| 1725/1725 [02:24<00:00,  5.44it/s]config  {'model': {'encoder': {}, 'decoder': {}, 'generator': {'hidden_size': 64, 'sparsity_lambda': 0.5}}, 'training': {'bsize': 32, 'weight_decay': 1e-05, 'pos_weight': [0.9135802469135803], 'basepath': '/home/lgpu0136/test_seeds', 'exp_dirname': 'sst/ortho_lstm+tanh'}}
+Running on device: cuda:0
+{'accuracy': 0.776231884057971, 'roc_auc': 0.8644304522345565, 'pr_auc': 0.8699344389757497, 'conicity_mean': '0.28307343', 'conicity_std': '0.057833955'}
+                 0        1  micro avg  macro avg  weighted avg
+f1-score     0.794    0.755      0.776      0.775         0.775
+precision    0.736    0.832      0.776      0.784         0.784
+recall       0.861    0.691      0.776      0.776         0.776
+support    863.000  862.000   1725.000   1725.000      1725.000
+Running Gradients Expt ...
+Dumping Gradients Outputs
+Running Analysis by Parts-of-speech Expt ...
+Dumping Parts-of-speech Expt Outputs
+Running Importance Ranking Expt ...
+Dumping Importance Ranking Outputs
+Conicity Analysis {'Conicity_hidden': 0.28306124}
+Running Permutation Expt ...
+Dumping Permutation Outputs
+Running Integrated Gradients Expt ...
+running Int grad for 1725 instances
+calculating IG
+Dumping Integrated Gradients Outputs
+encoder params {'vocab_size': 13826, 'embed_size': 300, 'type': 'ortholstm', 'hidden_size': 128, 'pre_embed': None}
+
+INFO - 2021-01-10 10:49:42,755 - instantiating class <class 'Transparency.model.modules.Encoder.Encoder'> from params {'vocab_size': 13826, 'embed_size': 300, 'type': 'ortholstm', 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-10 10:49:42,755 - type = ortholstm
+INFO - 2021-01-10 10:49:42,755 - instantiating class <class 'Transparency.model.modules.Encoder.EncoderorthoRNN'> from params {'vocab_size': 13826, 'embed_size': 300, 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-10 10:49:42,756 - vocab_size = 13826
+INFO - 2021-01-10 10:49:42,756 - embed_size = 300
+INFO - 2021-01-10 10:49:42,756 - hidden_size = 128
+INFO - 2021-01-10 10:49:42,756 - pre_embed = None
+INFO - 2021-01-10 10:49:42,850 - instantiating class <class 'Transparency.model.modules.Decoder.AttnDecoder'> from params {'attention': {'type': 'tanh'}, 'output_size': 1, 'hidden_size': 256} and extras set()
+INFO - 2021-01-10 10:49:42,850 - hidden_size = 256
+INFO - 2021-01-10 10:49:42,850 - output_size = 1
+INFO - 2021-01-10 10:49:42,850 - use_attention = True
+INFO - 2021-01-10 10:49:42,850 - regularizer_attention = None
+INFO - 2021-01-10 10:49:42,850 - instantiating class <class 'Transparency.model.modules.Attention.Attention'> from params <allennlp.common.params.Params object at 0x14f0ce7275c0> and extras set()
+INFO - 2021-01-10 10:49:42,850 - attention.type = tanh
+INFO - 2021-01-10 10:49:42,850 - type = tanh
+INFO - 2021-01-10 10:49:42,851 - instantiating class <class 'Transparency.model.modules.Attention.TanhAttention'> from params <allennlp.common.params.Params object at 0x14f0ce7275c0> and extras set()
+INFO - 2021-01-10 10:49:42,851 - attention.hidden_size = 256
+INFO - 2021-01-10 10:49:42,851 - hidden_size = 256
+config  {'model': {'encoder': {}, 'decoder': {}, 'generator': {'hidden_size': 64, 'sparsity_lambda': 0.5}}, 'training': {'bsize': 32, 'weight_decay': 1e-05, 'pos_weight': [0.9135802469135803], 'basepath': '/home/lgpu0136/test_seeds', 'exp_dirname': 'sst/ortho_lstm+tanh'}}
+Running on device: cuda:0
+Training the Rationale Generator ...
+Starting Epoch: 0
+Epoch: 0, Step: 0 Loss -3.5422348976135254, Total Reward: -0.28911906480789185, BCE loss: 0.5400576591491699 Sparsity Reward: 0.5018771886825562 (sparsity_lambda = 0.5)
+Epoch: 0, Step: 1 Loss -4.076787948608398, Total Reward: -0.31297796964645386, BCE loss: 0.5282062292098999 Sparsity Reward: 0.43045657873153687 (sparsity_lambda = 0.5)
+
+SKIP
+
+Epoch: 39, Step: 198 Loss 0.11188487708568573, Total Reward: 0.06924425810575485, BCE loss: 0.36288928985595703 Sparsity Reward: 0.864267110824585 (sparsity_lambda = 0.5)
+Epoch: 39, Train Reward 0.05710894627002728, Train Accuracy 0.8297403619197482, Validation Reward -0.07684868656725018, Validation Accuracy 0.7259439707673568
+Model not saved
+Running Exp to Compute Attention given to Rationales ...
+encoder params {'vocab_size': 13826, 'embed_size': 300, 'type': 'ortholstm', 'hidden_size': 128, 'pre_embed': None}
+INFO - 2021-01-10 10:58:33,787 - instantiating class <class 'Transparency.model.modules.Encoder.Encoder'> from params {'vocab_size': 13826, 'embed_size': 300, 'type': 'ortholstm', 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-10 10:58:33,787 - type = ortholstm
+INFO - 2021-01-10 10:58:33,788 - instantiating class <class 'Transparency.model.modules.Encoder.EncoderorthoRNN'> from params {'vocab_size': 13826, 'embed_size': 300, 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-10 10:58:33,788 - vocab_size = 13826
+INFO - 2021-01-10 10:58:33,788 - embed_size = 300
+INFO - 2021-01-10 10:58:33,788 - hidden_size = 128
+INFO - 2021-01-10 10:58:33,788 - pre_embed = None
+INFO - 2021-01-10 10:58:33,886 - instantiating class <class 'Transparency.model.modules.Decoder.AttnDecoder'> from params {'attention': {'type': 'tanh'}, 'output_size': 1, 'hidden_size': 256} and extras set()
+INFO - 2021-01-10 10:58:33,886 - hidden_size = 256
+INFO - 2021-01-10 10:58:33,886 - output_size = 1
+INFO - 2021-01-10 10:58:33,887 - use_attention = True
+INFO - 2021-01-10 10:58:33,887 - regularizer_attention = None
+INFO - 2021-01-10 10:58:33,887 - instantiating class <class 'Transparency.model.modules.Attention.Attention'> from params <allennlp.common.params.Params object at 0x14f0ce6f7860> and extras set()
+INFO - 2021-01-10 10:58:33,887 - attention.type = tanh
+INFO - 2021-01-10 10:58:33,887 - type = tanh
+INFO - 2021-01-10 10:58:33,887 - instantiating class <class 'Transparency.model.modules.Attention.TanhAttention'> from params <allennlp.common.params.Params object at 0x14f0ce6f7860> and extras set()
+INFO - 2021-01-10 10:58:33,887 - attention.hidden_size = 256
+INFO - 2021-01-10 10:58:33,887 - hidden_size = 256
+config  {'model': {'encoder': {}, 'decoder': {}, 'generator': {'hidden_size': 64, 'sparsity_lambda': 0.5}}, 'training': {'bsize': 32, 'weight_decay': 1e-05, 'pos_weight': [0.9135802469135803], 'basepath': '/home/lgpu0136/test_seeds', 'exp_dirname': 'sst/ortho_lstm+tanh'}}
+Running on device: cuda:0
+Summary on Test Dataset {'Fraction Length Average': 0.1023209047479474, 'Fraction Length STD': 0.08577073725960062, 'Attn Sum Average': 0.3536608059247416, 'Attn Sum STD': 0.30040504242286026, 'loss': 0.5138970754738303}
+encoder params {'vocab_size': 13826, 'embed_size': 300, 'type': 'ortholstm', 'hidden_size': 128, 'pre_embed': None}
+INFO - 2021-01-10 10:58:35,126 - instantiating class <class 'Transparency.model.modules.Encoder.Encoder'> from params {'vocab_size': 13826, 'embed_size': 300, 'type': 'ortholstm', 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-10 10:58:35,126 - type = ortholstm
+INFO - 2021-01-10 10:58:35,127 - instantiating class <class 'Transparency.model.modules.Encoder.EncoderorthoRNN'> from params {'vocab_size': 13826, 'embed_size': 300, 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-10 10:58:35,127 - vocab_size = 13826
+INFO - 2021-01-10 10:58:35,127 - embed_size = 300
+INFO - 2021-01-10 10:58:35,127 - hidden_size = 128
+INFO - 2021-01-10 10:58:35,127 - pre_embed = None
+INFO - 2021-01-10 10:58:35,213 - instantiating class <class 'Transparency.model.modules.Decoder.AttnDecoder'> from params {'attention': {'type': 'tanh'}, 'output_size': 1, 'hidden_size': 256} and extras set()
+INFO - 2021-01-10 10:58:35,214 - hidden_size = 256
+INFO - 2021-01-10 10:58:35,214 - output_size = 1
+INFO - 2021-01-10 10:58:35,214 - use_attention = True
+INFO - 2021-01-10 10:58:35,214 - regularizer_attention = None
+INFO - 2021-01-10 10:58:35,214 - instantiating class <class 'Transparency.model.modules.Attention.Attention'> from params <allennlp.common.params.Params object at 0x14f10b648550> and extras set()
+INFO - 2021-01-10 10:58:35,214 - attention.type = tanh
+INFO - 2021-01-10 10:58:35,214 - type = tanh
+INFO - 2021-01-10 10:58:35,214 - instantiating class <class 'Transparency.model.modules.Attention.TanhAttention'> from params <allennlp.common.params.Params object at 0x14f10b648550> and extras set()
+INFO - 2021-01-10 10:58:35,214 - attention.hidden_size = 256
+INFO - 2021-01-10 10:58:35,214 - hidden_size = 256
+INFO - 2021-01-10 10:58:36,219 - Generating graph for /home/lgpu0136/test_seeds/sst/ortho_lstm+tanh/Sun_Jan_10_10:44:02_2021
+INFO - 2021-01-10 10:58:36,222 - Average Length of test set 10
+INFO - 2021-01-10 10:58:36,974 - Generating Gradients Graph ...
+INFO - 2021-01-10 10:59:15,405 - Generating Permutations Graph ...
+INFO - 2021-01-10 10:59:21,612 - Generating importance ranking Graph ...
+config  {'model': {'encoder': {}, 'decoder': {}, 'generator': {'hidden_size': 64, 'sparsity_lambda': 0.5}}, 'training': {'bsize': 32, 'weight_decay': 1e-05, 'pos_weight': [0.9135802469135803], 'basepath': '/home/lgpu0136/test_seeds', 'exp_dirname': 'sst/ortho_lstm+tanh'}}
+Running on device: cuda:0
+{'accuracy': 0.776231884057971, 'roc_auc': 0.8644304522345565, 'pr_auc': 0.8699344389757497, 'conicity_mean': '0.28307343', 'conicity_std': '0.057833955'}
+                 0        1  micro avg  macro avg  weighted avg
+f1-score     0.794    0.755      0.776      0.775         0.775
+precision    0.736    0.832      0.776      0.784         0.784
+recall       0.861    0.691      0.776      0.776         0.776
+support    863.000  862.000   1725.000   1725.000      1725.000
+pos tags ['NOUN', 'ADJ', 'VERB', 'ADV', 'ADP', 'PRON', 'DET', 'CONJ', 'PRT', 'NUM', 'X', '.']
+words_positive ['<UNK>', 'film', 't', 'best', 'you', 'fun', 'heart', 'performances', 'good', 'not']
+words_negative ['<UNK>', 't', 'too', 'bad', 'not', 'or', 'no', 'mess', 'you', 'dull']
+rationale_length None
+============================================================================================================================================================================================================================================================================================================
+
+
+
+NEWJOB
+seed  0 , dataset  imdb , model  ortho_lstm , diversity  0
+encoder params {'vocab_size': 12487, 'embed_size': 300, 'type': 'ortholstm', 'hidden_size': 128, 'pre_embed': array([[ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       [ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       [ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       ...,
+       [ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       [ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       [ 0.39203   ,  0.16474999, -0.052469  , ..., -0.21469   ,
+        -0.25995001, -0.15434   ]])}
+/home/lgpu0136/.conda/envs/fact/lib/python3.6/site-packages/allennlp/common/params.py:531: FutureWarning: elementwise comparison failed; returning scalar instead, but in the future will perform elementwise comparison
+  if dictionary[key] == "None":
+INFO - 2021-01-10 11:00:02,096 - instantiating class <class 'Transparency.model.modules.Encoder.Encoder'> from params {'vocab_size': 12487, 'embed_size': 300, 'type': 'ortholstm', 'hidden_size': 128, 'pre_embed': array([[ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       [ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       [ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       ...,
+       [ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       [ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       [ 0.39203   ,  0.16474999, -0.052469  , ..., -0.21469   ,
+        -0.25995001, -0.15434   ]])} and extras set()
+INFO - 2021-01-10 11:00:02,096 - type = ortholstm
+INFO - 2021-01-10 11:00:02,097 - instantiating class <class 'Transparency.model.modules.Encoder.EncoderorthoRNN'> from params {'vocab_size': 12487, 'embed_size': 300, 'hidden_size': 128, 'pre_embed': array([[ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       [ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       [ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       ...,
+       [ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       [ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       [ 0.39203   ,  0.16474999, -0.052469  , ..., -0.21469   ,
+        -0.25995001, -0.15434   ]])} and extras set()
+INFO - 2021-01-10 11:00:02,135 - Better speed can be achieved with apex installed from https://www.github.com/nvidia/apex .
+INFO - 2021-01-10 11:00:02,629 - vocab_size = 12487
+INFO - 2021-01-10 11:00:02,630 - embed_size = 300
+INFO - 2021-01-10 11:00:02,630 - hidden_size = 128
+INFO - 2021-01-10 11:00:02,631 - pre_embed = [[ 0.          0.          0.         ...  0.          0.
+   0.        ]
+ [ 0.          0.          0.         ...  0.          0.
+   0.        ]
+ [ 0.          0.          0.         ...  0.          0.
+   0.        ]
+ ...
+ [ 0.          0.          0.         ...  0.          0.
+   0.        ]
+ [ 0.          0.          0.         ...  0.          0.
+   0.        ]
+ [ 0.39203     0.16474999 -0.052469   ... -0.21469    -0.25995001
+  -0.15434   ]]
+INFO - 2021-01-10 11:00:06,231 - instantiating class <class 'Transparency.model.modules.Decoder.AttnDecoder'> from params {'attention': {'type': 'tanh'}, 'output_size': 1, 'hidden_size': 256} and extras set()
+INFO - 2021-01-10 11:00:06,231 - hidden_size = 256
+INFO - 2021-01-10 11:00:06,231 - output_size = 1
+INFO - 2021-01-10 11:00:06,231 - use_attention = True
+INFO - 2021-01-10 11:00:06,231 - regularizer_attention = None
+INFO - 2021-01-10 11:00:06,231 - instantiating class <class 'Transparency.model.modules.Attention.Attention'> from params <allennlp.common.params.Params object at 0x1535ea308128> and extras set()
+INFO - 2021-01-10 11:00:06,232 - attention.type = tanh
+INFO - 2021-01-10 11:00:06,232 - type = tanh
+INFO - 2021-01-10 11:00:06,232 - instantiating class <class 'Transparency.model.modules.Attention.TanhAttention'> from params <allennlp.common.params.Params object at 0x1535ea308128> and extras set()
+INFO - 2021-01-10 11:00:06,232 - attention.hidden_size = 256
+INFO - 2021-01-10 11:00:06,232 - hidden_size = 256
+Setting Embedding
+Setting Embedding
+config  {'model': {'encoder': {}, 'decoder': {}, 'generator': {'hidden_size': 64, 'sparsity_lambda': 0.5}}, 'training': {'bsize': 32, 'weight_decay': 1e-05, 'pos_weight': [1.0157037384272822], 'basepath': '/home/lgpu0136/test_seeds', 'exp_dirname': 'imdb/ortho_lstm+tanh'}}
+Running on device: cuda:0
+Starting Epoch: 0
+Epoch: 0 Step: 0 Total Loss: 0.702, BCE loss: 0.702, Diversity Loss: 0.103                     (Diversity_weight = 0)
+Epoch: 0 Step: 1 Total Loss: 0.699, BCE loss: 0.699, Diversity Loss: 0.089                     (Diversity_weight = 0)
+
+SKIP
+
+Epoch: 7 Step: 536 Total Loss: 0.004, BCE loss: 0.004, Diversity Loss: 0.141                     (Diversity_weight = 0)
+Epoch: 7 Step: 537 Total Loss: 0.006, BCE loss: 0.006, Diversity Loss: 0.152                     (Diversity_weight = 0)
+{'accuracy': 0.8531533628112636, 'roc_auc': 0.9336168917147211, 'pr_auc': 0.9308944571538509, 'conicity_mean': 0.15543762, 'conicity_std': 0.03587415}
+                  0         1  micro avg  macro avg  weighted avg
+f1-score      0.848     0.858      0.853      0.853         0.853
+precision     0.895     0.818      0.853      0.856         0.857
+recall        0.807     0.901      0.853      0.854         0.853
+support    2187.000  2110.000   4297.000   4297.000      4297.000
+Model not saved on  roc_auc 0.9336168917147211
+saved config  {'model': {'encoder': {'vocab_size': 12487, 'embed_size': 300, 'type': 'ortholstm', 'hidden_size': 128}, 'decoder': {'attention': {'type': 'tanh'}, 'output_size': 1}, 'generator': {'hidden_size': 64, 'sparsity_lambda': 0.5}}, 'training': {'bsize': 32, 'weight_decay': 1e-05, 'pos_weight': [1.0157037384272822], 'basepath': '/home/lgpu0136/test_seeds', 'exp_dirname': 'imdb/ortho_lstm+tanh'}}
+/home/lgpu0136/test_seeds/imdb/ortho_lstm+tanh/Sun_Jan_10_11:00:06_2021
+encoder params {'vocab_size': 12487, 'embed_size': 300, 'type': 'ortholstm', 'hidden_size': 128, 'pre_embed': None}
+/home/lgpu0136/.conda/envs/fact/lib/python3.6/site-packages/torch/nn/modules/rnn.py:54: UserWarning: dropout option adds dropout after all but last recurrent layer, so non-zero dropout expects num_layers greater than 1, but got dropout=0.3 and num_layers=1
+  "num_layers={}".format(dropout, num_layers))
+/home/lgpu0136/project/Transparency/model/modules/ortholstm.py:85: UserWarning: nn.init.xavier_uniform is now deprecated in favor of nn.init.xavier_uniform_.
+  hx = (Variable(nn.init.xavier_uniform(torch.empty(self.num_layers, batch_size, self.hidden_size,device=device))),
+/home/lgpu0136/project/Transparency/model/modules/ortholstm.py:86: UserWarning: nn.init.xavier_uniform is now deprecated in favor of nn.init.xavier_uniform_.
+  Variable(nn.init.xavier_uniform(torch.empty(self.num_layers, batch_size, self.hidden_size,device=device))))
+INFO - 2021-01-10 11:26:10,901 - instantiating class <class 'Transparency.model.modules.Encoder.Encoder'> from params {'vocab_size': 12487, 'embed_size': 300, 'type': 'ortholstm', 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-10 11:26:10,902 - type = ortholstm
+INFO - 2021-01-10 11:26:10,902 - instantiating class <class 'Transparency.model.modules.Encoder.EncoderorthoRNN'> from params {'vocab_size': 12487, 'embed_size': 300, 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-10 11:26:10,903 - vocab_size = 12487
+INFO - 2021-01-10 11:26:10,903 - embed_size = 300
+INFO - 2021-01-10 11:26:10,903 - hidden_size = 128
+INFO - 2021-01-10 11:26:10,903 - pre_embed = None
+INFO - 2021-01-10 11:26:10,988 - instantiating class <class 'Transparency.model.modules.Decoder.AttnDecoder'> from params {'attention': {'type': 'tanh'}, 'output_size': 1, 'hidden_size': 256} and extras set()
+INFO - 2021-01-10 11:26:10,988 - hidden_size = 256
+INFO - 2021-01-10 11:26:10,988 - output_size = 1
+INFO - 2021-01-10 11:26:10,988 - use_attention = True
+INFO - 2021-01-10 11:26:10,988 - regularizer_attention = None
+INFO - 2021-01-10 11:26:10,989 - instantiating class <class 'Transparency.model.modules.Attention.Attention'> from params <allennlp.common.params.Params object at 0x1535ea37f7b8> and extras set()
+INFO - 2021-01-10 11:26:10,989 - attention.type = tanh
+INFO - 2021-01-10 11:26:10,989 - type = tanh
+INFO - 2021-01-10 11:26:10,989 - instantiating class <class 'Transparency.model.modules.Attention.TanhAttention'> from params <allennlp.common.params.Params object at 0x1535ea37f7b8> and extras set()
+INFO - 2021-01-10 11:26:10,989 - attention.hidden_size = 256
+INFO - 2021-01-10 11:26:10,989 - hidden_size = 256
+config  {'model': {'encoder': {}, 'decoder': {}, 'generator': {'hidden_size': 64, 'sparsity_lambda': 0.5}}, 'training': {'bsize': 32, 'weight_decay': 1e-05, 'pos_weight': [1.0157037384272822], 'basepath': '/home/lgpu0136/test_seeds', 'exp_dirname': 'imdb/ortho_lstm+tanh'}}
+Running on device: cuda:0
+{'accuracy': 0.8826905417814509, 'roc_auc': 0.9461914121789812, 'pr_auc': 0.9360998907111804, 'conicity_mean': '0.1628865', 'conicity_std': '0.040786717'}
+                  0         1  micro avg  macro avg  weighted avg
+f1-score      0.881     0.885      0.883      0.883         0.883
+precision     0.899     0.868      0.883      0.883         0.883
+recall        0.864     0.902      0.883      0.883         0.883
+support    2184.000  2172.000   4356.000   4356.000      4356.000
+encoder params {'vocab_size': 12487, 'embed_size': 300, 'type': 'ortholstm', 'hidden_size': 128, 'pre_embed': None}
+INFO - 2021-01-10 11:26:27,577 - instantiating class <class 'Transparency.model.modules.Encoder.Encoder'> from params {'vocab_size': 12487, 'embed_size': 300, 'type': 'ortholstm', 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-10 11:26:27,577 - type = ortholstm
+INFO - 2021-01-10 11:26:27,578 - instantiating class <class 'Transparency.model.modules.Encoder.EncoderorthoRNN'> from params {'vocab_size': 12487, 'embed_size': 300, 'hidden_size': 128, 'pre_embed': None} and extras set()
+INFO - 2021-01-10 11:26:27,578 - vocab_size = 12487
+INFO - 2021-01-10 11:26:27,578 - embed_size = 300
+INFO - 2021-01-10 11:26:27,578 - hidden_size = 128
+INFO - 2021-01-10 11:26:27,578 - pre_embed = None
+INFO - 2021-01-10 11:26:27,660 - instantiating class <class 'Transparency.model.modules.Decoder.AttnDecoder'> from params {'attention': {'type': 'tanh'}, 'output_size': 1, 'hidden_size': 256} and extras set()
+INFO - 2021-01-10 11:26:27,660 - hidden_size = 256
+INFO - 2021-01-10 11:26:27,660 - output_size = 1
+INFO - 2021-01-10 11:26:27,661 - use_attention = True
+INFO - 2021-01-10 11:26:27,661 - regularizer_attention = None
+INFO - 2021-01-10 11:26:27,661 - instantiating class <class 'Transparency.model.modules.Attention.Attention'> from params <allennlp.common.params.Params object at 0x1535ea37fba8> and extras set()
+INFO - 2021-01-10 11:26:27,661 - attention.type = tanh
+INFO - 2021-01-10 11:26:27,661 - type = tanh
+INFO - 2021-01-10 11:26:27,661 - instantiating class <class 'Transparency.model.modules.Attention.TanhAttention'> from params <allennlp.common.params.Params object at 0x1535ea37fba8> and extras set()
+INFO - 2021-01-10 11:26:27,661 - attention.hidden_size = 256
+INFO - 2021-01-10 11:26:27,661 - hidden_size = 256
+
+  0%|          | 0/4356 [00:00<?, ?it/s]
+  0%|          | 2/4356 [00:00<04:57, 14.64it/s]
+
+SKIP
+
+NOT FINISHED
+
