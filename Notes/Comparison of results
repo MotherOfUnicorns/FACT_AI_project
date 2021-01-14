@@ -1,0 +1,25 @@
+Initial conclusions about reproducibility of results
+
+First:
+- no comparison for Diabetes, Amenia [no access to dataset]
+- no comparison (yet) for CNN, Tweets (not finished yet)
+
+Method:
+- rerun once
+
+CONCLUSIONS, SORTED BY METRIC
+
+Accuracy:
+- overall results look similar
+- notable differences found for:
+  - Yelp: conicity Ortho
+  - Babi1: conicity LSTM
+  - Babi2: differences in accuracy and conicity, for LSTM, Diversity and Ortho
+  - Babi3: differences in accuracy and conicity for LSTM, and to a lesser degree in accuracy for Diversity and Ortho
+  
+CONCLUSIONS, SORTED BY MODEL
+
+SST: Very similar results
+- only notable difference: mean attention for rationales in LSTM
+
+
