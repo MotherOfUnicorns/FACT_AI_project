@@ -91,6 +91,11 @@ class Model() :
         configuration['model']['encoder']['pre_embed'] = pre_embed
 
         encoder_copy = deepcopy(configuration['model']['encoder'])
+
+        # CODEFIX (RvdW)
+        # Change Q path encoder to a vanillalstm (regular LSTM) instead of an ortholstm
+        encoder_copy['type']='vanillalstm'
+
         self.Pencoder = Encoder.from_params(Params(configuration['model']['encoder'])).to(device)
         self.Qencoder = Encoder.from_params(Params(encoder_copy)).to(device)
 
