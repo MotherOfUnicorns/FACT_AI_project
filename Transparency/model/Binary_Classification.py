@@ -424,7 +424,7 @@ class Model() :
         conicity_values = []
         h_vecs=[]
         hnorms_sm=[]
-        dnorms_sm=[]
+        dhnorms_sm=[]
 
         for n in (range(0, N, bsize)) :
             torch.cuda.empty_cache()
@@ -449,13 +449,16 @@ class Model() :
             hnorms = torch.norm(batch_data.hidden.detach(),dim=2) # shape (B x maxlen)mask
             hnorms_sm_tmp = masked_softmax(hnorms,batch_data.masks)
             hnorms_sm.append(hnorms_sm_tmp.cpu().numpy())
-            # Aggregate all cell state vectors for later use
-            # CAN BE DISABLED TO SAVE COMP COST
-            h_temp = batch_data.hidden.detach().cpu().numpy()
-            for i in range(h_temp.shape[0]):
-                h_vecs.append(h_temp[i,:,:])
+            # Fill container with softmaxed norms of difference vectors
+            dhvecs = torch.zeros(batch_data.hidden.shape)
+            dhvecs[:,1:,:]=batch_data.hidden[:,1:,:].detach()-batch_data.hidden[:,0:-1,:].detach()
+            dhnorms = torch.norm(dhvecs,dim=2)
+            dhnorms_sm_tmp = masked_softmax(dhnorms,batch_data.masks.cpu())
+            dhnorms_sm.append(dhnorms_sm_tmp.numpy())
+
 
         hnorms_sm = [x for y in hnorms_sm for x in y] # convert to list (length size of dataset) of np arrays (sentence lenghts)
+        dhnorms_sm = [x for y in dhnorms_sm for x in y] 
         outputs = [x for y in outputs for x in y]
         if self.decoder.use_attention :
             attns = [x for y in attns for x in y]

@@ -32,7 +32,7 @@ class Trainer() :
 
             printExamples=True # only if you want to sample some results
             if printExamples:
-                for i in range(10):#100,400,50):
+                for i in range(100,400,50):
                     # print sentence
                     print('Sentence   : ',end='')
                     sen = test_data.X[i]
