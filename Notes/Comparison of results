@@ -84,8 +84,11 @@ Do observations of paper still hold, namely:
 
 5. Distribution of attention over POS tags
 Qualitative comparison on 5 of the 14 datasets [but not possible on Ortho]
-
-[TO BE DONE]
+- SST: similar ordering
+- Yelp: different ordering for LSTM (no PUNC!), and Diversity (ADJ is not on top)
+- 20News: similar ordering
+- Tweets: similar ordering
+- QQP: Different ordering for LSTM (we see PUNC as 3rd instead of 2nd), 
 
 Do observations of paper still hold, namely:
 - Attention given to punctuation marks is significantly reduced from 28.6%, 34.0% and 23.0% in the vanilla LSTM to 3.1%, 13.8% and 3.4% in the Diversity LSTM on the Yelp, Amazon and QQP datasets respectively
