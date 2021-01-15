@@ -82,7 +82,7 @@ Do observations of paper still hold, namely:
   - NO: JSD increases (instead of decreases) on average over the dataset
     - Increase or similar for ALL datasets, except 20News
 
-5. Distribution of attention over POS tags
+6. Distribution of attention over POS tags
 Qualitative comparison on 5 of the 14 datasets [but not possible on Ortho]
 - SST: similar ordering
 - Yelp: different ordering for LSTM (no PUNC!), and Diversity (ADJ is not on top)
@@ -92,7 +92,9 @@ Qualitative comparison on 5 of the 14 datasets [but not possible on Ortho]
 
 Do observations of paper still hold, namely:
 - Attention given to punctuation marks is significantly reduced from 28.6%, 34.0% and 23.0% in the vanilla LSTM to 3.1%, 13.8% and 3.4% in the Diversity LSTM on the Yelp, Amazon and QQP datasets respectively
+  - NO: We see PUNC in Yelp GOING FROM 0% -> 0%, and in QQP from 9% to 5% [+ cannot check Amazon]
 - Across the four sentiment analysis datasets, Diversity LSTM gives an average of 49.27 % (relative) more attention to adjectives than the vanilla LSTM
+  - Mixed: [Sentiment analysis = SST, IMDB, Yelp, Amazon] SST: YES, IMDB: YES, Yelp: NO, Amazon: cannot check
 - For the other text classification tasks where nouns play an important role, we observe higher attention to nouns
 
 OBSERVATIONS, SORTED BY MODEL
