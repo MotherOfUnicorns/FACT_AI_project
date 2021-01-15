@@ -19,7 +19,7 @@ OBSERVATIONS, SORTED BY METRIC
   - Babi3: differences in accuracy and conicity for LSTM, and to a lesser degree in accuracy for Diversity and Ortho
 
 Do observations of paper still hold, namely:
-- Diversity and Ortho reach similar accuracy and LSTM --> YES [but something strange happens with babi3]
+- Diversity and Ortho reach similar accuracy as LSTM --> YES [but something strange happens with babi3]
 - Conicity is much lower in Diversity and Ortho --> YES
 
 2. Box plots/fraction of hidden representation needed for decision flip
