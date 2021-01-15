@@ -18,15 +18,16 @@ class BiLSTM(nn.Module):
         self.use_bias = use_bias
         self.batch_first = batch_first
         self.dropout = dropout
+        device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
         for layer in range(num_layers):
             layer_input_size = input_size if layer == 0 else hidden_size
             cell_forward = cell_class(input_size=layer_input_size,
                               hidden_size=hidden_size,
-                              **kwargs)
+                              **kwargs).to(device)
             cell_backward = cell_class(input_size=layer_input_size,
                               hidden_size=hidden_size,
-                              **kwargs)
+                              **kwargs).to(device)
             setattr(self, 'cell_{}'.format(layer), [cell_forward,cell_backward])
         self.dropout_layer = nn.Dropout(dropout)
         self.reset_parameters()
@@ -36,8 +37,10 @@ class BiLSTM(nn.Module):
 
     def reset_parameters(self):
         for layer in range(self.num_layers):
-            cell = self.get_cell(layer)
-            cell.reset_parameters()
+            cell_forward = self.get_cell(layer)[0]
+            cell_backward = self.get_cell(layer)[1]
+            cell_forward.reset_parameters()
+            cell_backward.reset_parameters()
 
     @staticmethod
     def _forward_rnn(cell, input_, length, hx):
@@ -103,7 +106,7 @@ class BiLSTM(nn.Module):
                     cell=cell_forward, input_=input_, length=length, hx=hx_layer_forward)
                 input_backward = torch.flip(input_,[0,1])
                 layer_output_backward, layer_cell_output_backward, (layer_h_n_backward, layer_c_n_backward) = BiLSTM._forward_rnn(
-                    cell=cell_backward, input_=input_backward, length=length, hx=hx_layer_forward)
+                    cell=cell_backward, input_=input_backward, length=length, hx=hx_layer_backward)
             else:
                 layer_output, layer_cell_output, (layer_h_n, layer_c_n) = BiLSTM._forward_rnn(
                     cell=cell, input_=layer_output, length=length, hx=hx_layer)
@@ -115,12 +118,13 @@ class BiLSTM(nn.Module):
             output_states_forward.append((layer_h_n_forward,layer_c_n_forward))
             output_states_backward.append((layer_h_n_backward,layer_c_n_backward))
         
+        output_states = output_states_forward + output_states_backward
         output_forward = layer_output_forward
         output_backward = layer_output_backward
-        output = torch.cat((output_forward,output_backward),axis=1)
+        output = torch.cat((output_forward,output_backward),dim=2)
         cell_output_forward = layer_cell_output_forward
         cell_output_backward = layer_cell_output_backward
-        cell_output = torch.cat((cell_output_forward,cell_output_backward),axis=1)
+        cell_output = torch.cat((cell_output_forward,cell_output_backward),dim=2)
 
         if self.batch_first:
             output = torch.transpose(output,0,1)
