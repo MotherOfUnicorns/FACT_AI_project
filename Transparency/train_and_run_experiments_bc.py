@@ -11,7 +11,7 @@ parser.add_argument(
     required=True,
 )
 parser.add_argument(
-    "--attention", type=str, choices=["tanh", "dot", "all"], default="tanh"
+    "--attention", type=str, choices=["tanh", "equal", "first_only", "last_only","dot"], default="tanh"
 )  # TODO: does attention work with dot/all? what are they?
 parser.add_argument("--diversity", type=float, default=0)
 parser.add_argument("--seed", type=int, default=0)
@@ -28,8 +28,7 @@ import torch
 from Transparency.Trainers.DatasetBC import datasets
 from Transparency.ExperimentsBC import (
     train_dataset,
-    train_dataset_on_encoders,
-    generate_graphs_on_encoders,
+    generate_graphs_on_latest_model,
     run_experiments_on_latest_model,
     run_rationale_on_latest_model,
 )
@@ -61,16 +60,17 @@ if args.output_dir is not None:
     dataset.output_dir = args.output_dir
 
 dataset.diversity = args.diversity
-encoders = [args.encoder]
 
 if args.job_type == "both":
-    train_dataset_on_encoders(dataset, encoders)
-    generate_graphs_on_encoders(dataset, encoders)
+    train_dataset(dataset, args)
+    run_experiments_on_latest_model(dataset, args)
+    run_rationale_on_latest_model(dataset, args)
+    generate_graphs_on_latest_model(dataset, args)
 elif args.job_type == "train":
     # only train the (ortho/diverse)lstm+attention model, without other experiments
-    train_dataset(dataset, args.encoder)
+    train_dataset(dataset, args)
 elif args.job_type == "experiment":
     # only run experiments using the latest trained model
-    run_experiments_on_latest_model(dataset, args.encoder)
-    run_rationale_on_latest_model(dataset, args.encoder)
-    generate_graphs_on_encoders(dataset, encoders)
+    run_experiments_on_latest_model(dataset, args)
+    run_rationale_on_latest_model(dataset, args)
+    generate_graphs_on_latest_model(dataset, args)

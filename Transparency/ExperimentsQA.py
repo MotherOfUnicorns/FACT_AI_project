@@ -1,13 +1,27 @@
-from Transparency.common_code.common import *
-from Transparency.Trainers.PlottingQA import generate_graphs
+import os
+
+from Transparency.common_code.common import get_latest_model
 from Transparency.configurations import configurations_qa
-from Transparency.Trainers.TrainerQA import Trainer, Evaluator
+from Transparency.Trainers.PlottingQA import generate_graphs
+from Transparency.Trainers.TrainerQA import Evaluator, Trainer
 
 
-def train_dataset(dataset, config):
+def update_config_with_args(dataset, args):
+
+    config = configurations_qa[args.encoder](dataset)
+    config['model']['decoder']['attention']['type'] = args.attention + '_qa'
+    # TODO this is doing the same work as wrap_config_for_qa in configurations.py
+
+    if args.attention != 'tanh':
+        exp_dirname = config['training']['exp_dirname']
+        config['training']['exp_dirname'] = exp_dirname[:-4] + args.attention
+    return config
+
+
+def train_dataset(dataset, args):
     print("STARTING TRAINING")
 
-    config = configurations_qa[config](dataset)
+    config = update_config_with_args(dataset, args)
     n_iters = dataset.n_iters if hasattr(dataset, "n_iters") else 25
     trainer = Trainer(dataset, config=config, _type=dataset.trainer_type)
     trainer.train(
@@ -19,10 +33,10 @@ def train_dataset(dataset, config):
     return trainer
 
 
-def run_evaluator_on_latest_model(dataset, config):
+def run_evaluator_on_latest_model(dataset, args):
     print("EVALUATING LATEST MODEL")
 
-    config = configurations_qa[config](dataset)
+    config = update_config_with_args(dataset, args)
     latest_model = get_latest_model(
         os.path.join(config["training"]["basepath"], config["training"]["exp_dirname"])
     )
@@ -31,9 +45,9 @@ def run_evaluator_on_latest_model(dataset, config):
     return evaluator
 
 
-def run_experiments_on_latest_model(dataset, config, force_run=True):
+def run_experiments_on_latest_model(dataset, args, force_run=True):
 
-    evaluator = run_evaluator_on_latest_model(dataset, config)
+    evaluator = run_evaluator_on_latest_model(dataset, args)
     test_data = dataset.test_data
 
     print("RUNNING GRADIENT EXPERIMENT ON LATEST MODEL")
@@ -50,10 +64,10 @@ def run_experiments_on_latest_model(dataset, config, force_run=True):
     )
 
 
-def generate_graphs_on_latest_model(dataset, config):
+def generate_graphs_on_latest_model(dataset, args):
     print("GENERATING GRAPHS FOR EXPERIMENT ON LATEST MODEL")
 
-    config = configurations_qa[config](dataset)
+    config = update_config_with_args(dataset, args)
     latest_model = get_latest_model(
         os.path.join(config["training"]["basepath"], config["training"]["exp_dirname"])
     )
@@ -67,23 +81,3 @@ def generate_graphs_on_latest_model(dataset, config):
             evaluator.model,
             test_data=dataset.test_data,
         )
-
-
-def train_dataset_on_encoders(dataset, encoders):
-    for e in encoders:
-        train_dataset(dataset, e)
-        run_experiments_on_latest_model(dataset, e)
-
-
-def generate_graphs_on_encoders(dataset, encoders):
-    for e in encoders:
-        generate_graphs_on_latest_model(dataset, e)
-
-
-def get_results(path):
-    latest_model = get_latest_model(path)
-    if latest_model is not None:
-        evaluations = json.load(open(os.path.join(latest_model, "evaluate.json"), "r"))
-        return evaluations
-    else:
-        raise LookupError("No Latest Model ... ")
