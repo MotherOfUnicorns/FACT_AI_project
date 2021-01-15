@@ -14,7 +14,9 @@ DO WE AGREE WITH THEIR CLAIMS?
 # Review the definitions
 - what is faithful
 - what is plausible
-- how do they relate (is there ONE best explanation for a prediction?)
+- how do they relate (is there ONE best explanation for a prediction? what combinations can theoretically exist, for example can we have non-faithful explanations that are plausible)
+- look at not not paper
+- Are their proposed metrics quantifying the concepts of faithfulness and plausibility well?
 
 # Checking assumptions, expectation and hypotheses
 How can attention work at all if all hidden states have narrow conicity  -> maybe attention isn't doing its job in these tasks

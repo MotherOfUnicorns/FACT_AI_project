@@ -1,2 +1,26 @@
-Q1: why Amazon keeps running out of memory (already fixed?)
+Important Q1: some results are not matching. How do we handle this. What kind of explanations are we required to give (how deep). 
 
+Highlight Babi1: results conflct with line of reasoning in the paper: 
+* (from paper) conicity is high (implies low faithfulness)
+BUT:
+* (from paper) all other results imply high faithfulness (e.g. decision flips early)
+    * (our results) violin plots show high output difference after random permutation of attn weights
+Regarding plausibility:
+* (our results) our correlations with G/IG are much higher
+
+Important Q2
+[see section 5.3 in paper] Spans in the input passage
+
+Important Q3: some of our results seem to be conflicting with the general narrative of the paper, but whether they conflict, and if so, 
+how exactly, depends on the exact definitions of faithfulness and plausibility, and whether the proposed metrics like conicity and correlation 
+with integrated gradients actually quantify these concepts well.
+
+(optional: show work on hnorms, direction to pursue)
+
+Q: If (integrated) gradients already are able to show token importance, why not just use that as an explainer? If not, why look at correlation with it?
+
+Q1: why Amazon keeps running out of memory (we have no fix other than: better machine, or cut the size of the data). CNN dataset even bigger, haven't tried yet
+
+Q2: how to reproduce Random Conicity Table 2? (Yun's fisrt attempt)
+
+Q3: what is exactly shown in the violin plots? (what is on the x-axis in the QA tasks?)
