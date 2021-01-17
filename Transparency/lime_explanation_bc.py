@@ -103,7 +103,7 @@ if __name__ == "__main__":
     import pandas as pd
 
     print("CALCULATING CORRELATION WITH LIME......")
-    print("dataset={args.dataset}, encoder={args.encoder}, attention={args.attention}")
+    print(f"dataset={args.dataset}, encoder={args.encoder}, attention={args.attention}")
     r_p_vals = [calc_attn_lime_correlation(s, EXPLAINER) for s in TEST_DATA_SENTENCES]
     r_vals = [x[0] for x in r_p_vals]
     p_vals = [x[1] for x in r_p_vals]
