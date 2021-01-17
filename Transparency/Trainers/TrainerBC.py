@@ -110,7 +110,7 @@ class RationaleTrainer() :
         self.model = Model.init_from_config(self.dirname, config_update=self.config, load_gen=False)
         self.model.dirname = self.dirname
     
-    def train(self, train_data, test_data, n_iters=6):#40) : #CHANGE BACK
+    def train(self, train_data, test_data, n_iters=40):
         best_reward = float('-inf')
 
         for i in (range(n_iters)) :
