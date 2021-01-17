@@ -88,6 +88,17 @@ class EncoderorthoRNN(Encoder) :
         self.hidden_size = hidden_size
         self.rnn = LSTM(LSTMCell, input_size=embed_size, hidden_size=2*hidden_size, num_layers=self.num_layers, batch_first=True)
         self.output_size = self.hidden_size * 2
+        self.numTrainableParameters()
+
+    def numTrainableParameters(self):
+        total = 0
+        for name, p in self.named_parameters():
+            total += np.prod(p.shape)
+            print("{:24s} {:12s} requires_grad={}".format(name, str(list(p.shape)), p.requires_grad))
+        print("\nTotal number of parameters: {}\n".format(total))
+        assert total == sum(p.numel() for p in self.parameters() if p.requires_grad)
+        return total
+
 
     def forward(self, data,hx=None,is_embds=False) :
         seq = data.seq
@@ -138,6 +149,18 @@ class EncoderorthoRNN(Encoder) :
         self.rnn = BiLSTM(LSTMCell, input_size=embed_size, hidden_size=2*hidden_size, num_layers=self.num_layers, batch_first=True)
         # make sure decoder expects the right hidden size. In BiLSTM hidden dim is doubled due to concatenation of hidden states.
         self.output_size = self.hidden_size * 2 * 2
+        print('bi-LSTM definition:')
+        self.numTrainableParameters()
+
+    def numTrainableParameters(self):
+        total = 0
+        for name, p in self.named_parameters():
+            total += np.prod(p.shape)
+            print("{:24s} {:12s} requires_grad={}".format(name, str(list(p.shape)), p.requires_grad))
+        print("\nTotal number of parameters: {}\n".format(total))
+        assert total == sum(p.numel() for p in self.parameters() if p.requires_grad)
+        return total
+
 
     def forward(self, data,hx=None,is_embds=False) :
         seq = data.seq
