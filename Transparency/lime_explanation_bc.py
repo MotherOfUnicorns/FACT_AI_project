@@ -1,7 +1,5 @@
 import argparse
-import csv
 import os
-from collections import namedtuple
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -13,7 +11,9 @@ from Transparency.configurations import configurations
 from Transparency.model import Binary_Classification as BC
 from Transparency.Trainers.DatasetBC import datasets
 
-parser = argparse.ArgumentParser(description="Run experiments on a dataset")
+parser = argparse.ArgumentParser(
+    description="Compare attention weights and lime results on a dataset"
+)
 parser.add_argument("--dataset", type=str, required=True)
 parser.add_argument("--data_dir", type=str, required=True)
 parser.add_argument("--output_dir", type=str)
@@ -27,10 +27,6 @@ parser.add_argument(
     "--attention", type=str, choices=["tanh", "dot", "all"], default="tanh"
 )
 parser.add_argument("--diversity", type=float, default=0)
-parser.add_argument("--seed", type=int, default=0)
-parser.add_argument(
-    "--job_type", type=str, default="both", choices=["both", "train", "experiment"]
-)
 
 args, extras = parser.parse_known_args()
 args.extras = extras
@@ -107,6 +103,7 @@ if __name__ == "__main__":
     import pandas as pd
 
     print("CALCULATING CORRELATION WITH LIME......")
+    print("dataset={args.dataset}, encoder={args.encoder}, attention={args.attention}")
     r_p_vals = [calc_attn_lime_correlation(s, EXPLAINER) for s in TEST_DATA_SENTENCES]
     r_vals = [x[0] for x in r_p_vals]
     p_vals = [x[1] for x in r_p_vals]
