@@ -194,9 +194,9 @@ class Model() :
         
         return loss_total, outputs
 
-    def evaluate(self, data, is_embds=False, is_int_grads=False) :
+    def evaluate(self, data, is_embds=False, data_as_dict=False, return_softmax_prob=False) :
        
-        if(is_int_grads):
+        if(data_as_dict):
             docs = data['P']
             questions = data['Q']
             entity_masks = data['E']
@@ -236,7 +236,11 @@ class Model() :
             conicity_values.append(self.conicity(batch_data.P).cpu().data.numpy())
             entropy_values.append(self.entropy(batch_data).cpu().data.numpy())
 
-            batch_data.predict = torch.argmax(batch_data.predict, dim=-1)
+            if return_softmax_prob:
+                batch_data.predict = torch.softmax(batch_data.predict, dim=-1)
+            else:
+                batch_data.predict = torch.argmax(batch_data.predict, dim=-1)
+
             if self.decoder.use_attention :
                 attn = batch_data.attn
                 attns.append(attn.cpu().data.numpy())
