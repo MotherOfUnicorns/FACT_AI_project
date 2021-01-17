@@ -24,16 +24,17 @@ class BiLSTM(nn.Module):
             layer_input_size = input_size if layer == 0 else hidden_size
             cell_forward = cell_class(input_size=layer_input_size,
                               hidden_size=hidden_size,
-                              **kwargs).to(device)
+                              **kwargs)
             cell_backward = cell_class(input_size=layer_input_size,
                               hidden_size=hidden_size,
-                              **kwargs).to(device)
-            setattr(self, 'cell_{}'.format(layer), [cell_forward,cell_backward])
+                              **kwargs)
+            setattr(self, 'forw_cell_{}'.format(layer),cell_forward)
+            setattr(self, 'backw_cell_{}'.format(layer),cell_backward)
         self.dropout_layer = nn.Dropout(dropout)
         self.reset_parameters()
 
     def get_cell(self, layer):
-        return getattr(self, 'cell_{}'.format(layer))
+        return [getattr(self, 'forw_cell_{}'.format(layer)),getattr(self, 'backw_cell_{}'.format(layer))]
 
     def reset_parameters(self):
         for layer in range(self.num_layers):
