@@ -37,6 +37,11 @@ args.extras = extras
 
 
 DATASET = datasets[args.dataset](args)
+
+if args.output_dir is not None:
+    DATASET.output_dir = args.output_dir
+DATASET.diversity = args.diversity
+
 CONFIG = configurations[args.encoder](DATASET)
 TEST_DATA_SENTENCES = [
     " ".join(DATASET.vec.map2words(sentence_indices)[1:-1])
@@ -86,7 +91,7 @@ def get_attn_and_lime(sentence, explainer=EXPLAINER):
     predicted_class = int(predictions[0][1] > 0.5)
 
     score_multiplier = 1 if predicted_class == 1 else -1
-    lime_scores = [exp_dict[w] * score_multiplier for w in sentence.split(" ")]
+    lime_scores = [exp_dict.get(w, 0) * score_multiplier for w in sentence.split(" ")]
 
     return attns, lime_scores
 
