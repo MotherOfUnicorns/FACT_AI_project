@@ -139,7 +139,7 @@ if __name__ == "__main__":
     r_vals = []
     p_vals = []
     sentence_lengths = []
-    for idx, sentence in tqdm(enumerate(TEST_DATA_SENTENCES[:5])):
+    for idx, sentence in tqdm(enumerate(TEST_DATA_SENTENCES)):
         r, p = calc_attn_lime_correlation(idx, EXPLAINER)
         r_vals.append(r)
         p_vals.append(p)
