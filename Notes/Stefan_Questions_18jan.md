@@ -16,7 +16,7 @@ the answer resulting in a decision flip.
 
 - discuss extensions: 
   - *ortho Qfix* and what we expect from experiment reruns using this fix (how can it be that performance collapses on SST, but not on other tasks where ortho is applied in the Qencoder?)
-  - LIME, the scores are not context-aware, and does not depend on the position of the words (e.g. Sandra went to the *garden*, Daniel went to the *garden*.)
+  - LIME, the scores are not context-aware, and does not depend on the position of the words (e.g. Sandra went to the *garden*, Daniel went to the *garden*.) Possible solution: calculate correlation between top-k weights (and what are the downsides of this?)
   - other attentions (any thoughts on what could be interesting? Maybe Multi-Head Attention IS comparable?), 
   - other base models (BiLSTM: hidden state combineren of gewoon concat? Als concat hoe om te gaan met hogere aantal dims)
 
