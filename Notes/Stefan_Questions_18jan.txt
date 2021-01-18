@@ -1,4 +1,4 @@
--Frank checken of goed op weg is met zijn eerste deel 
+-Frank check whether first part is going well
 
 -Bespreek dit stukje uit paper, misschien link leggende met Frank resultaat of met orthoQfix:
 In tasks such as paraphrase detection, the model
@@ -14,11 +14,11 @@ sentations corresponding to the answer words are
 erased, the model can no longer accurately predict
 the answer resulting in a decision flip.
 
--bespreken extensions: 
-  -*ortho Qfix* en wat we verwachten van experiment reruns daarmee (hoe kan het dat performance instort op SST, maar niet op andere taken als je ortho in Qencoder gebruikt?)
+-discuss extensions: 
+  -*ortho Qfix* and what we expect from experiment reruns using this fix (how can it be that performance collapses on SST, but not on other tasks where ortho is applied in the Qencoder?)
   -LIME, 
-  -andere attentions, 
-  -andere base models (BiLSTM: hidden state combineren of gewoon concat? Als concat hoe om te gaan met hogere aantal dims)
+  -other attentions (any thoughts on what could be interesting? Maybe Multi-Head Attention IS comparable?), 
+  -other base models (BiLSTM: hidden state combineren of gewoon concat? Als concat hoe om te gaan met hogere aantal dims)
 
 
 -how to reproduce Random Conicity Table 2? (Yun's fisrt attempt)
