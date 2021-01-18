@@ -1,4 +1,4 @@
--Frank checken of goed op weg is met zijn eerste deel
+-Frank checken of goed op weg is met zijn eerste deel 
 
 -In tasks such as paraphrase detection, the model
 is naturally required to carefully go through the
