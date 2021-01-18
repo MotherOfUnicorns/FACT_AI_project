@@ -53,7 +53,7 @@ MODEL = BC.Model.init_from_config(LATEST_MODEL_NAME, load_gen=False)
 MODEL.dirname = LATEST_MODEL_NAME
 
 CLASS_NAMES = ["0", "1"]
-EXPLAINER = LimeTextExplainer(class_names=CLASS_NAMES)
+EXPLAINER = LimeTextExplainer(class_names=CLASS_NAMES, bow=False)
 
 
 def predict_proba(sentences):
@@ -81,13 +81,12 @@ def get_attn_and_lime(sentence, explainer=EXPLAINER):
     exp = explainer.explain_instance(
         sentence, lambda x: predict_proba(x)[0], num_features=num_words
     )
-    exp_dict = {exp[0] if exp[0] != "UNK" else "<UNK>": exp[1] for exp in exp.as_list()}
 
     predictions, attns = predict_proba([sentence])
     predicted_class = int(predictions[0][1] > 0.5)
 
     score_multiplier = 1 if predicted_class == 1 else -1
-    lime_scores = [exp_dict.get(w, 0) * score_multiplier for w in sentence.split(" ")]
+    lime_scores = [exp[1] * score_multiplier for exp in sorted(exp.as_map()[1])]
 
     return attns, lime_scores
 
@@ -101,13 +100,16 @@ def calc_attn_lime_correlation(sentence, explainer=EXPLAINER):
 
 if __name__ == "__main__":
     import pandas as pd
+    from tqdm import tqdm
 
     print("CALCULATING CORRELATION WITH LIME......")
     print(f"dataset={args.dataset}, encoder={args.encoder}, attention={args.attention}")
-    r_p_vals = [calc_attn_lime_correlation(s, EXPLAINER) for s in TEST_DATA_SENTENCES]
-    r_vals = [x[0] for x in r_p_vals]
-    p_vals = [x[1] for x in r_p_vals]
-    sentence_lengths = [len(s.split(" ")) for s in TEST_DATA_SENTENCES]
+    r_vals, p_vals, sentence_lengths = [], [], []
+    for sentence in tqdm(TEST_DATA_SENTENCES):
+        r, p = calc_attn_lime_correlation(sentence, EXPLAINER)
+        r_vals.append(r)
+        p_vals.append(p)
+        sentence_lengths.append(len(sentence.split(' ')))
 
     df = pd.DataFrame()
     df["r_val"] = r_vals
@@ -116,6 +118,7 @@ if __name__ == "__main__":
 
     df.to_csv(os.path.join(LATEST_MODEL_NAME, "lime_correlations.csv"))
     df.mean().to_csv(os.path.join(LATEST_MODEL_NAME, "lime_correlations_avg.csv"))
+    df.std().to_csv(os.path.join(LATEST_MODEL_NAME, "lime_correlations_std.csv"))
 
     fig, ax = plt.subplots()
     ax.scatter(df.sentence_length, df.r_val)
