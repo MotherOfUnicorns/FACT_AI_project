@@ -18,3 +18,6 @@ the answer resulting in a decision flip.
   -LIME, 
   -andere attentions, 
   -andere base models (BiLSTM: hidden state combineren of gewoon concat? Als concat hoe om te gaan met hogere aantal dims)
+
+
+-how to reproduce Random Conicity Table 2? (Yun's fisrt attempt)
