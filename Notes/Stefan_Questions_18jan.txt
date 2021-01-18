@@ -1,6 +1,7 @@
 -Frank checken of goed op weg is met zijn eerste deel 
 
--In tasks such as paraphrase detection, the model
+-Bespreek dit stukje uit paper, misschien link leggende met Frank resultaat of met orthoQfix:
+In tasks such as paraphrase detection, the model
 is naturally required to carefully go through the
 entire sentence to make a decision and thereby re-
 sulting in delayed decision flips. In the QA task,
