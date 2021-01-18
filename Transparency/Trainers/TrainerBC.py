@@ -31,7 +31,7 @@ class Trainer() :
                 dhnorms_sm[j][1:]=dhnorms_sm[j][1:]-dhnorms_sm[j][0:-1]
 
             printExamples=True # only if you want to sample some results
-            if printExamples and i==7:
+            if printExamples and i>5:
                 for i in range(100,400,25):
                     # print sentence
                     print('Sentence   : ',end='')
@@ -44,13 +44,13 @@ class Trainer() :
                     print('Attentions : ',end='')
                     for j in range(len(sen)):
                         print("%.2f" %attentions[i][j],' '*max(0,len(self.vec.idx2word[sen[j]])),end='')
-                    print('\n')
+                    print()
 
                     # print softmaxed norms of the cell output vectors h_i
-                    #print('SM(||h_i||): ',end='')
-                    #for j in range(len(sen)):
-                    #    print("%.2f" %hnorms_sm[i][j],' '*max(0,len(self.vec.idx2word[sen[j]])),end='')
-                    #print()
+                    print('SM(||h_i||): ',end='')
+                    for j in range(len(sen)):
+                        print("%.2f" %hnorms_sm[i][j],' '*max(0,len(self.vec.idx2word[sen[j]])),end='')
+                    print('\n')
                     # print difference between hnorms
                     #print('SM(|dh_i||): ',end='')
                     #for j in range(len(sen)):

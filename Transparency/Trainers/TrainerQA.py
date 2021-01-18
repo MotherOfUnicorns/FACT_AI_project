@@ -10,6 +10,7 @@ class Trainer() :
         self.metrics = calc_metrics_qa
         self.display_metrics = True
         self.dataset = dataset
+        self.vec = dataset.vec
     
     def train(self, train_data, test_data, n_iters=20, save_on_metric='accuracy') :
         best_metric = 0.0
@@ -19,9 +20,44 @@ class Trainer() :
 
             print ('End of Epoch: {}, Train Loss: {}, Train Accuracy: {}'.format(i,train_loss,train_metrics['accuracy']))
 
-            predictions, attentions,conicity_values, entropy_values = self.model.evaluate(test_data)
+            predictions, attentions,conicity_values, entropy_values,hnorms_sm = self.model.evaluate(test_data)
             predictions = np.array(predictions)
             test_metrics = self.metrics(test_data.A, predictions)
+
+            printExamples=True # only if you want to sample some results
+            if printExamples:
+                for k in range(0,110,10):
+                    # Print P path
+                    print('P path     : ',end='')
+                    for j in test_data.P[k]:
+                        print(self.vec.idx2word[j],'    ',end='')
+                    print()
+                    # print attentions
+                    print('Attentions : ',end='')
+                    for j in range(len(test_data.P[k])):
+                        print("%.2f" %attentions[k][j],' '*max(0,len(self.vec.idx2word[test_data.P[k][j]])),end='')
+                    print()
+                    # print softmaxed norms of the cell output vectors h_i
+                    print('SM(||h_i||): ',end='')
+                    for j in range(len(test_data.P[k])):
+                        print("%.2f" %hnorms_sm[k][j],' '*max(0,len(self.vec.idx2word[test_data.P[k][j]])),end='')
+                    print()
+
+                    # Print Q path
+                    print('Q path     : ',end='')
+                    for j in test_data.Q[k]:
+                        print(self.vec.idx2word[j],' ',end='')
+                    print()
+                # Print E path
+                #for i in test_data.E[0]:
+                #    print(self.vec.idx2word[i],' ',end='')
+                #print()
+                    # Print A path
+                    print('Answer:',self.vec.idx2entity[test_data.A[k]],' ',end='')
+                    print('Predicted:',self.vec.idx2entity[predictions[k]])
+                #print()
+                    print('\n')
+
 
             test_metrics['conicity_mean'] = str(np.mean(conicity_values))
             test_metrics['conicity_std'] = str(np.std(conicity_values))

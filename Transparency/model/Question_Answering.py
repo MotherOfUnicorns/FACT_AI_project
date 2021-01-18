@@ -22,6 +22,7 @@ from torch.distributions.bernoulli import Bernoulli
 from Transparency.model.modules.Decoder import AttnDecoderQA
 from Transparency.model.modules.Encoder import Encoder
 from Transparency.model.modules.Rationale_Generator import RGenerator_QA
+from Transparency.model.modules.Attention import masked_softmax
 
 from .modelUtils import jsd as js_divergence
 import nltk
@@ -216,6 +217,9 @@ class Model() :
         attns = []
         conicity_values = []
         entropy_values = []
+        h_vecs=[]
+        hnorms_sm=[]
+        dhnorms_sm=[]
 
         for n in (range(0, N, bsize)) :
             torch.cuda.empty_cache()
@@ -244,13 +248,20 @@ class Model() :
             predict = batch_data.predict.cpu().data.numpy()
             outputs.append(predict)
 
+            # Fill container with softmaxed norms of cell output vectors of P path
+            hnorms = torch.norm(batch_data.P.hidden.detach(),dim=2) # shape (B x maxlen)mask
+            hnorms_sm_tmp = masked_softmax(hnorms,batch_data.P.masks)
+            hnorms_sm.append(hnorms_sm_tmp.cpu().numpy())
+
+
         outputs = [x for y in outputs for x in y]
         attns = [x for y in attns for x in y]
         conicity_values = np.concatenate(conicity_values,axis=0)
         entropy_values = (np.concatenate(entropy_values,axis=0))
+        hnorms_sm = [x for y in hnorms_sm for x in y] # convert to list (length size of dataset) of np arrays (sentence lenghts)
 
         
-        return outputs, attns, conicity_values, entropy_values
+        return outputs, attns, conicity_values, entropy_values, hnorms_sm
 
     
     def entropy(self,data):

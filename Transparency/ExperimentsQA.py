@@ -25,7 +25,7 @@ def train_dataset(dataset, args):
     n_iters = dataset.n_iters if hasattr(dataset, "n_iters") else 25
     trainer = Trainer(dataset, config=config, _type=dataset.trainer_type)
     trainer.train(
-        dataset.train_data,
+        dataset.train_data,#train_data,
         dataset.dev_data,
         n_iters=n_iters,
         save_on_metric=dataset.save_on_metric,
