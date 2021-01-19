@@ -53,7 +53,7 @@ MODEL = BC.Model.init_from_config(LATEST_MODEL_NAME, load_gen=False)
 MODEL.dirname = LATEST_MODEL_NAME
 
 CLASS_NAMES = ["0", "1"]
-EXPLAINER = LimeTextExplainer(class_names=CLASS_NAMES, bow=False)
+EXPLAINER = LimeTextExplainer(class_names=CLASS_NAMES, bow=False, split_expression=" ")
 
 
 def predict_proba(sentences):
