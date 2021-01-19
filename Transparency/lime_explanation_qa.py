@@ -52,12 +52,10 @@ LATEST_MODEL_NAME = get_latest_model(
 
 MODEL = QA.Model.init_from_config(LATEST_MODEL_NAME, load_gen=False)
 MODEL.dirname = LATEST_MODEL_NAME
-# questions = DATASET.test_data.Q[:2]
-# entity_masks = DATASET.test_data.E[:2]
 
 ENTITY_LIST = sorted(list(DATASET.vec.idx2entity.items()))
 CLASS_NAMES = [ent[1] for ent in ENTITY_LIST]
-EXPLAINER = LimeTextExplainer(class_names=CLASS_NAMES)
+EXPLAINER = LimeTextExplainer(class_names=CLASS_NAMES, bow=False, split_expression=" ")
 
 
 def predict_proba(sentences, questions, entity_masks):
@@ -97,64 +95,84 @@ def get_attn_and_lime(sentence, explainer, questions, entity_masks):
 
     predictions, attns = predict_proba([sentence], questions, entity_masks)
     predicted_class = np.argmax(predictions)
-    # classes_to_explain = list(set([predicted_class, true_class]))
     classes_to_explain = [predicted_class]
 
-    num_words = len(sentence.split())
+    num_words = len(sentence.split(" "))
     exp = explainer.explain_instance(
         sentence,
         lambda x: predict_proba(x, questions, entity_masks)[0],
         num_features=num_words,
         labels=classes_to_explain,
     )
-    exp_dict = {
-        exp[0] if exp[0] != "UNK" else "<UNK>": exp[1]
-        for exp in exp.as_list(label=predicted_class)
-    }
 
-    lime_scores = [exp_dict.get(w, 0) for w in sentence.split()]
+    lime_scores = [exp[1] for exp in sorted(exp.as_map()[predicted_class])]
 
-    return attns, lime_scores
+    return attns[0], np.array(lime_scores)
 
 
-def calc_attn_lime_correlation(idx, explainer):
-
-    questions = [DATASET.test_data.Q[idx]]
-    entity_masks = [DATASET.test_data.E[idx]]
-    sentence = TEST_DATA_SENTENCES[idx]
-
-    attns, lime_scores = get_attn_and_lime(sentence, explainer, questions, entity_masks)
-
-    r, p_val = pearsonr(attns[0], lime_scores)
-    return r, p_val
+# def calc_attn_lime_correlation(idx, explainer):
+#
+#     questions = [DATASET.test_data.Q[idx]]
+#     entity_masks = [DATASET.test_data.E[idx]]
+#     sentence = TEST_DATA_SENTENCES[idx]
+#
+#     attns, lime_scores = get_attn_and_lime(sentence, explainer, questions, entity_masks)
+#
+#     r, p_val = pearsonr(attns[0], lime_scores)
+#     return r, p_val
 
 
 if __name__ == "__main__":
+    import csv
     import pandas as pd
     from tqdm import tqdm
+    from common_code.common import jsd
 
     print("CALCULATING CORRELATION WITH LIME......")
     print(f"dataset={args.dataset}, encoder={args.encoder}, attention={args.attention}")
 
-    r_vals = []
-    p_vals = []
-    sentence_lengths = []
-    for idx, sentence in tqdm(enumerate(TEST_DATA_SENTENCES)):
-        r, p = calc_attn_lime_correlation(idx, EXPLAINER)
-        r_vals.append(r)
-        p_vals.append(p)
-        sentence_lengths.append(len(sentence.split(" ")))
+    with open(os.path.join(LATEST_MODEL_NAME, "lime_attn_scores.csv"), "w") as f:
+        score_writer = csv.writer(f, delimiter=",")
+        score_writer.writerow(["idx", "sentence_length", "attention", "lime"])
+
+        r_vals, p_vals, jsd_vals, sentence_lengths = [], [], [], []
+        for idx, sentence in tqdm(enumerate(TEST_DATA_SENTENCES)):
+            questions = [DATASET.test_data.Q[idx]]
+            entity_masks = [DATASET.test_data.E[idx]]
+            attns, lime_scores = get_attn_and_lime(
+                sentence, EXPLAINER, questions, entity_masks
+            )
+            l = len(sentence.split(" "))
+            score_writer.writerow(
+                [idx, l, np.array2string(attns), np.array2string(lime_scores)]
+            )
+
+            r, p = pearsonr(attns, lime_scores)
+            lime_min, lime_max = lime_scores.min(), lime_scores.max()
+            lime_rescaled = (lime_scores - lime_min) / (lime_max - lime_min)
+            lime_rescaled /= lime_rescaled.sum()
+            d = jsd(attns, lime_rescaled)
+
+            r_vals.append(r)
+            p_vals.append(p)
+            jsd_vals.append(d)
+            sentence_lengths.append(l)
 
     df = pd.DataFrame()
     df["r_val"] = r_vals
     df["p_val"] = p_vals
+    df["jsd_val"] = jsd_vals
     df["sentence_length"] = sentence_lengths
 
-    df.to_csv(os.path.join(LATEST_MODEL_NAME, "lime_correlations.csv"))
-    df.mean().to_csv(os.path.join(LATEST_MODEL_NAME, "lime_correlations_avg.csv"))
+    df.to_csv(os.path.join(LATEST_MODEL_NAME, "lime_corr_jsd.csv"))
+    df.mean().to_csv(os.path.join(LATEST_MODEL_NAME, "lime_corr_jsd_avg.csv"))
+    df.std().to_csv(os.path.join(LATEST_MODEL_NAME, "lime_corr_jsd_std.csv"))
 
-    fig, ax = plt.subplots()
-    ax.scatter(df.sentence_length, df.r_val)
-    ax.set_xlabel("sentence length")
-    ax.set_ylabel("correlation(attn weights, lime)")
-    fig.savefig(os.path.join(LATEST_MODEL_NAME, "lime_correlations_sentence_len.png"))
+    fig, axes = plt.subplots(1, 2, figsize=(10, 7))
+    axes[0].scatter(df.sentence_length, df.r_val)
+    axes[0].set_xlabel("sentence length")
+    axes[0].set_ylabel("correlation(attn weights, lime)")
+    axes[1].scatter(df.sentence_length, df.jsd_val)
+    axes[1].set_xlabel("sentence length")
+    axes[1].set_ylabel("JSD(attn weights, lime)")
+    fig.savefig(os.path.join(LATEST_MODEL_NAME, "lime_corr_jsd_sentence_len.png"))
