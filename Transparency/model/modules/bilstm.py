@@ -90,10 +90,9 @@ class BiLSTM(nn.Module):
                   Variable(nn.init.xavier_uniform(torch.empty(self.num_layers, batch_size, self.hidden_size))))
         # h_n = []
         # c_n = []
-        output_states_forward = []
+        output_states = []
         layer_output_forward = None
         layer_cell_output_forward = None
-        output_states_backward = []
         layer_output_backward = None
         layer_cell_output_backward = None
         for layer in range(self.num_layers):
@@ -109,6 +108,8 @@ class BiLSTM(nn.Module):
                 layer_output_backward, layer_cell_output_backward, (layer_h_n_backward, layer_c_n_backward) = BiLSTM._forward_rnn(
                     cell=cell_backward, input_=input_backward, length=length, hx=hx_layer_backward)
             else:
+                assert(False)
+                #not implemented
                 layer_output, layer_cell_output, (layer_h_n, layer_c_n) = BiLSTM._forward_rnn(
                     cell=cell, input_=layer_output, length=length, hx=hx_layer)
             
@@ -116,10 +117,10 @@ class BiLSTM(nn.Module):
             input_backward = self.dropout_layer(layer_output_backward)
             # h_n.append(layer_h_n)
             # c_n.append(layer_c_n)
-            output_states_forward.append((layer_h_n_forward,layer_c_n_forward))
-            output_states_backward.append((layer_h_n_backward,layer_c_n_backward))
+            layer_h_n = torch.cat((layer_h_n_forward,layer_h_n_backward),dim=1)
+            layer_c_n = torch.cat((layer_c_n_forward,layer_c_n_backward),dim=1)
+            output_states.append((layer_h_n,layer_c_n))
         
-        output_states = output_states_forward + output_states_backward
         output_forward = layer_output_forward
         output_backward = layer_output_backward
         output = torch.cat((output_forward,output_backward),dim=2)
