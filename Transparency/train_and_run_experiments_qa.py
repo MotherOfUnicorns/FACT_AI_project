@@ -7,11 +7,11 @@ parser.add_argument("--output_dir", type=str)
 parser.add_argument(
     "--encoder",
     type=str,
-    choices=["ortho_lstm", "vanilla_lstm", "diversity_lstm"],
+    choices=["ortho_lstm", "vanilla_lstm", "diversity_lstm","bi_lstm","ortho_bi_lstm","diversity_bi_lstm"],
     required=True,
 )
 parser.add_argument(
-    "--attention", type=str, choices=["tanh", "equal", "first_only", 'last_only'], default="tanh"
+    "--attention", type=str, choices=["tanh", "equal", "first_only", 'last_only',"dot","multi_tanh"], default="tanh"
 )  # TODO: does the dot/all options work? what are they?
 parser.add_argument("--diversity", type=float, default=0)
 parser.add_argument("--seed", type=int, default=0)
