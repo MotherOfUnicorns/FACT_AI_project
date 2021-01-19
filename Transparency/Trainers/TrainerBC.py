@@ -32,7 +32,7 @@ class Trainer() :
 
             printExamples=True # only if you want to sample some results
             if printExamples and i>5:
-                for i in range(100,400,25):
+                for i in range(10,100,10):
                     # print sentence
                     print('Sentence   : ',end='')
                     sen = test_data.X[i]
@@ -110,7 +110,7 @@ class RationaleTrainer() :
         self.model = Model.init_from_config(self.dirname, config_update=self.config, load_gen=False)
         self.model.dirname = self.dirname
     
-    def train(self, train_data, test_data, n_iters=6):#40) : #CHANGE BACK
+    def train(self, train_data, test_data, n_iters=40):#40) : #CHANGE BACK
         best_reward = float('-inf')
 
         for i in (range(n_iters)) :
