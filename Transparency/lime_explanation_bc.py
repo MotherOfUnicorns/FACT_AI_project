@@ -140,7 +140,7 @@ if __name__ == "__main__":
     df.mean().to_csv(os.path.join(LATEST_MODEL_NAME, "lime_corr_jsd_avg.csv"))
     df.std().to_csv(os.path.join(LATEST_MODEL_NAME, "lime_corr_jsd_std.csv"))
 
-    fig, axes = plt.subplots(1, 2, figsize=(10, 5))
+    fig, axes = plt.subplots(1, 2, figsize=(10, 7))
     axes[0].scatter(df.sentence_length, df.r_val)
     axes[0].set_xlabel("sentence length")
     axes[0].set_ylabel("correlation(attn weights, lime)")
