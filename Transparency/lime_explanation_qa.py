@@ -146,11 +146,15 @@ if __name__ == "__main__":
             score_writer.writerow(
                 [idx, l, np.array2string(attns), np.array2string(lime_scores)]
             )
-
-            r, p = pearsonr(attns, lime_scores)
-            lime_min, lime_max = lime_scores.min(), lime_scores.max()
-            lime_rescaled = (lime_scores - lime_min) / (lime_max - lime_min)
-            lime_rescaled /= lime_rescaled.sum()
+            # print(sentence, attns, lime_scores)
+            if l == 1:
+                r, p = 0, 0
+                lime_rescaled = np.array([1])
+            else:
+                r, p = pearsonr(attns, lime_scores)
+                lime_min, lime_max = lime_scores.min(), lime_scores.max()
+                lime_rescaled = (lime_scores - lime_min) / (lime_max - lime_min)
+                lime_rescaled /= lime_rescaled.sum()
             d = jsd(attns, lime_rescaled)
 
             r_vals.append(r)
