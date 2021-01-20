@@ -69,7 +69,7 @@ def generate_bi_lstm_config(dataset) :
     
     config = generate_basic_config(dataset, exp_name='bi_lstm+tanh')
     
-    hidden_size = 64 #128 NOTE: Half to ensure equal number of parameters of bi-lstm compared to vanilla_lstm
+    hidden_size = dataset.hidden_size//2 if hasattr(dataset, 'hidden_size') else 64 #128 NOTE: Half to ensure equal number of parameters of bi-lstm compared to vanilla_lstm
     sparsity_lambda = dataset.sparsity_lambda if hasattr(dataset, 'sparsity_lambda') else 0.2
     config['model']['encoder'].update({'type': 'bilstm', 'hidden_size' : hidden_size})
     config['model']['generator'].update({'hidden_size' : 256,'sparsity_lambda':sparsity_lambda})
@@ -80,7 +80,7 @@ def generate_ortho_bi_lstm_config(dataset) :
     
     config = generate_basic_config(dataset, exp_name='ortho_bi_lstm+tanh')
     
-    hidden_size = 64 #128 NOTE: Half to ensure equal number of parameters of bi-lstm compared to vanilla_lstm
+    hidden_size = dataset.hidden_size//2 if hasattr(dataset, 'hidden_size') else 64 #128 NOTE: Half to ensure equal number of parameters of bi-lstm compared to vanilla_lstm
     sparsity_lambda = dataset.sparsity_lambda if hasattr(dataset, 'sparsity_lambda') else 0.2
     config['model']['encoder'].update({'type': 'orthobilstm', 'hidden_size' : hidden_size})
     config['model']['generator'].update({'hidden_size' : 256,'sparsity_lambda':sparsity_lambda})
@@ -91,7 +91,7 @@ def generate_diversity_bi_lstm_config(dataset) :
     
     config = generate_basic_config(dataset, exp_name='diversity_bi_lstm+tanh')
     
-    hidden_size = 64 #128 NOTE: Half to ensure equal number of parameters of bi-lstm compared to vanilla_lstm
+    hidden_size = dataset.hidden_size//2 if hasattr(dataset, 'hidden_size') else 64 #128 NOTE: Half to ensure equal number of parameters of bi-lstm compared to vanilla_lstm
     sparsity_lambda = dataset.sparsity_lambda if hasattr(dataset, 'sparsity_lambda') else 0.2
     config['model']['encoder'].update({'type': 'bilstm', 'hidden_size' : hidden_size})
     config['model']['generator'].update({'hidden_size' : 256,'sparsity_lambda':sparsity_lambda})
