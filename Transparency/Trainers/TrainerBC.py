@@ -31,8 +31,8 @@ class Trainer() :
                 dhnorms_sm[j][1:]=dhnorms_sm[j][1:]-dhnorms_sm[j][0:-1]
 
             printExamples=True # only if you want to sample some results
-            if printExamples and i>5:
-                for i in range(10,100,10):
+            if printExamples:
+                for i in range(10,110,10):
                     # print sentence
                     print('Sentence   : ',end='')
                     sen = test_data.X[i]
