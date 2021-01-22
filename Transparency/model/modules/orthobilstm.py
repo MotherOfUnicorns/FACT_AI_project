@@ -118,30 +118,30 @@ class OrthoBiLSTM(nn.Module):
                 layer_output_backward, layer_cell_output_backward, (layer_h_n_backward, layer_c_n_backward) = OrthoBiLSTM._forward_rnn(
                     cell=cell_backward, input_=input_backward, length=length, hx=hx_layer_backward)
             else:
-                assert(False)
+                raise(NotImplementedError)
                 #not implemented
                 layer_output, layer_cell_output, (layer_h_n, layer_c_n) = OrthoBiLSTM._forward_rnn(
                     cell=cell, input_=layer_output, length=length, hx=hx_layer)
             
             input_ = self.dropout_layer(layer_output_forward)
             input_backward = self.dropout_layer(layer_output_backward)
-            # h_n.append(layer_h_n)
-            # c_n.append(layer_c_n)
-            layer_h_n = torch.cat((layer_h_n_forward,layer_h_n_backward),dim=1)
-            layer_c_n = torch.cat((layer_c_n_forward,layer_c_n_backward),dim=1)
-            output_states.append((layer_h_n,layer_c_n))
         
         output_forward = layer_output_forward
-        output_backward = layer_output_backward
+        #flip hidden states of backward LSTM cell to concatenate corresponding words as in regular BiLSTM definition
+        output_backward = torch.flip(layer_output_backward,[0])
         output = torch.cat((output_forward,output_backward),dim=2)
         cell_output_forward = layer_cell_output_forward
-        cell_output_backward = layer_cell_output_backward
+        #flip cell states of backward LSTM cell to concatenate corresponding words as in regular BiLSTM definition
+        cell_output_backward = torch.flip(layer_cell_output_backward,[0])
         cell_output = torch.cat((cell_output_forward,cell_output_backward),dim=2)
+
+        #getting the hidden and cell states for the last word
+        layer_h_n = output[-1,:,:]
+        layer_c_n = cell_output[-1,:,:]
+        output_states = [(layer_h_n,layer_c_n)]
 
         if self.batch_first:
             output = torch.transpose(output,0,1)
             cell_output = torch.transpose(cell_output,0,1)
 
-        # h_n = torch.stack(h_n, 0)
-        # c_n = torch.stack(c_n, 0)
         return output, cell_output, output_states
