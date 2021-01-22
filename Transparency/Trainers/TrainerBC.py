@@ -30,15 +30,15 @@ class Trainer() :
             for i in range(len(dhnorms_sm)):
                 dhnorms_sm[i][1:]=dhnorms_sm[i][1:]-dhnorms_sm[i][0:-1]
 
-            printExamples=True # only if you want to sample some results
-            # if printExamples:
-            #     for i in range(100,400,50):
-            #         # print sentence
-            #         print('Sentence   : ',end='')
-            #         sen = test_data.X[i]
-            #         for idx in sen:
-            #             print(self.vec.idx2word[idx],'    ',end='')
-            #         print(' | Label: ',test_data.y[i],', Prediction: ',predictions[i])
+            printExamples=False # only if you want to sample some results
+            if printExamples:
+                for i in range(100,400,50):
+                    # print sentence
+                    print('Sentence   : ',end='')
+                    sen = test_data.X[i]
+                    for idx in sen:
+                        print(self.vec.idx2word[idx],'    ',end='')
+                    print(' | Label: ',test_data.y[i],', Prediction: ',predictions[i])
 
                     # print attentions
                     print('Attentions : ',end='')
