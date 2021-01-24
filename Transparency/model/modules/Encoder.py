@@ -83,6 +83,8 @@ class EncoderorthoRNN(Encoder) :
             weight[0, :].zero_()
 
             self.embedding = nn.Embedding(vocab_size, embed_size, _weight=weight, padding_idx=0)
+            self.embedding.weight.requires_grad=False
+            #self.embedding.requires_grad=False
         else :
             self.embedding = nn.Embedding(vocab_size, embed_size, padding_idx=0)
 
@@ -94,7 +96,7 @@ class EncoderorthoRNN(Encoder) :
     def numTrainableParameters(self):
         total = 0
         for name, p in self.named_parameters():
-            total += np.prod(p.shape)
+            if p.requires_grad: total += np.prod(p.shape)
             print("{:24s} {:12s} requires_grad={}".format(name, str(list(p.shape)), p.requires_grad))
         print("\nTotal number of parameters: {}\n".format(total))
         assert total == sum(p.numel() for p in self.parameters() if p.requires_grad)
@@ -156,7 +158,7 @@ class EncoderorthoRNN(Encoder) :
     def numTrainableParameters(self):
         total = 0
         for name, p in self.named_parameters():
-            total += np.prod(p.shape)
+            if p.requires_grad: total += np.prod(p.shape)
             print("{:24s} {:12s} requires_grad={}".format(name, str(list(p.shape)), p.requires_grad))
         print("\nTotal number of parameters: {}\n".format(total))
         assert total == sum(p.numel() for p in self.parameters() if p.requires_grad)
@@ -218,7 +220,7 @@ class EncoderorthoRNN(Encoder) :
     def numTrainableParameters(self):
         total = 0
         for name, p in self.named_parameters():
-            total += np.prod(p.shape)
+            if p.requires_grad: total += np.prod(p.shape)
             print("{:24s} {:12s} requires_grad={}".format(name, str(list(p.shape)), p.requires_grad))
         print("\nTotal number of parameters: {}\n".format(total))
         assert total == sum(p.numel() for p in self.parameters() if p.requires_grad)
