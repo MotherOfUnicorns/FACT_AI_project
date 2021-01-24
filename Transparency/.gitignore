@@ -2,3 +2,7 @@
 .vscode
 test
 preprocess
+const_attn_runs
+last_only_runs
+test_seeds
+tanh_attn_runs

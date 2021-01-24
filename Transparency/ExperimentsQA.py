@@ -22,6 +22,7 @@ def train_dataset(dataset, args):
     print("STARTING TRAINING")
 
     config = update_config_with_args(dataset, args)
+    config['training']['lr']=args.lr
     n_iters = dataset.n_iters if hasattr(dataset, "n_iters") else 25
     trainer = Trainer(dataset, config=config, _type=dataset.trainer_type)
     trainer.train(

@@ -37,7 +37,7 @@ class AttnDecoder(nn.Module, FromParams) :
     def numTrainableParameters(self):
         total = 0
         for name, p in self.named_parameters():
-            total += np.prod(p.shape)
+            if p.requires_grad: total += np.prod(p.shape)
             print("{:24s} {:12s} requires_grad={}".format(name, str(list(p.shape)), p.requires_grad))
         print("\nTotal number of parameters: {}\n".format(total))
         assert total == sum(p.numel() for p in self.parameters() if p.requires_grad)
@@ -124,6 +124,18 @@ class AttnDecoderQA(nn.Module, FromParams) :
             self.use_regulariser_attention = True
 
         self.use_attention = use_attention
+        print('Decoder definition:')
+        self.numTrainableParameters()
+    
+    def numTrainableParameters(self):
+        total = 0
+        for name, p in self.named_parameters():
+            if p.requires_grad: total += np.prod(p.shape)
+            print("{:24s} {:12s} requires_grad={}".format(name, str(list(p.shape)), p.requires_grad))
+        print("\nTotal number of parameters: {}\n".format(total))
+        assert total == sum(p.numel() for p in self.parameters() if p.requires_grad)
+        return total
+
          
     def decode(self, Poutput, Qoutput, entity_mask) :
         predict = self.linear_2(nn.Tanh()(self.linear_1p(Poutput) + self.linear_1q(Qoutput))) #(B, O)

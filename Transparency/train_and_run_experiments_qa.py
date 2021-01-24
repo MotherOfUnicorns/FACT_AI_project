@@ -18,7 +18,7 @@ parser.add_argument("--seed", type=int, default=0)
 parser.add_argument(
     "--job_type", type=str, default="both", choices=["both", "train", "experiment"]
 )
-
+parser.add_argument("--lr",type=float,default=None)
 args, extras = parser.parse_known_args()
 args.extras = extras
 

@@ -31,8 +31,8 @@ class EncoderorthoRNN(Encoder) :
             print("Setting Embedding")
             weight = torch.Tensor(pre_embed)
             weight[0, :].zero_()
-
             self.embedding = nn.Embedding(vocab_size, embed_size, _weight=weight, padding_idx=0)
+            self.embedding.weight.requires_grad=False #NO FINE TUNING OF EMBEDDINGS
         else :
             self.embedding = nn.Embedding(vocab_size, embed_size, padding_idx=0)
 
@@ -83,8 +83,7 @@ class EncoderorthoRNN(Encoder) :
             weight[0, :].zero_()
 
             self.embedding = nn.Embedding(vocab_size, embed_size, _weight=weight, padding_idx=0)
-            self.embedding.weight.requires_grad=False
-            #self.embedding.requires_grad=False
+            self.embedding.weight.requires_grad=False #NO FINE TUNING OF EMBEDDINGS
         else :
             self.embedding = nn.Embedding(vocab_size, embed_size, padding_idx=0)
 
@@ -143,8 +142,8 @@ class EncoderorthoRNN(Encoder) :
             print("Setting Embedding")
             weight = torch.Tensor(pre_embed)
             weight[0, :].zero_()
-
             self.embedding = nn.Embedding(vocab_size, embed_size, _weight=weight, padding_idx=0)
+            self.embedding.weight.requires_grad=False #NO FINE TUNING OF EMBEDDINGS
         else :
             self.embedding = nn.Embedding(vocab_size, embed_size, padding_idx=0)
 
@@ -205,8 +204,8 @@ class EncoderorthoRNN(Encoder) :
             print("Setting Embedding")
             weight = torch.Tensor(pre_embed)
             weight[0, :].zero_()
-
             self.embedding = nn.Embedding(vocab_size, embed_size, _weight=weight, padding_idx=0)
+            self.embedding.weight.requires_grad=False #NO FINE TUNING OF EMBEDDINGS
         else :
             self.embedding = nn.Embedding(vocab_size, embed_size, padding_idx=0)
 

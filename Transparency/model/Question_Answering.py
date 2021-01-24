@@ -104,8 +104,12 @@ class Model() :
 
         weight_decay = configuration['training'].get('weight_decay', 1e-5)
         self.params = list(self.Pencoder.parameters()) + list(self.Qencoder.parameters()) + list(self.decoder.parameters())
-        self.optim = torch.optim.Adam(self.params, weight_decay=weight_decay, amsgrad=True)
-        # self.optim = torch.optim.Adagrad(self.params, lr=0.05, weight_decay=weight_decay)
+        if configuration['training']['lr'] == None:
+            self.optim = torch.optim.Adam(self.params, weight_decay=weight_decay, amsgrad=True)
+            # self.optim = torch.optim.Adagrad(self.params, lr=0.05, weight_decay=weight_decay)
+        else:
+            l_rate=configuration['training']['lr']
+            self.optim = torch.optim.Adam(self.params, lr=l_rate,weight_decay=weight_decay, amsgrad=True)
         self.criterion = nn.CrossEntropyLoss()
 
         import time
