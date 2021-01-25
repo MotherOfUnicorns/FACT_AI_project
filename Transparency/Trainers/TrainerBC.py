@@ -27,12 +27,12 @@ class Trainer() :
             predictions = np.array(predictions)
 
             dhnorms_sm=deepcopy(hnorms_sm)
-            for i in range(len(dhnorms_sm)):
-                dhnorms_sm[i][1:]=dhnorms_sm[i][1:]-dhnorms_sm[i][0:-1]
+            for j in range(len(dhnorms_sm)):
+                dhnorms_sm[j][1:]=dhnorms_sm[j][1:]-dhnorms_sm[j][0:-1]
 
             printExamples=False # only if you want to sample some results
             if printExamples:
-                for i in range(100,400,50):
+                for i in range(10,110,10):
                     # print sentence
                     print('Sentence   : ',end='')
                     sen = test_data.X[i]
@@ -50,12 +50,12 @@ class Trainer() :
                     print('SM(||h_i||): ',end='')
                     for j in range(len(sen)):
                         print("%.2f" %hnorms_sm[i][j],' '*max(0,len(self.vec.idx2word[sen[j]])),end='')
-                    print()
-                    # print difference between hnorms
-                    print('SM(|dh_i||): ',end='')
-                    for j in range(len(sen)):
-                        print("%.2f" %dhnorms_sm[i][j],' '*max(0,len(self.vec.idx2word[sen[j]])),end='')
                     print('\n')
+                    # print difference between hnorms
+                    #print('SM(|dh_i||): ',end='')
+                    #for j in range(len(sen)):
+                    #    print("%.2f" %dhnorms_sm[i][j],' '*max(0,len(self.vec.idx2word[sen[j]])),end='')
+                    #print('\n')
 
                     # print ||h_i||
                     #print('h norms   : ',end='')
