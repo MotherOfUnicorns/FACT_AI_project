@@ -12,7 +12,7 @@ parser.add_argument(
 )
 parser.add_argument(
     "--attention", type=str, choices=["tanh", "equal", "first_only", 'last_only'], default="tanh"
-)  # TODO: does the dot/all options work? what are they?
+)
 parser.add_argument("--diversity", type=float, default=0)
 parser.add_argument("--seed", type=int, default=0)
 parser.add_argument(
