@@ -11,8 +11,8 @@ parser.add_argument(
     required=True,
 )
 parser.add_argument(
-    "--attention", type=str, choices=["tanh", "dot", "all"], default="tanh"
-)  # TODO: does attention work with dot/all? what are they?
+    "--attention", type=str, choices=["tanh"], default="tanh"
+) 
 parser.add_argument("--diversity", type=float, default=0)
 parser.add_argument("--seed", type=int, default=0)
 parser.add_argument(
