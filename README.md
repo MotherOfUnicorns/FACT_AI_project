@@ -21,8 +21,7 @@ Here we provide an overview of the different branches, and details for running s
 - `embedding_params` do not fine-tune the pre-trained embeddings if they are used
 - `lime` contains our experiments that compare attention weights with [LIME](https://github.com/marcotcr/lime) scores
 - `Q_route_fix` contains our investigation about whether orthogonalisation should also be applied on the Q-route when training models
-- `dataset_analysis` <mark> contains ???</mark>
-- `alternative_attn_mods` <mark> contains ???</mark>
+- `dataset_analysis` was use to run additional experiments.
 
 
 ## Installation 
@@ -199,13 +198,6 @@ When using `diversity_lstm` as the encoder, an additional `--diversity` flag is 
 Same arguments as the `master` branch are accepted here.
 But when the `ortho_lstm` encoder is used for any dual input sequence tasks, only the P-path is orthogonalised, and ***not*** the Q-path.
 
-#### `dataset_analysis` branch
-
-<mark> contains ???</mark>
-
-#### `alternative_attn_mods` branch
-
-<mark> contains ???</mark>
 
 
 ## Our Results
